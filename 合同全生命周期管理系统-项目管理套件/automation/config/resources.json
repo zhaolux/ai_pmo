@@ -1,0 +1,11 @@
+[
+  {"role_code": "PGM", "role_name": "项目集经理", "headcount": 1},
+  {"role_code": "PM", "role_name": "项目经理", "headcount": 2},
+  {"role_code": "TM", "role_name": "技术经理", "headcount": 2},
+  {"role_code": "PDM", "role_name": "产品经理", "headcount": 2},
+  {"role_code": "UI", "role_name": "美工", "headcount": 1},
+  {"role_code": "SDEV", "role_name": "高级开发人员", "headcount": 3},
+  {"role_code": "MDEV", "role_name": "中级开发人员", "headcount": 15},
+  {"role_code": "QA", "role_name": "测试人员", "headcount": 3},
+  {"role_code": "CM", "role_name": "配置人员", "headcount": 1}
+]

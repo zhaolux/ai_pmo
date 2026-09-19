@@ -1,0 +1,65 @@
+[
+  {
+    "role_code": "PGM",
+    "role_name": "项目集经理",
+    "planned_headcount": 1,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "PM",
+    "role_name": "项目经理",
+    "planned_headcount": 2,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "TM",
+    "role_name": "技术经理",
+    "planned_headcount": 2,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "PDM",
+    "role_name": "产品经理",
+    "planned_headcount": 2,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "UI",
+    "role_name": "美工",
+    "planned_headcount": 1,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "SDEV",
+    "role_name": "高级开发人员",
+    "planned_headcount": 3,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "MDEV",
+    "role_name": "中级开发人员",
+    "planned_headcount": 15,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "QA",
+    "role_name": "测试人员",
+    "planned_headcount": 3,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  },
+  {
+    "role_code": "CM",
+    "role_name": "配置人员",
+    "planned_headcount": 1,
+    "hours_per_week": 40.0,
+    "hourly_rate": 150.0
+  }
+]

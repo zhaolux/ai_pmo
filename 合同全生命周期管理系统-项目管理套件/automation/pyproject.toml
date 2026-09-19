@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "energy-contract-ai-pmo"
+version = "0.1.0"
+description = "Python-driven project management suite for an energy-industry contract lifecycle project"
+requires-python = ">=3.12"
+dependencies = ["openpyxl>=3.1", "pydantic>=2.7"]
+
+[project.scripts]
+ai-pmo = "ai_pmo.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

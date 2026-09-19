@@ -1,0 +1,249 @@
+{
+  "approval_status": "分析材料，非审批结论",
+  "cards": [
+    {
+      "agent_alerts": [],
+      "cost_comparison": "待估算",
+      "decision_id": "DEC-001",
+      "decision_owner": "项目治理委员会",
+      "due_date": "2026-09-30",
+      "facts": {
+        "background": "需验证认证、签章、验签、时间戳和集成成本",
+        "budget_amount": 0,
+        "budget_basis": "等待POC和厂商报价",
+        "budget_id": "BUD-002",
+        "budget_item": "CA及电子签章",
+        "budget_status": "待估算",
+        "contract_due": "2026-10-15",
+        "decision_due": "2026-09-30",
+        "decision_id": "DEC-001",
+        "decision_owner": "项目治理委员会",
+        "decision_status": "待决策",
+        "decision_title": "CA产品POC选型",
+        "estimate_due": "2026-09-25",
+        "evidence": {
+          "budget": {
+            "file": "成本与合同管理-20260918-V5.xlsx",
+            "record_id": "BUD-002",
+            "row": 6,
+            "sheet": "预算基线"
+          },
+          "decision": {
+            "file": "沟通会议与报告-20260918-V3.xlsx",
+            "record_id": "DEC-001",
+            "row": 5,
+            "sheet": "决策日志"
+          },
+          "package": {
+            "file": "成本与合同管理-20260918-V5.xlsx",
+            "record_id": "PKG-001",
+            "row": 5,
+            "sheet": "采购包计划"
+          }
+        },
+        "impact": "影响电子签署、合规、进度和采购",
+        "options": "各候选厂商方案",
+        "package_budget_status": "待估算",
+        "package_id": "PKG-001",
+        "package_name": "CA及电子签章产品",
+        "package_owner": "技术经理",
+        "package_prerequisite": "POC后确认",
+        "planned_amount": null,
+        "poc_reference": "POC评分表",
+        "pricing_scope": "POC结论、许可模式和接口费用确认",
+        "product": "CA及电子签章",
+        "source_recommendation": "依据POC证据及综合评分选型"
+      },
+      "manual_decision": "",
+      "missing_evidence": [
+        "POC评分表实际文件与评分结果未取得/未核验",
+        "候选厂商报价未取得/未核验",
+        "PKG-001采购估算及BUD-002预算基线待量化，最迟2026-09-25"
+      ],
+      "poc_score_status": "未取得/未核验",
+      "product": "CA及电子签章",
+      "scenarios": [
+        {
+          "impact": "如POC评分、报价与合规证据及时齐备，可维持选型节点；证据不足时不得据此批准采购。",
+          "title": "按现有计划选型",
+          "type": "分析假设"
+        },
+        {
+          "impact": "可提高能力和成本判断的可靠性，但需重新确认选型与采购时间。",
+          "title": "补充POC后选型",
+          "type": "分析假设"
+        },
+        {
+          "impact": "可能影响产品集成、签约和项目启动准备；具体进度影响须依据依赖计划测算。",
+          "title": "延期决策",
+          "type": "分析假设"
+        }
+      ],
+      "status": "待决策",
+      "title": "CA产品POC选型"
+    },
+    {
+      "agent_alerts": [],
+      "cost_comparison": "待估算",
+      "decision_id": "DEC-002",
+      "decision_owner": "项目治理委员会",
+      "due_date": "2026-09-30",
+      "facts": {
+        "background": "需验证模板、预览、转换、水印、大文件和归档",
+        "budget_amount": 0,
+        "budget_basis": "等待POC和厂商报价",
+        "budget_id": "BUD-003",
+        "budget_item": "电子文档产品",
+        "budget_status": "待估算",
+        "contract_due": "2026-10-15",
+        "decision_due": "2026-09-30",
+        "decision_id": "DEC-002",
+        "decision_owner": "项目治理委员会",
+        "decision_status": "待决策",
+        "decision_title": "电子文档产品POC选型",
+        "estimate_due": "2026-09-25",
+        "evidence": {
+          "budget": {
+            "file": "成本与合同管理-20260918-V5.xlsx",
+            "record_id": "BUD-003",
+            "row": 7,
+            "sheet": "预算基线"
+          },
+          "decision": {
+            "file": "沟通会议与报告-20260918-V3.xlsx",
+            "record_id": "DEC-002",
+            "row": 6,
+            "sheet": "决策日志"
+          },
+          "package": {
+            "file": "成本与合同管理-20260918-V5.xlsx",
+            "record_id": "PKG-002",
+            "row": 6,
+            "sheet": "采购包计划"
+          }
+        },
+        "impact": "影响文档生成、签署、归档和性能",
+        "options": "各候选厂商方案",
+        "package_budget_status": "待估算",
+        "package_id": "PKG-002",
+        "package_name": "电子文档产品",
+        "package_owner": "技术经理",
+        "package_prerequisite": "POC后确认",
+        "planned_amount": null,
+        "poc_reference": "POC评分表",
+        "pricing_scope": "模板、预览、转换、水印、归档及性能费用确认",
+        "product": "电子文档",
+        "source_recommendation": "依据POC证据及综合评分选型"
+      },
+      "manual_decision": "",
+      "missing_evidence": [
+        "POC评分表实际文件与评分结果未取得/未核验",
+        "候选厂商报价未取得/未核验",
+        "PKG-002采购估算及BUD-003预算基线待量化，最迟2026-09-25"
+      ],
+      "poc_score_status": "未取得/未核验",
+      "product": "电子文档",
+      "scenarios": [
+        {
+          "impact": "如POC评分、报价与合规证据及时齐备，可维持选型节点；证据不足时不得据此批准采购。",
+          "title": "按现有计划选型",
+          "type": "分析假设"
+        },
+        {
+          "impact": "可提高能力和成本判断的可靠性，但需重新确认选型与采购时间。",
+          "title": "补充POC后选型",
+          "type": "分析假设"
+        },
+        {
+          "impact": "可能影响产品集成、签约和项目启动准备；具体进度影响须依据依赖计划测算。",
+          "title": "延期决策",
+          "type": "分析假设"
+        }
+      ],
+      "status": "待决策",
+      "title": "电子文档产品POC选型"
+    },
+    {
+      "agent_alerts": [],
+      "cost_comparison": "待估算",
+      "decision_id": "DEC-003",
+      "decision_owner": "项目治理委员会",
+      "due_date": "2026-09-30",
+      "facts": {
+        "background": "需验证数据接入、指标口径、权限、钻取、导出和性能",
+        "budget_amount": 0,
+        "budget_basis": "等待POC和厂商报价",
+        "budget_id": "BUD-004",
+        "budget_item": "BI报表产品",
+        "budget_status": "待估算",
+        "contract_due": "2026-10-15",
+        "decision_due": "2026-09-30",
+        "decision_id": "DEC-003",
+        "decision_owner": "项目治理委员会",
+        "decision_status": "待决策",
+        "decision_title": "BI报表产品POC选型",
+        "estimate_due": "2026-09-25",
+        "evidence": {
+          "budget": {
+            "file": "成本与合同管理-20260918-V5.xlsx",
+            "record_id": "BUD-004",
+            "row": 8,
+            "sheet": "预算基线"
+          },
+          "decision": {
+            "file": "沟通会议与报告-20260918-V3.xlsx",
+            "record_id": "DEC-003",
+            "row": 7,
+            "sheet": "决策日志"
+          },
+          "package": {
+            "file": "成本与合同管理-20260918-V5.xlsx",
+            "record_id": "PKG-003",
+            "row": 7,
+            "sheet": "采购包计划"
+          }
+        },
+        "impact": "影响经营分析、数据权限和交付成本",
+        "options": "各候选厂商方案",
+        "package_budget_status": "待估算",
+        "package_id": "PKG-003",
+        "package_name": "BI报表产品",
+        "package_owner": "技术经理",
+        "package_prerequisite": "POC后确认",
+        "planned_amount": null,
+        "poc_reference": "POC评分表",
+        "pricing_scope": "许可、用户数、服务器和实施费用确认",
+        "product": "BI报表",
+        "source_recommendation": "依据POC证据及综合评分选型"
+      },
+      "manual_decision": "",
+      "missing_evidence": [
+        "POC评分表实际文件与评分结果未取得/未核验",
+        "候选厂商报价未取得/未核验",
+        "PKG-003采购估算及BUD-004预算基线待量化，最迟2026-09-25"
+      ],
+      "poc_score_status": "未取得/未核验",
+      "product": "BI报表",
+      "scenarios": [
+        {
+          "impact": "如POC评分、报价与合规证据及时齐备，可维持选型节点；证据不足时不得据此批准采购。",
+          "title": "按现有计划选型",
+          "type": "分析假设"
+        },
+        {
+          "impact": "可提高能力和成本判断的可靠性，但需重新确认选型与采购时间。",
+          "title": "补充POC后选型",
+          "type": "分析假设"
+        },
+        {
+          "impact": "可能影响产品集成、签约和项目启动准备；具体进度影响须依据依赖计划测算。",
+          "title": "延期决策",
+          "type": "分析假设"
+        }
+      ],
+      "status": "待决策",
+      "title": "BI报表产品POC选型"
+    }
+  ],
+  "data_date": "2026-09-19"
+}

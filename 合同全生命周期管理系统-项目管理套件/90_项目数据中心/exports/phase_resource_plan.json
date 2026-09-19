@@ -1,0 +1,248 @@
+[
+  {
+    "phase_id": "P01",
+    "role_code": "PGM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P01",
+    "role_code": "PM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P01",
+    "role_code": "TM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P01",
+    "role_code": "PDM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P01",
+    "role_code": "UI",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P01",
+    "role_code": "SDEV",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P01",
+    "role_code": "MDEV",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "PGM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "PM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "TM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "PDM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "UI",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "SDEV",
+    "planned_headcount": 3,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "MDEV",
+    "planned_headcount": 5,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P02",
+    "role_code": "CM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "PGM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "PM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "TM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "PDM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "UI",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "SDEV",
+    "planned_headcount": 3,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "MDEV",
+    "planned_headcount": 9,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "QA",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P03",
+    "role_code": "CM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "PGM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "PM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "TM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "PDM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "UI",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "SDEV",
+    "planned_headcount": 3,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "MDEV",
+    "planned_headcount": 15,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "QA",
+    "planned_headcount": 3,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P04",
+    "role_code": "CM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "PGM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "PM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "TM",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "PDM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "SDEV",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "MDEV",
+    "planned_headcount": 3,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "QA",
+    "planned_headcount": 2,
+    "planning_status": "规划假设"
+  },
+  {
+    "phase_id": "P05",
+    "role_code": "CM",
+    "planned_headcount": 1,
+    "planning_status": "规划假设"
+  }
+]

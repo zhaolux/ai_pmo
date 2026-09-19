@@ -1,5 +1,16 @@
 .worktrees/
 .superpowers/
+.artifact-work/
+.xlsx-filter-fix/
 .DS_Store
 __pycache__/
 .pytest_cache/
+*.py[cod]
+node_modules
+*.db
+*.sqlite
+*.sqlite3
+*.inspect.ndjson
+*.log
+*.jsonl
+~$*

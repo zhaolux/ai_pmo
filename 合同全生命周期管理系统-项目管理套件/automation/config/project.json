@@ -1,0 +1,18 @@
+{
+  "project_id": "ECM-2026",
+  "project_name": "能源行业合同全生命周期管理系统",
+  "industry": "能源",
+  "project_preparation_start": "2026-02-01",
+  "formal_start_date": "2026-10-20",
+  "planned_go_live_date": "2027-05-31",
+  "trial_operation_start": "2027-05-31",
+  "planned_headcount": 30,
+  "currency": "CNY",
+  "hours_per_day": 8,
+  "hours_per_week": 40,
+  "person_day_rate": 1200,
+  "hourly_rate": 150,
+  "effort_rounding_hours": 0.5,
+  "template_filename": "AI-PMO-V2模板-20260915.xlsx",
+  "pmbok_filename": "PM BOK 指南第8版学习.docx"
+}
