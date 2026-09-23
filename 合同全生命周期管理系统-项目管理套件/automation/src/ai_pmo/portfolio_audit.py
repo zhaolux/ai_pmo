@@ -4,6 +4,131 @@ from pathlib import Path
 from math import isclose
 from openpyxl import load_workbook
 
+CLOSED_STATES = ('已关闭', '已解决', '已取消')
+SEVERE_DEFECT_LEVELS = ('Blocker', 'Critical', '致命', '严重')
+
+
+def check_risk_followup(risks: list[dict], actions: dict[str, list[dict]]) -> dict:
+    """未关闭且剩余等级为重大/高的风险，应对要素必须齐全。
+
+    risks: [{'id', 'level'(剩余等级), 'status', 'strategy', 'deadline'}]；
+    actions: {风险ID: [{'owner', 'plan_date'}]}（风险应对计划中的行动）。
+    只提示缺失要素，不代替风险处置审批。
+    """
+    warnings = []
+    for r in risks:
+        if r['status'] in CLOSED_STATES or r['level'] not in ('重大', '高'):
+            continue
+        rid = r['id']
+        if not r['strategy']:
+            warnings.append(f'风险 {rid} 剩余等级{r["level"]}未关闭，但缺少应对策略')
+        if not r['deadline']:
+            warnings.append(f'风险 {rid} 剩余等级{r["level"]}未关闭，但缺少最迟应对日期')
+        acts = actions.get(rid, [])
+        if not acts:
+            warnings.append(f'风险 {rid} 剩余等级{r["level"]}未关闭，风险应对计划中没有对应行动')
+        for a in acts:
+            if not a['owner']:
+                warnings.append(f'风险 {rid} 的应对行动缺少行动责任人')
+            if not a['plan_date']:
+                warnings.append(f'风险 {rid} 的应对行动缺少计划完成日期')
+    return {'errors': [], 'warnings': warnings}
+
+
+def check_issue_detail(issues: list[dict]) -> dict:
+    """问题台账状态明细：未关闭的重大/高问题须有应对措施与计划关闭日期。
+
+    issues: [{'id', 'level', 'status', 'response', 'plan_close', 'actual_close'}]。
+    """
+    warnings = []
+    for it in issues:
+        closed = it['status'] in CLOSED_STATES
+        if it['actual_close'] and not closed:
+            warnings.append(
+                f'问题 {it["id"]} 已填实际关闭日期，但状态为“{it["status"]}”，请确认是否已关闭')
+        if closed or it['level'] not in ('重大', '高'):
+            continue
+        if not it['response']:
+            warnings.append(f'问题 {it["id"]} 等级{it["level"]}未关闭，但缺少应对措施')
+        if not it['plan_close']:
+            warnings.append(f'问题 {it["id"]} 等级{it["level"]}未关闭，但缺少计划关闭日期')
+    return {'errors': [], 'warnings': warnings}
+
+
+def check_decision_detail(decisions: list[dict]) -> dict:
+    """待决策事项：状态为待决策时，建议方案、需要日期、决策人必须齐全。
+
+    decisions: [{'id', 'status', 'proposal', 'need_date', 'decision_maker'}]。
+    """
+    warnings = []
+    for d in decisions:
+        if d['status'] != '待决策':
+            continue
+        missing = []
+        if not d['proposal']:
+            missing.append('建议方案')
+        if not d['need_date']:
+            missing.append('需要日期')
+        if not d['decision_maker']:
+            missing.append('决策人')
+        if missing:
+            warnings.append(f'待决策事项 {d["id"]} 状态为待决策，但缺少{"、".join(missing)}')
+    return {'errors': [], 'warnings': warnings}
+
+
+def check_quality_evidence(coverage: list[dict] | None = None,
+                           uat: list[dict] | None = None,
+                           defects: list[dict] | None = None) -> dict:
+    """质量验收证据一致性：判定为完整/通过时必须有证据，严重缺陷须有闭环计划。
+
+    coverage: [{'id', 'exec_result', 'evidence', 'coverage'}]（需求覆盖矩阵）；
+    uat: [{'id', 'exec_result', 'evidence'}]；
+    defects: [{'id', 'severity', 'status', 'plan_done', 'verify_evidence'}]。
+    """
+    warnings = []
+    for c in coverage or []:
+        if c['coverage'] == '完整' and not c['evidence']:
+            warnings.append(f'需求 {c["id"]} 覆盖状态为完整，但验收证据为空')
+        if c['exec_result'] in ('通过', '已完成') and not c['evidence']:
+            warnings.append(f'需求 {c["id"]} 执行结果为{c["exec_result"]}，但验收证据为空')
+    for u in uat or []:
+        if u['exec_result'] == '通过' and not u['evidence']:
+            warnings.append(f'UAT {u["id"]} 执行结果为通过，但验收证据为空')
+    for df in defects or []:
+        if (df['severity'] in SEVERE_DEFECT_LEVELS
+                and df['status'] not in CLOSED_STATES + ('已验证',)
+                and not df['plan_done']):
+            warnings.append(
+                f'缺陷 {df["id"]} 严重级别{df["severity"]}未关闭，但缺少计划完成日期')
+        if df['status'] in ('已关闭', '已解决') and not df['verify_evidence']:
+            warnings.append(f'缺陷 {df["id"]} 已关闭，但验证证据为空')
+    return {'errors': [], 'warnings': warnings}
+
+
+def check_deliverable_consistency(rows: list[dict],
+                                  interface_total: int | None = None) -> dict:
+    """验收交付物台账口径与证据完整性。
+
+    rows: [{'id', 'status', 'actual_done', 'review_result', 'location'}]；
+    interface_total: 交付物工作簿 _数据接口登记的交付物总数。
+    """
+    warnings = []
+    if interface_total is not None and interface_total != len(rows):
+        warnings.append(
+            f'交付物总数口径不一致：_数据接口登记 {interface_total}，台账 {len(rows)} 行')
+    for d in rows:
+        if d['status'] in ('已完成', '已验收') and not d['actual_done']:
+            warnings.append(f'交付物 {d["id"]} 状态为{d["status"]}，但实际完成为空')
+        if d['status'] == '已验收':
+            missing = []
+            if not d['review_result']:
+                missing.append('评审结论')
+            if not d['location']:
+                missing.append('存放位置')
+            if missing:
+                warnings.append(f'交付物 {d["id"]} 已验收，但缺少{"、".join(missing)}')
+    return {'errors': [], 'warnings': warnings}
+
 
 def check_milestone_links(milestone_ids, task_milestones):
     milestones = set(milestone_ids)
@@ -194,8 +319,50 @@ def audit_portfolio(plan_path: Path, risk_path: Path, change_path: Path,
         if migration_book is not None:
             migration = check_migration_progress(_interface(migration_book['_数据接口']))
             counts.update(migration['counts'])
+        risk_rows = [{'id': row[0], 'level': row[33], 'status': row[28],
+                      'strategy': row[24], 'deadline': row[27]}
+                     for row in risk['风险登记册'].iter_rows(min_row=9, values_only=True)
+                     if row and isinstance(row[0], str) and row[0].startswith('RSK-')]
+        risk_actions: dict[str, list[dict]] = {}
+        for row in risk['风险应对计划'].iter_rows(min_row=5, values_only=True):
+            if row and isinstance(row[0], str) and row[0].startswith('RA-') and row[1]:
+                risk_actions.setdefault(str(row[1]), []).append(
+                    {'owner': row[6], 'plan_date': row[9]})
+        risk_followup = check_risk_followup(risk_rows, risk_actions)
+        issue_detail = check_issue_detail([
+            {'id': row[0], 'level': row[3], 'status': row[10],
+             'response': row[6], 'plan_close': row[7], 'actual_close': row[8]}
+            for row in change['问题台账'].iter_rows(min_row=4, values_only=True)
+            if row and row[0] not in (None, '') and str(row[0]) != '编号'])
+        decision_detail = check_decision_detail([
+            {'id': row[0], 'status': row[8], 'proposal': row[5],
+             'need_date': row[7], 'decision_maker': row[6]}
+            for row in change['待决策事项'].iter_rows(min_row=5, values_only=True)
+            if row and isinstance(row[0], str) and row[0].startswith('D-')])
+        quality_evidence = check_quality_evidence(
+            coverage=[{'id': row[0], 'exec_result': row[6], 'evidence': row[9],
+                       'coverage': row[11]}
+                      for row in quality['需求覆盖矩阵'].iter_rows(min_row=5, values_only=True)
+                      if row and isinstance(row[0], str) and row[0].startswith('REQ-')],
+            uat=[{'id': row[0], 'exec_result': row[9], 'evidence': row[11]}
+                 for row in quality['UAT验收'].iter_rows(min_row=5, values_only=True)
+                 if row and isinstance(row[0], str) and row[0].startswith('UAT-')],
+            defects=[{'id': row[0], 'severity': row[6], 'status': row[13],
+                      'plan_done': row[11], 'verify_evidence': row[16]}
+                     for row in quality['缺陷台账'].iter_rows(min_row=5, values_only=True)
+                     if row and isinstance(row[0], str) and row[0].startswith('DEF-')])
+        deliverable_rows = [{'id': row[0], 'status': row[6], 'actual_done': row[5],
+                             'review_result': row[8], 'location': row[10]}
+                            for row in deliverable['交付物台账'].iter_rows(min_row=5, values_only=True)
+                            if row and isinstance(row[0], str) and row[0].startswith('D-')]
+        deliverable_interface = _interface(deliverable['_数据接口'])
+        deliverable_check = check_deliverable_consistency(
+            deliverable_rows, interface_total=deliverable_interface.get('交付物总数'))
+        detail_warnings = (risk_followup['warnings'] + issue_detail['warnings']
+                           + decision_detail['warnings'] + quality_evidence['warnings']
+                           + deliverable_check['warnings'])
         return {'counts': counts, 'errors': links['errors'] + snapshot['errors'] + owner_drift['errors'] + owner_align['errors'],
                 'warnings': links['warnings'] + snapshot['warnings'] + migration['warnings']
-                + owner_drift['warnings'] + owner_align['warnings']}
+                + owner_drift['warnings'] + owner_align['warnings'] + detail_warnings}
     finally:
         for book in books: book.close()

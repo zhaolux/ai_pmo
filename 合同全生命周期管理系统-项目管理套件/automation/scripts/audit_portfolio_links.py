@@ -13,7 +13,8 @@ from ai_pmo.portfolio_audit import audit_portfolio
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description='只读核对里程碑、风险决策、质量、成本与驾驶舱快照')
+    parser = argparse.ArgumentParser(
+        description='只读核对里程碑、风险、问题、决策、质量证据、交付物、成本与驾驶舱快照')
     parser.add_argument('--suite', type=Path, default=AUTOMATION.parent)
     args = parser.parse_args()
     suite = args.suite.resolve()

@@ -1,9 +1,10 @@
 import unittest
 
 from ai_pmo.portfolio_audit import (
+    check_decision_detail, check_deliverable_consistency, check_issue_detail,
     check_migration_progress, check_milestone_links, check_milestone_owner_alignment,
-    check_milestone_owner_drift, compare_dashboard_snapshot,
-    dashboard_metrics_from_cells,
+    check_milestone_owner_drift, check_quality_evidence, check_risk_followup,
+    compare_dashboard_snapshot, dashboard_metrics_from_cells,
 )
 
 
@@ -88,6 +89,121 @@ class PortfolioAuditTests(unittest.TestCase):
         result = check_milestone_owner_alignment(
             milestones, {'MS001': ['项目经理', ''], 'MS002': ['技术经理']})
         self.assertEqual(result['warnings'], [])
+
+    def test_risk_followup_warns_when_open_high_risk_lacks_action(self):
+        risks = [{'id': 'RSK-001', 'level': '高', 'status': '处理中',
+                  'strategy': '减轻', 'deadline': '2026-09-25'}]
+        result = check_risk_followup(risks, {})
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('RSK-001', result['warnings'][0])
+        self.assertIn('应对计划', result['warnings'][0])
+
+    def test_risk_followup_warns_when_action_missing_owner_or_plan_date(self):
+        risks = [{'id': 'RSK-004', 'level': '重大', 'status': '待处理',
+                  'strategy': '规避', 'deadline': '2026-10-13'}]
+        result = check_risk_followup(risks, {'RSK-004': [{'owner': '', 'plan_date': None}]})
+        self.assertEqual(len(result['warnings']), 2)
+        self.assertTrue(any('行动责任人' in w for w in result['warnings']))
+        self.assertTrue(any('计划完成日期' in w for w in result['warnings']))
+
+    def test_risk_followup_silent_for_closed_or_medium_risks(self):
+        risks = [
+            {'id': 'RSK-001', 'level': '高', 'status': '已关闭',
+             'strategy': '', 'deadline': None},
+            {'id': 'RSK-010', 'level': '中', 'status': '待处理',
+             'strategy': '接受', 'deadline': None},
+        ]
+        result = check_risk_followup(risks, {})
+        self.assertEqual(result['warnings'], [])
+
+    def test_issue_detail_warns_when_open_high_issue_lacks_response_or_plan(self):
+        issues = [{'id': 'G10', 'level': '高', 'status': '待确认',
+                   'response': '', 'plan_close': None, 'actual_close': None}]
+        result = check_issue_detail(issues)
+        self.assertEqual(len(result['warnings']), 2)
+        self.assertTrue(any('应对措施' in w for w in result['warnings']))
+        self.assertTrue(any('计划关闭' in w for w in result['warnings']))
+
+    def test_issue_detail_warns_when_actual_close_filled_but_status_open(self):
+        issues = [{'id': 'G10', 'level': '高', 'status': '待确认',
+                   'response': '有措施', 'plan_close': '2026-09-25',
+                   'actual_close': '2026-09-20'}]
+        result = check_issue_detail(issues)
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('实际关闭', result['warnings'][0])
+
+    def test_issue_detail_silent_for_closed_issue(self):
+        issues = [{'id': 'G10', 'level': '高', 'status': '已关闭',
+                   'response': '', 'plan_close': None, 'actual_close': '2026-09-20'}]
+        self.assertEqual(check_issue_detail(issues)['warnings'], [])
+
+    def test_decision_detail_warns_when_pending_decision_lacks_proposal(self):
+        decisions = [{'id': 'D-001', 'status': '待决策', 'proposal': '',
+                      'need_date': None, 'decision_maker': '委员会'}]
+        result = check_decision_detail(decisions)
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('D-001', result['warnings'][0])
+        self.assertIn('建议方案', result['warnings'][0])
+        self.assertIn('需要日期', result['warnings'][0])
+
+    def test_decision_detail_silent_when_pending_decision_is_complete(self):
+        decisions = [{'id': 'D-001', 'status': '待决策', 'proposal': '建议方案',
+                      'need_date': '2026-09-25', 'decision_maker': '委员会'}]
+        self.assertEqual(check_decision_detail(decisions)['warnings'], [])
+
+    def test_quality_evidence_warns_when_coverage_complete_without_evidence(self):
+        result = check_quality_evidence(
+            coverage=[{'id': 'REQ-001', 'exec_result': '', 'evidence': '',
+                       'coverage': '完整'}])
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('REQ-001', result['warnings'][0])
+
+    def test_quality_evidence_warns_when_uat_passed_without_evidence(self):
+        result = check_quality_evidence(
+            uat=[{'id': 'UAT-001', 'exec_result': '通过', 'evidence': ''}])
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('UAT-001', result['warnings'][0])
+
+    def test_quality_evidence_warns_when_open_severe_defect_lacks_plan(self):
+        result = check_quality_evidence(
+            defects=[{'id': 'DEF-001', 'severity': 'Critical', 'status': '处理中',
+                      'plan_done': None, 'verify_evidence': ''}])
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('DEF-001', result['warnings'][0])
+
+    def test_quality_evidence_warns_when_closed_defect_lacks_verify_evidence(self):
+        result = check_quality_evidence(
+            defects=[{'id': 'DEF-002', 'severity': 'Minor', 'status': '已关闭',
+                      'plan_done': '2027-01-01', 'verify_evidence': ''}])
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('验证证据', result['warnings'][0])
+
+    def test_quality_evidence_silent_for_not_started_and_clean_rows(self):
+        result = check_quality_evidence(
+            coverage=[{'id': 'REQ-001', 'exec_result': '', 'evidence': '',
+                       'coverage': '不完整'}],
+            uat=[{'id': 'UAT-001', 'exec_result': '未开始', 'evidence': ''}])
+        self.assertEqual(result['warnings'], [])
+
+    def test_deliverable_consistency_warns_on_interface_count_mismatch(self):
+        rows = [{'id': 'D-001', 'status': '未开始', 'actual_done': None,
+                 'review_result': '待评审', 'location': ''}]
+        result = check_deliverable_consistency(rows, interface_total=13)
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('13', result['warnings'][0])
+
+    def test_deliverable_consistency_warns_when_accepted_lacks_location(self):
+        rows = [{'id': 'D-001', 'status': '已验收', 'actual_done': '2026-10-31',
+                 'review_result': '通过', 'location': ''}]
+        result = check_deliverable_consistency(rows, interface_total=1)
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('存放位置', result['warnings'][0])
+
+    def test_deliverable_consistency_silent_for_not_started_rows(self):
+        rows = [{'id': f'D-{i:03d}', 'status': '未开始', 'actual_done': None,
+                 'review_result': '待评审', 'location': ''} for i in range(1, 14)]
+        self.assertEqual(
+            check_deliverable_consistency(rows, interface_total=13)['warnings'], [])
 
 
 if __name__ == '__main__':
