@@ -1,11 +1,127 @@
 from __future__ import annotations
 
+import re
+from datetime import date, datetime
 from pathlib import Path
 from math import isclose
 from openpyxl import load_workbook
 
 CLOSED_STATES = ('已关闭', '已解决', '已取消')
 SEVERE_DEFECT_LEVELS = ('Blocker', 'Critical', '致命', '严重')
+
+
+def check_weekly_report(report: dict | None, dashboard_data_date=None,
+                        today=None) -> dict:
+    """周报发布口径：严重度嵌套、数据截止日一致性、与驾驶舱口径的滞后和周更节奏。
+
+    report: parse_weekly_report 的解析结果；dashboard_data_date: AI PMO 数据接口
+    的“数据日期”；today: 巡检当日（ISO 字符串或 date，测试可显式传入）。
+    """
+    if today is None:
+        today = date.today()
+    if isinstance(today, str):
+        today = date.fromisoformat(today)
+    if report is None:
+        return {'errors': [], 'warnings': ['周报目录中未找到项目周报产物，发布口径无法核对']}
+    errors = []
+    warnings = []
+    file_date = _iso_date(report.get('file_date'))
+    data_date = _iso_date(report.get('data_date'))
+    if data_date is None:
+        warnings.append('最新周报缺少数据截止日，无法核对发布口径')
+    else:
+        if file_date is not None and data_date > file_date:
+            errors.append(
+                f'周报数据截止日 {data_date.isoformat()} 晚于发布日期 '
+                f'{file_date.isoformat()}，口径不可能成立')
+        dash = _iso_date(dashboard_data_date)
+        if dash is not None and data_date < dash:
+            warnings.append(
+                f'周报数据截止日 {data_date.isoformat()} 早于驾驶舱数据日期 '
+                f'{dash.isoformat()}，发布口径滞后于台账')
+    counts = [report.get(key) for key in ('finding_count', 'major', 'high', 'medium')]
+    if all(isinstance(c, int) for c in counts):
+        finding_count, major, high, medium = counts
+        if finding_count < major + high + medium:
+            errors.append(
+                f'周报严重度口径错误：发现总数 {finding_count} 小于重大+高+中合计 '
+                f'{major + high + medium}')
+    if file_date is not None and (today - file_date).days > 9:
+        warnings.append(
+            f'最新周报发布于 {file_date.isoformat()}，超过一周未更新，周更节奏中断')
+    return {'errors': errors, 'warnings': warnings}
+
+
+def parse_weekly_report(path: Path) -> dict | None:
+    """从周报 xlsx 解析发布口径（文件名日期、数据截止日、健康度与严重度计数）。
+
+    表结构变化时返回 None，由调用方按“无法核对”处理。
+    """
+    match = re.search(r'(\d{8})', Path(path).stem)
+    file_date = _iso_date(match.group(1)) if match else None
+    book = load_workbook(path, read_only=True, data_only=True)
+    try:
+        report: dict = {'file_date': file_date.isoformat() if file_date else None}
+        if '使用说明' in book.sheetnames:
+            for row in book['使用说明'].iter_rows(values_only=True):
+                if row and row[0] == '数据截止日' and len(row) > 1 and row[1]:
+                    parsed = _iso_date(row[1])
+                    if parsed:
+                        report['data_date'] = parsed.isoformat()
+                    break
+        if '周报摘要' not in book.sheetnames:
+            return None
+        sheet = book['周报摘要']
+        rows = list(sheet.iter_rows(values_only=True))
+        for index, row in enumerate(rows):
+            cells = [str(v) if v is not None else '' for v in row]
+            if '项目状态' in cells and '发现总数' in cells:
+                cols = {name: cells.index(name) for name in
+                        ('项目状态', '发现总数', '重大', '高', '中', '需人工确认')}
+                data = rows[index + 1] if index + 1 < len(rows) else ()
+                for name, col in cols.items():
+                    key = {'项目状态': 'status', '发现总数': 'finding_count', '重大': 'major',
+                           '高': 'high', '中': 'medium', '需人工确认': 'approval_count'}[name]
+                    value = data[col] if col < len(data) else None
+                    if key == 'status':
+                        report[key] = str(value) if value not in (None, '') else None
+                    else:
+                        try:
+                            report[key] = int(value)
+                        except (TypeError, ValueError):
+                            report[key] = None
+                break
+        report.setdefault('data_date', None)
+        return report
+    finally:
+        book.close()
+
+
+def _iso_date(value) -> date | None:
+    if value in (None, ''):
+        return None
+    if isinstance(value, datetime):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    text = str(value).strip()
+    for fmt in ('%Y-%m-%d', '%Y%m%d', '%Y/%m/%d'):
+        try:
+            return datetime.strptime(text[:10] if fmt == '%Y-%m-%d' else text, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def latest_weekly_report(weekly_dir: Path) -> Path | None:
+    """按文件名日期（非修改时间）取最新周报 xlsx。"""
+    candidates = []
+    for path in Path(weekly_dir).glob('项目周报-*-V1.xlsx'):
+        parsed = _iso_date(re.search(r'(\d{8})', path.stem).group(1)) \
+            if re.search(r'(\d{8})', path.stem) else None
+        if parsed:
+            candidates.append((parsed, path))
+    return max(candidates)[1] if candidates else None
 
 
 def check_risk_followup(risks: list[dict], actions: dict[str, list[dict]]) -> dict:
@@ -260,7 +376,8 @@ def _interface(sheet):
 def audit_portfolio(plan_path: Path, risk_path: Path, change_path: Path,
                     quality_path: Path, deliverable_path: Path, cost_path: Path,
                     ai_pmo_path: Path, registered_sources: dict[str, str],
-                    migration_path: Path | None = None) -> dict:
+                    migration_path: Path | None = None,
+                    weekly_dir: Path | None = None, today=None) -> dict:
     books = [load_workbook(path, read_only=True, data_only=True) for path in
              (plan_path, risk_path, change_path, quality_path, deliverable_path, cost_path, ai_pmo_path)]
     migration_book = load_workbook(migration_path, read_only=True, data_only=True) if migration_path else None
@@ -361,8 +478,15 @@ def audit_portfolio(plan_path: Path, risk_path: Path, change_path: Path,
         detail_warnings = (risk_followup['warnings'] + issue_detail['warnings']
                            + decision_detail['warnings'] + quality_evidence['warnings']
                            + deliverable_check['warnings'])
-        return {'counts': counts, 'errors': links['errors'] + snapshot['errors'] + owner_drift['errors'] + owner_align['errors'],
+        weekly = {'errors': [], 'warnings': []}
+        if weekly_dir is not None:
+            latest = latest_weekly_report(weekly_dir)
+            parsed = parse_weekly_report(latest) if latest else None
+            weekly = check_weekly_report(
+                parsed, dashboard_data_date=interface.get('数据日期'), today=today)
+        return {'counts': counts, 'errors': links['errors'] + snapshot['errors'] + owner_drift['errors'] + owner_align['errors'] + weekly['errors'],
                 'warnings': links['warnings'] + snapshot['warnings'] + migration['warnings']
-                + owner_drift['warnings'] + owner_align['warnings'] + detail_warnings}
+                + owner_drift['warnings'] + owner_align['warnings'] + detail_warnings
+                + weekly['warnings']}
     finally:
         for book in books: book.close()

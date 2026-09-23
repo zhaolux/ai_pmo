@@ -25,6 +25,7 @@ def main() -> int:
         paths['deliverable'], paths['cost'], paths['ai_pmo'],
         {key: paths[key].relative_to(suite).as_posix() for key in ('plan', 'risk')},
         migration_path=paths['migration'],
+        weekly_dir=suite / '08_沟通会议与报告' / '周报',
     )
     result['sources'] = {key: path.relative_to(suite).as_posix() for key, path in paths.items()}
     print(json.dumps(result, ensure_ascii=False, indent=2))

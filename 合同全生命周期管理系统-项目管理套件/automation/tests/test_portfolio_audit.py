@@ -4,7 +4,8 @@ from ai_pmo.portfolio_audit import (
     check_decision_detail, check_deliverable_consistency, check_issue_detail,
     check_migration_progress, check_milestone_links, check_milestone_owner_alignment,
     check_milestone_owner_drift, check_quality_evidence, check_risk_followup,
-    compare_dashboard_snapshot, dashboard_metrics_from_cells,
+    check_weekly_report, parse_weekly_report, compare_dashboard_snapshot,
+    dashboard_metrics_from_cells,
 )
 
 
@@ -204,6 +205,80 @@ class PortfolioAuditTests(unittest.TestCase):
                  'review_result': '待评审', 'location': ''} for i in range(1, 14)]
         self.assertEqual(
             check_deliverable_consistency(rows, interface_total=13)['warnings'], [])
+
+    def test_weekly_report_flags_severity_nesting_violation_as_error(self):
+        report = {'file_date': '2026-09-23', 'data_date': '2026-09-23',
+                  'status': '红', 'finding_count': 5, 'major': 4, 'high': 3,
+                  'medium': 2, 'approval_count': 1}
+        result = check_weekly_report(report, dashboard_data_date='2026-09-23',
+                                     today='2026-09-24')
+        self.assertEqual(len(result['errors']), 1)
+        self.assertIn('严重度口径', result['errors'][0])
+
+    def test_weekly_report_flags_data_date_after_file_date_as_error(self):
+        report = {'file_date': '2026-09-23', 'data_date': '2026-09-24',
+                  'status': '红', 'finding_count': 9, 'major': 4, 'high': 3,
+                  'medium': 2, 'approval_count': 1}
+        result = check_weekly_report(report, dashboard_data_date='2026-09-24',
+                                     today='2026-09-24')
+        self.assertEqual(len(result['errors']), 1)
+        self.assertIn('晚于发布日期', result['errors'][0])
+
+    def test_weekly_report_warns_when_caliber_lags_dashboard(self):
+        report = {'file_date': '2026-09-20', 'data_date': '2026-09-20',
+                  'status': '黄', 'finding_count': 9, 'major': 4, 'high': 3,
+                  'medium': 2, 'approval_count': 1}
+        result = check_weekly_report(report, dashboard_data_date='2026-09-23',
+                                     today='2026-09-24')
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('口径滞后', result['warnings'][0])
+
+    def test_weekly_report_warns_when_weekly_cadence_broken(self):
+        report = {'file_date': '2026-09-10', 'data_date': '2026-09-10',
+                  'status': '红', 'finding_count': 9, 'major': 4, 'high': 3,
+                  'medium': 2, 'approval_count': 1}
+        result = check_weekly_report(report, dashboard_data_date='2026-09-10',
+                                     today='2026-09-24')
+        self.assertEqual(len(result['warnings']), 1)
+        self.assertIn('超过一周未更新', result['warnings'][0])
+
+    def test_weekly_report_silent_when_fresh_and_consistent(self):
+        report = {'file_date': '2026-09-23', 'data_date': '2026-09-23',
+                  'status': '红', 'finding_count': 58, 'major': 4, 'high': 43,
+                  'medium': 11, 'approval_count': 30}
+        result = check_weekly_report(report, dashboard_data_date='2026-09-23',
+                                     today='2026-09-24')
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['warnings'], [])
+
+    def test_parse_weekly_report_reads_metrics_and_data_date(self):
+        from datetime import datetime
+        from openpyxl import Workbook
+        import tempfile
+        from pathlib import Path
+        book = Workbook()
+        sheet = book.active
+        sheet.title = '周报摘要'
+        sheet['A2'] = '能源行业合同全生命周期管理系统｜数据截止日 2026-09-23'
+        sheet.append([])
+        sheet.append(['项目状态', '发现总数', '重大', '高', '中', '需人工确认'])
+        sheet.append(['红', 58, 4, 43, 11, 30])
+        usage = book.create_sheet('使用说明')
+        usage.append(['项目周报使用说明'])
+        usage.append(['数据截止日', datetime(2026, 9, 23)])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / '项目周报-20260923-V1.xlsx'
+            book.save(path)
+            parsed = parse_weekly_report(path)
+        self.assertEqual(parsed['file_date'], '2026-09-23')
+        self.assertEqual(parsed['data_date'], '2026-09-23')
+        self.assertEqual(parsed['status'], '红')
+        self.assertEqual(parsed['finding_count'], 58)
+        self.assertEqual(parsed['major'], 4)
+        self.assertEqual(parsed['high'], 43)
+        self.assertEqual(parsed['medium'], 11)
+        self.assertEqual(parsed['approval_count'], 30)
 
 
 if __name__ == '__main__':
