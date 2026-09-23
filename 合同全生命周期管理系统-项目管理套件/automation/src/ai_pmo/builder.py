@@ -7,6 +7,7 @@ from pathlib import Path
 from openpyxl import Workbook, load_workbook
 
 from .config import Paths, load_json
+from .output_guard import ensure_outputs_available
 
 
 MODULE_NAMES = {
@@ -70,6 +71,17 @@ def _add_interface_sheet(workbook: Workbook, project: dict, module_code: str) ->
     sheet.sheet_state = "hidden"
 
 
+def build_output_paths(
+    paths: Paths, directories: dict | None = None,
+) -> dict[str, Path]:
+    directories = directories or load_json("directories.json")
+    date_text = date.today().strftime("%Y%m%d")
+    return {
+        code: paths.suite / directories[code] / f"{module_name}-{date_text}-V1.xlsx"
+        for code, module_name in MODULE_NAMES.items()
+    }
+
+
 def build(paths: Paths) -> list[Path]:
     project = load_json("project.json")
     directories = load_json("directories.json")
@@ -77,9 +89,10 @@ def build(paths: Paths) -> list[Path]:
     template = paths.inputs / "参考资料" / project["template_filename"]
     if not template.exists():
         raise FileNotFoundError(f"缺少V2参考模板：{template}")
+    targets = build_output_paths(paths, directories)
+    ensure_outputs_available(targets.values())
     source = load_workbook(template, data_only=False)
     outputs: list[Path] = []
-    date_text = date.today().strftime("%Y%m%d")
     for code, module_name in MODULE_NAMES.items():
         workbook = Workbook()
         workbook.remove(workbook.active)
@@ -100,7 +113,7 @@ def build(paths: Paths) -> list[Path]:
         _add_interface_sheet(workbook, project, code)
         target_dir = paths.suite / directories[code]
         target_dir.mkdir(parents=True, exist_ok=True)
-        target_path = target_dir / f"{module_name}-{date_text}-V1.xlsx"
+        target_path = targets[code]
         workbook.save(target_path)
         outputs.append(target_path)
     source.close()

@@ -13,4 +13,5 @@ node_modules
 *.inspect.ndjson
 *.log
 *.jsonl
+**/_archive/
 ~$*

@@ -201,23 +201,24 @@ evidence.getRange("E:E").format.columnWidth = 12;
 const instructions = baseSheet("使用说明");
 instructions.tabColor = "#A6A6A6";
 title(instructions, "A2", "Agent运行结果使用说明", "本工作簿是Agent分析快照；确认结果应回写源项目台账后重新运行Agent。 ", "B");
-instructions.getRange("A5:B12").values = [
+instructions.getRange("A5:B13").values = [
   ["项目", "能源行业合同全生命周期管理系统"],
   ["数据日期", report.data_date],
-  ["来源报告", sourcePath],
+  ["运行ID", report.run_id],
+  ["来源报告", sourcePath.split("/").pop()],
   ["运行命令", "automation/run.sh agents --date YYYY-MM-DD"],
   ["更新方式", "先更新源Excel，再运行Agent；命令会自动刷新JSON、数据库审计和本工作簿"],
   ["黄色字段", "由项目经理或授权人填写确认状态和人工结论"],
   ["审批边界", "Agent只提出建议，不直接修改基线、预算、状态、风险等级或关闭结论"],
   ["证据要求", "正式结论须能追溯到来源文件、工作表、记录ID和源行号"],
 ];
-body(instructions.getRange("A5:B12"));
-instructions.getRange("A5:A12").format.fill = lightBlue;
-instructions.getRange("A5:A12").format.font = { name: font, size: 10, bold: true, color: navy };
-instructions.getRange("B5:B12").format.wrapText = true;
+body(instructions.getRange("A5:B13"));
+instructions.getRange("A5:A13").format.fill = lightBlue;
+instructions.getRange("A5:A13").format.font = { name: font, size: 10, bold: true, color: navy };
+instructions.getRange("B5:B13").format.wrapText = true;
 instructions.getRange("A:A").format.columnWidth = 18;
 instructions.getRange("B:B").format.columnWidth = 90;
-instructions.getRange("5:12").format.rowHeight = 30;
+instructions.getRange("5:13").format.rowHeight = 30;
 
 wb.recalculate();
 await fs.mkdir(outputDir, { recursive: true });

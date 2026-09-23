@@ -59,10 +59,26 @@ def fixture_suite(root: Path, duplicate: bool = False, missing_package: bool = F
     for i in range(2, 5):
         ws.append([f"BUD-{i:03d}", "软件成本", f"产品{i-1}", "一次性", "许可及接口", None, None, 0, 0, 0, "技术经理", "待估算", "等待POC和厂商报价"])
     wb.save(cost / "成本与合同管理-20260918-V5.xlsx")
+    registry = root / "automation" / "config" / "current_workbooks.json"
+    registry.parent.mkdir(parents=True)
+    registry.write_text(json.dumps({
+        "communication": "08_沟通会议与报告/沟通会议与报告-20260918-V3.xlsx",
+        "cost": "05_成本与合同管理/成本与合同管理-20260918-V5.xlsx",
+    }, ensure_ascii=False), encoding="utf-8")
     return root
 
 
 class DecisionBriefTests(unittest.TestCase):
+    def test_facts_ignore_newer_unregistered_communication_workbook(self):
+        with tempfile.TemporaryDirectory() as temp:
+            suite = fixture_suite(Path(temp))
+            newer = suite / "08_沟通会议与报告" / "沟通会议与报告-20260921-V1.xlsx"
+            Workbook().save(newer)
+
+            facts = extract_decision_facts(suite, MAPPING, date(2026, 9, 19))
+
+            self.assertEqual(len(facts), 3)
+
     def test_exact_joins_and_evidence(self):
         with tempfile.TemporaryDirectory() as temp:
             facts = extract_decision_facts(fixture_suite(Path(temp)), MAPPING, date(2026, 9, 19))
@@ -114,7 +130,9 @@ class DecisionBriefTests(unittest.TestCase):
                 self.assertIn(expected, text)
             self.assertEqual(before, {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources})
             original_json = json_path.read_bytes()
-            build_decision_brief(suite, MAPPING, date(2026, 9, 19))
+            with self.assertRaises(FileExistsError):
+                build_decision_brief(suite, MAPPING, date(2026, 9, 19))
+            build_decision_brief(suite, MAPPING, date(2026, 9, 19), replace_generated=True)
             self.assertEqual(original_json, json_path.read_bytes())
 
     def test_missing_workbook_creates_no_output(self):

@@ -12,6 +12,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
+from .output_guard import ensure_outputs_available
 
 
 DEFAULT_NODE = Path(
@@ -189,10 +190,12 @@ def build_weekly_docx(payload: dict, path: Path) -> Path:
 
 def build_weekly_reports(
     report_path: Path, project_name: str, suite: Path, as_of: date, script_path: Path,
+    *, replace_generated: bool = False,
 ) -> tuple[Path, Path]:
+    xlsx_path, docx_path = weekly_report_paths(suite, as_of)
+    ensure_outputs_available((xlsx_path, docx_path), replace_generated=replace_generated)
     report = json.loads(report_path.read_text(encoding="utf-8"))
     payload = weekly_report_payload(report, project_name)
-    xlsx_path, docx_path = weekly_report_paths(suite, as_of)
     xlsx_path.parent.mkdir(parents=True, exist_ok=True)
     payload_path = xlsx_path.parent / f".weekly-report-{as_of:%Y%m%d}.json"
     payload_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

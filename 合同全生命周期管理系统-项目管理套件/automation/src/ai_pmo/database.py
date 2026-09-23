@@ -147,6 +147,35 @@ CREATE TABLE IF NOT EXISTS agent_finding (
   evidence_json TEXT NOT NULL,
   PRIMARY KEY (run_id, finding_id)
 );
+CREATE TABLE IF NOT EXISTS health_snapshot (
+  run_id TEXT PRIMARY KEY REFERENCES agent_run(run_id) ON DELETE CASCADE,
+  project_id TEXT NOT NULL REFERENCES project(project_id),
+  data_date TEXT NOT NULL,
+  model_version TEXT NOT NULL,
+  score REAL NOT NULL,
+  state TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS health_dimension_snapshot (
+  run_id TEXT NOT NULL REFERENCES health_snapshot(run_id) ON DELETE CASCADE,
+  dimension TEXT NOT NULL,
+  label TEXT NOT NULL,
+  weight REAL NOT NULL,
+  score REAL NOT NULL,
+  penalty REAL NOT NULL,
+  finding_count INTEGER NOT NULL,
+  PRIMARY KEY (run_id, dimension)
+);
+CREATE TABLE IF NOT EXISTS agent_finding_review (
+  run_id TEXT NOT NULL,
+  finding_id TEXT NOT NULL,
+  status TEXT NOT NULL,
+  conclusion TEXT NOT NULL,
+  reviewer TEXT NOT NULL,
+  reviewed_at TEXT NOT NULL,
+  source_path TEXT NOT NULL,
+  PRIMARY KEY (run_id, finding_id),
+  FOREIGN KEY (run_id, finding_id) REFERENCES agent_finding(run_id, finding_id) ON DELETE CASCADE
+);
 """
 
 

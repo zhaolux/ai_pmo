@@ -10,13 +10,8 @@ from docx import Document
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 from openpyxl import load_workbook
-
-
-def _latest(directory: Path, prefix: str) -> Path:
-    matches = [p for p in directory.glob(f"{prefix}*.xlsx") if not p.name.startswith("~$")]
-    if not matches:
-        raise FileNotFoundError(f"缺少必需工作簿: {directory}/{prefix}*.xlsx")
-    return max(matches, key=lambda p: (p.stat().st_mtime, p.name))
+from .current_workbooks import resolve_current
+from .output_guard import ensure_outputs_available
 
 
 def _records(path: Path, sheet: str, id_header: str, required: tuple[str, ...]) -> dict[str, tuple[dict, int]]:
@@ -55,8 +50,8 @@ def _evidence(path: Path, sheet: str, record_id: str, row: int) -> dict:
 
 
 def extract_decision_facts(suite: Path, mapping: list[dict], as_of: date) -> list[dict]:
-    communication = _latest(suite / "08_沟通会议与报告", "沟通会议与报告")
-    cost = _latest(suite / "05_成本与合同管理", "成本与合同管理")
+    communication = resolve_current(suite, "communication")
+    cost = resolve_current(suite, "cost")
     decisions = _records(communication, "决策日志", "决策ID", (
         "决策ID", "决策主题", "决策截止日期", "背景/事实", "备选方案", "影响",
         "建议方案", "状态", "决策人", "证据/关联ID",
@@ -188,10 +183,14 @@ def _render_word(payload: dict, path: Path) -> None:
     doc.save(path)
 
 
-def build_decision_brief(suite: Path, mapping: list[dict], as_of: date, agent_report: dict | None = None) -> tuple[Path, Path]:
+def build_decision_brief(
+    suite: Path, mapping: list[dict], as_of: date, agent_report: dict | None = None,
+    *, replace_generated: bool = False,
+) -> tuple[Path, Path]:
+    json_path, docx_path = decision_brief_paths(suite, as_of)
+    ensure_outputs_available((json_path, docx_path), replace_generated=replace_generated)
     facts = extract_decision_facts(suite, mapping, as_of)
     payload = build_decision_payload(facts, agent_report, as_of)
-    json_path, docx_path = decision_brief_paths(suite, as_of)
     json_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=json_path.parent, prefix=".decision-brief-") as temp:
         draft_json = Path(temp) / json_path.name

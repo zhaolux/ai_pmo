@@ -1,0 +1,2360 @@
+{
+  "run_id": "AGENT-20260923-095025",
+  "project_id": "ECM-2026",
+  "data_date": "2026-09-23",
+  "generated_at": "2026-09-23T09:50:25",
+  "health": "红",
+  "write_policy": "READ_ONLY_RECOMMENDATIONS",
+  "approval_boundary": "项目基线、预算、风险等级、任务状态和关闭结论必须由项目经理或授权人确认。",
+  "management_summary": {
+    "status_judgment": "红",
+    "finding_count": 58,
+    "major_count": 4,
+    "high_count": 43,
+    "medium_count": 11,
+    "approval_count": 30,
+    "top_priorities": [
+      {
+        "severity": "重大",
+        "title": "未关闭问题",
+        "owner": "项目集经理",
+        "object_id": "G01/G19/G20",
+        "recommendation": "确认根因、行动、期限和关闭证据。"
+      },
+      {
+        "severity": "重大",
+        "title": "未关闭问题",
+        "owner": "技术经理",
+        "object_id": "G16",
+        "recommendation": "确认根因、行动、期限和关闭证据。"
+      },
+      {
+        "severity": "重大",
+        "title": "未关闭问题",
+        "owner": "项目经理",
+        "object_id": "G19",
+        "recommendation": "确认根因、行动、期限和关闭证据。"
+      },
+      {
+        "severity": "重大",
+        "title": "重大剩余风险",
+        "owner": "技术经理",
+        "object_id": "RSK-004",
+        "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。"
+      },
+      {
+        "severity": "高",
+        "title": "项目总预算尚未完整量化",
+        "owner": "技术经理",
+        "object_id": "BUDGET-COMPLETENESS",
+        "recommendation": "完成报价、估算依据和预备费评估，经授权人批准后形成总预算基线。"
+      }
+    ],
+    "decisions_needed": [
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "项目集经理",
+        "object_id": "T008"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "技术经理",
+        "object_id": "T011"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "产品经理",
+        "object_id": "T012"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "项目经理",
+        "object_id": "T013"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "项目经理",
+        "object_id": "T014"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "产品经理",
+        "object_id": "T015"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "技术经理",
+        "object_id": "T016"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "测试人员",
+        "object_id": "T017"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "配置人员",
+        "object_id": "T018"
+      },
+      {
+        "severity": "高",
+        "title": "任务已延期",
+        "owner": "技术经理",
+        "object_id": "T019"
+      }
+    ],
+    "next_action": "先处理重大和高严重度事项，再由项目经理确认待审批结论。"
+  },
+  "agent_results": [
+    {
+      "agent": "schedule_resource",
+      "summary": "识别25项进度关注事项",
+      "finding_count": 25,
+      "findings": [
+        {
+          "finding_id": "SCH-T008-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T008",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "汇编可研报告并组织评审计划完成日为2026-09-18，当前状态为进行中。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "项目集经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T008",
+              "row": 11
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T011-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T011",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "盘点既有系统、接口与数据计划完成日为2026-05-05，当前状态为进行中。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T011",
+              "row": 14
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T012-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T012",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "访谈业务部门并形成痛点清单计划完成日为2026-06-02，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "产品经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T012",
+              "row": 15
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T013-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T013",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "确认现状流程、问题与改进机会基线计划完成日为2026-06-30，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "项目经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T013",
+              "row": 16
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T014-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T014",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "制定项目治理、会议与报告机制计划完成日为2026-07-12，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "项目经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T014",
+              "row": 17
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T015-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T015",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "制定需求分级、跟踪与变更规范计划完成日为2026-07-24，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "产品经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T015",
+              "row": 18
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T016-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T016",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "制定设计、编码与代码评审规范计划完成日为2026-08-06，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T016",
+              "row": 19
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T017-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T017",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "制定测试、缺陷与质量门禁规范计划完成日为2026-08-18，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "测试人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T017",
+              "row": 20
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T018-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T018",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "制定配置、发布与文档归档规范计划完成日为2026-08-31，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "配置人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T018",
+              "row": 21
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T019-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T019",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "完成系统分层、模块与服务边界设计计划完成日为2026-07-15，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T019",
+              "row": 22
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T020-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T020",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "完成主数据、交易数据与分析数据架构计划完成日为2026-07-30，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T020",
+              "row": 23
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T021-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T021",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "完成内部及外部接口总体架构计划完成日为2026-08-15，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "高级开发人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T021",
+              "row": 24
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T022-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T022",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "完成身份、权限、审计与数据安全设计计划完成日为2026-08-30，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T022",
+              "row": 25
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T023-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T023",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "完成环境、网络、容灾和DevOps设计计划完成日为2026-09-14，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "配置人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T023",
+              "row": 26
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T024-DUE14",
+          "agent": "schedule_resource",
+          "object_id": "T024",
+          "severity": "中",
+          "title": "任务14天内到期",
+          "detail": "汇编总体技术架构并完成基线评审将在2026-09-30到期，当前状态为进行中。",
+          "recommendation": "确认交付物、验收人和按期完成证据。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T024",
+              "row": 27
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T025-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T025",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "编制CA、电子文档、BI报表POC方案与评分标准计划完成日为2026-08-19，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T025",
+              "row": 28
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T026-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T026",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "验证证书签发、身份认证和证书管理计划完成日为2026-08-24，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "高级开发人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T026",
+              "row": 29
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T027-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T027",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "验证电子签名、验签、时间戳和审计追溯计划完成日为2026-08-29，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "测试人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T027",
+              "row": 30
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T028-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T028",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "验证模板生成、在线预览和格式转换计划完成日为2026-09-04，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "中级开发人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T028",
+              "row": 31
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T029-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T029",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "验证水印、权限控制、归档和大文件性能计划完成日为2026-09-09，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "测试人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T029",
+              "row": 32
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T030-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T030",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "验证数据接入、指标模型和经营报表计划完成日为2026-09-14，当前状态为待确认。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "高级开发人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T030",
+              "row": 33
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T031-OVERDUE",
+          "agent": "schedule_resource",
+          "object_id": "T031",
+          "severity": "高",
+          "title": "任务已延期",
+          "detail": "验证权限、钻取、导出和查询性能计划完成日为2026-09-19，当前状态为进行中。",
+          "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+          "owner": "测试人员",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T031",
+              "row": 34
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T032-DUE14",
+          "agent": "schedule_resource",
+          "object_id": "T032",
+          "severity": "中",
+          "title": "任务14天内到期",
+          "detail": "汇总问题清单、适配结论和产品选型建议将在2026-09-25到期，当前状态为未开始。",
+          "recommendation": "确认交付物、验收人和按期完成证据。",
+          "owner": "项目经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T032",
+              "row": 35
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T033-DUE14",
+          "agent": "schedule_resource",
+          "object_id": "T033",
+          "severity": "中",
+          "title": "任务14天内到期",
+          "detail": "编制并审批项目章程将在2026-10-02到期，当前状态为未开始。",
+          "recommendation": "确认交付物、验收人和按期完成证据。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T033",
+              "row": 36
+            }
+          ]
+        },
+        {
+          "finding_id": "SCH-T034-DUE14",
+          "agent": "schedule_resource",
+          "object_id": "T034",
+          "severity": "中",
+          "title": "任务14天内到期",
+          "detail": "编制范围、里程碑和主进度计划将在2026-10-05到期，当前状态为未开始。",
+          "recommendation": "确认交付物、验收人和按期完成证据。",
+          "owner": "项目经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "计划与进度管理-20260921-V1.xlsx",
+              "sheet": "项目总控台账",
+              "record_id": "T034",
+              "row": 37
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent": "risk_issue",
+      "summary": "识别25项风险、问题、变更或决策事项",
+      "finding_count": 25,
+      "findings": [
+        {
+          "finding_id": "RSK-RSK-001",
+          "agent": "risk_issue",
+          "object_id": "RSK-001",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "CA、电子文档、BI产品POC与选型未按期完成",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-001",
+              "row": 9
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-002",
+          "agent": "risk_issue",
+          "object_id": "RSK-002",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "总体技术架构基线未通过评审",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-002",
+              "row": 10
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-003",
+          "agent": "risk_issue",
+          "object_id": "RSK-003",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "外部系统接口边界与联调窗口不明确",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "项目经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-003",
+              "row": 11
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-004",
+          "agent": "risk_issue",
+          "object_id": "RSK-004",
+          "severity": "重大",
+          "title": "重大剩余风险",
+          "detail": "安全合规基线未形成或外部产品不满足要求",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-004",
+              "row": 12
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-005",
+          "agent": "risk_issue",
+          "object_id": "RSK-005",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "30人团队未按阶段计划到位",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-005",
+              "row": 13
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-006",
+          "agent": "risk_issue",
+          "object_id": "RSK-006",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "一期范围与需求基线未确认",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "产品经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-006",
+              "row": 14
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-007",
+          "agent": "risk_issue",
+          "object_id": "RSK-007",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "历史合同数据质量不足或迁移范围失控",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "产品经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-007",
+              "row": 15
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-008",
+          "agent": "risk_issue",
+          "object_id": "RSK-008",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "外部产品采购与合同条款不能支撑项目计划",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-008",
+              "row": 16
+            }
+          ]
+        },
+        {
+          "finding_id": "RSK-RSK-009",
+          "agent": "risk_issue",
+          "object_id": "RSK-009",
+          "severity": "高",
+          "title": "高剩余风险",
+          "detail": "项目章程和整体管理计划未正式批准",
+          "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "风险管理-20260918-V1.xlsx",
+              "sheet": "风险登记册",
+              "record_id": "RSK-009",
+              "row": 17
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G10",
+          "agent": "risk_issue",
+          "object_id": "G10",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "CA、电子文档、BI产品POC与选型未按期完成：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G10",
+              "row": 4
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G09",
+          "agent": "risk_issue",
+          "object_id": "G09",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "总体技术架构基线未通过评审：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G09",
+              "row": 5
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G19",
+          "agent": "risk_issue",
+          "object_id": "G19",
+          "severity": "重大",
+          "title": "未关闭问题",
+          "detail": "外部系统接口边界与联调窗口不明确：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "项目经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G19",
+              "row": 6
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G16",
+          "agent": "risk_issue",
+          "object_id": "G16",
+          "severity": "重大",
+          "title": "未关闭问题",
+          "detail": "安全合规基线未形成或外部产品不满足要求：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G16",
+              "row": 7
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G08",
+          "agent": "risk_issue",
+          "object_id": "G08",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "30人团队未按阶段计划到位：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G08",
+              "row": 8
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G03/G11",
+          "agent": "risk_issue",
+          "object_id": "G03/G11",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "一期范围与需求基线未确认：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "产品经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G03/G11",
+              "row": 9
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G15",
+          "agent": "risk_issue",
+          "object_id": "G15",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "历史合同数据质量不足或迁移范围失控：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "产品经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G15",
+              "row": 10
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G14",
+          "agent": "risk_issue",
+          "object_id": "G14",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "外部产品采购与合同条款不能支撑项目计划：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G14",
+              "row": 11
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G01/G19/G20",
+          "agent": "risk_issue",
+          "object_id": "G01/G19/G20",
+          "severity": "重大",
+          "title": "未关闭问题",
+          "detail": "项目章程和整体管理计划未正式批准：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G01/G19/G20",
+              "row": 12
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G17",
+          "agent": "risk_issue",
+          "object_id": "G17",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "开发测试环境和配置管理未就绪：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "配置人员",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G17",
+              "row": 13
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G05",
+          "agent": "risk_issue",
+          "object_id": "G05",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "预算与成本控制口径未批准：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "项目集经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G05",
+              "row": 14
+            }
+          ]
+        },
+        {
+          "finding_id": "ISS-G07",
+          "agent": "risk_issue",
+          "object_id": "G07",
+          "severity": "高",
+          "title": "未关闭问题",
+          "detail": "关键相关方对目标、范围和职责认知不一致：需在正式启动前完成证据确认",
+          "recommendation": "确认根因、行动、期限和关闭证据。",
+          "owner": "项目经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "问题台账",
+              "record_id": "G07",
+              "row": 15
+            }
+          ]
+        },
+        {
+          "finding_id": "DEC-D-001",
+          "agent": "risk_issue",
+          "object_id": "D-001",
+          "severity": "高",
+          "title": "待决策事项",
+          "detail": "2026-09-16 00:00:00",
+          "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+          "owner": "单一入围；分产品入围；补充POC",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "待决策事项",
+              "record_id": "D-001",
+              "row": 5
+            }
+          ]
+        },
+        {
+          "finding_id": "DEC-D-002",
+          "agent": "risk_issue",
+          "object_id": "D-002",
+          "severity": "高",
+          "title": "待决策事项",
+          "detail": "2026-09-16 00:00:00",
+          "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+          "owner": "一次性全量；P0优先分阶段",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "待决策事项",
+              "record_id": "D-002",
+              "row": 6
+            }
+          ]
+        },
+        {
+          "finding_id": "DEC-D-003",
+          "agent": "risk_issue",
+          "object_id": "D-003",
+          "severity": "高",
+          "title": "待决策事项",
+          "detail": "2026-09-16 00:00:00",
+          "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+          "owner": "统一采购；分项采购；框架协议",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "待决策事项",
+              "record_id": "D-003",
+              "row": 7
+            }
+          ]
+        },
+        {
+          "finding_id": "DEC-D-004",
+          "agent": "risk_issue",
+          "object_id": "D-004",
+          "severity": "高",
+          "title": "待决策事项",
+          "detail": "2026-09-16 00:00:00",
+          "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+          "owner": "通过；有条件通过；不通过",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "问题与变更管理-20260918-V1.xlsx",
+              "sheet": "待决策事项",
+              "record_id": "D-004",
+              "row": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent": "cost_contract",
+      "summary": "识别5项成本与合同关注事项",
+      "finding_count": 5,
+      "findings": [
+        {
+          "finding_id": "COST-BUDGET-INCOMPLETE",
+          "agent": "cost_contract",
+          "object_id": "BUDGET-COMPLETENESS",
+          "severity": "高",
+          "title": "项目总预算尚未完整量化",
+          "detail": "共9个预算项仍待估算：CA及电子签章、电子文档产品、BI报表产品、云资源与基础设施、安全测评与专业测试等。",
+          "recommendation": "完成报价、估算依据和预备费评估，经授权人批准后形成总预算基线。",
+          "owner": "技术经理",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "成本与合同管理-20260918-V5.xlsx",
+              "sheet": "预算基线",
+              "record_id": "BUD-002",
+              "row": 6
+            }
+          ]
+        },
+        {
+          "finding_id": "COST-PKG-001-ESTIMATE",
+          "agent": "cost_contract",
+          "object_id": "PKG-001",
+          "severity": "中",
+          "title": "采购包估算14天内到期",
+          "detail": "CA及电子签章产品估算完成日为2026-09-25，计划金额仍为空。",
+          "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "成本与合同管理-20260918-V5.xlsx",
+              "sheet": "采购包计划",
+              "record_id": "PKG-001",
+              "row": 5
+            }
+          ]
+        },
+        {
+          "finding_id": "COST-PKG-002-ESTIMATE",
+          "agent": "cost_contract",
+          "object_id": "PKG-002",
+          "severity": "中",
+          "title": "采购包估算14天内到期",
+          "detail": "电子文档产品估算完成日为2026-09-25，计划金额仍为空。",
+          "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "成本与合同管理-20260918-V5.xlsx",
+              "sheet": "采购包计划",
+              "record_id": "PKG-002",
+              "row": 6
+            }
+          ]
+        },
+        {
+          "finding_id": "COST-PKG-003-ESTIMATE",
+          "agent": "cost_contract",
+          "object_id": "PKG-003",
+          "severity": "中",
+          "title": "采购包估算14天内到期",
+          "detail": "BI报表产品估算完成日为2026-09-25，计划金额仍为空。",
+          "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+          "owner": "技术经理",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "成本与合同管理-20260918-V5.xlsx",
+              "sheet": "采购包计划",
+              "record_id": "PKG-003",
+              "row": 7
+            }
+          ]
+        },
+        {
+          "finding_id": "COST-PKG-004-ESTIMATE",
+          "agent": "cost_contract",
+          "object_id": "PKG-004",
+          "severity": "中",
+          "title": "采购包估算14天内到期",
+          "detail": "云资源与基础设施估算完成日为2026-09-30，计划金额仍为空。",
+          "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+          "owner": "配置人员",
+          "requires_approval": false,
+          "evidence": [
+            {
+              "file": "成本与合同管理-20260918-V5.xlsx",
+              "sheet": "采购包计划",
+              "record_id": "PKG-004",
+              "row": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "agent": "quality_acceptance",
+      "summary": "识别0项质量与验收关注事项",
+      "finding_count": 0,
+      "findings": []
+    },
+    {
+      "agent": "communication_report",
+      "summary": "识别3项沟通、决策或升级关注事项",
+      "finding_count": 3,
+      "findings": [
+        {
+          "finding_id": "COM-DECISION-DEC-001",
+          "agent": "communication_report",
+          "object_id": "DEC-001",
+          "severity": "中",
+          "title": "决策事项14天内到期",
+          "detail": "CA产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+          "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
+          "owner": "项目治理委员会",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "沟通会议与报告-20260918-V3.xlsx",
+              "sheet": "决策日志",
+              "record_id": "DEC-001",
+              "row": 5
+            }
+          ]
+        },
+        {
+          "finding_id": "COM-DECISION-DEC-002",
+          "agent": "communication_report",
+          "object_id": "DEC-002",
+          "severity": "中",
+          "title": "决策事项14天内到期",
+          "detail": "电子文档产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+          "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
+          "owner": "项目治理委员会",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "沟通会议与报告-20260918-V3.xlsx",
+              "sheet": "决策日志",
+              "record_id": "DEC-002",
+              "row": 6
+            }
+          ]
+        },
+        {
+          "finding_id": "COM-DECISION-DEC-003",
+          "agent": "communication_report",
+          "object_id": "DEC-003",
+          "severity": "中",
+          "title": "决策事项14天内到期",
+          "detail": "BI报表产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+          "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
+          "owner": "项目治理委员会",
+          "requires_approval": true,
+          "evidence": [
+            {
+              "file": "沟通会议与报告-20260918-V3.xlsx",
+              "sheet": "决策日志",
+              "record_id": "DEC-003",
+              "row": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "finding_count": 58,
+  "findings": [
+    {
+      "finding_id": "SCH-T008-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T008",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "汇编可研报告并组织评审计划完成日为2026-09-18，当前状态为进行中。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "项目集经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T008",
+          "row": 11
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T011-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T011",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "盘点既有系统、接口与数据计划完成日为2026-05-05，当前状态为进行中。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T011",
+          "row": 14
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T012-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T012",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "访谈业务部门并形成痛点清单计划完成日为2026-06-02，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "产品经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T012",
+          "row": 15
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T013-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T013",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "确认现状流程、问题与改进机会基线计划完成日为2026-06-30，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "项目经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T013",
+          "row": 16
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T014-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T014",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "制定项目治理、会议与报告机制计划完成日为2026-07-12，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "项目经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T014",
+          "row": 17
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T015-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T015",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "制定需求分级、跟踪与变更规范计划完成日为2026-07-24，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "产品经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T015",
+          "row": 18
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T016-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T016",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "制定设计、编码与代码评审规范计划完成日为2026-08-06，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T016",
+          "row": 19
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T017-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T017",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "制定测试、缺陷与质量门禁规范计划完成日为2026-08-18，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "测试人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T017",
+          "row": 20
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T018-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T018",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "制定配置、发布与文档归档规范计划完成日为2026-08-31，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "配置人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T018",
+          "row": 21
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T019-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T019",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "完成系统分层、模块与服务边界设计计划完成日为2026-07-15，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T019",
+          "row": 22
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T020-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T020",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "完成主数据、交易数据与分析数据架构计划完成日为2026-07-30，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T020",
+          "row": 23
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T021-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T021",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "完成内部及外部接口总体架构计划完成日为2026-08-15，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "高级开发人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T021",
+          "row": 24
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T022-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T022",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "完成身份、权限、审计与数据安全设计计划完成日为2026-08-30，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T022",
+          "row": 25
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T023-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T023",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "完成环境、网络、容灾和DevOps设计计划完成日为2026-09-14，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "配置人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T023",
+          "row": 26
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T024-DUE14",
+      "agent": "schedule_resource",
+      "object_id": "T024",
+      "severity": "中",
+      "title": "任务14天内到期",
+      "detail": "汇编总体技术架构并完成基线评审将在2026-09-30到期，当前状态为进行中。",
+      "recommendation": "确认交付物、验收人和按期完成证据。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T024",
+          "row": 27
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T025-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T025",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "编制CA、电子文档、BI报表POC方案与评分标准计划完成日为2026-08-19，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T025",
+          "row": 28
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T026-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T026",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "验证证书签发、身份认证和证书管理计划完成日为2026-08-24，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "高级开发人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T026",
+          "row": 29
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T027-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T027",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "验证电子签名、验签、时间戳和审计追溯计划完成日为2026-08-29，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "测试人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T027",
+          "row": 30
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T028-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T028",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "验证模板生成、在线预览和格式转换计划完成日为2026-09-04，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "中级开发人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T028",
+          "row": 31
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T029-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T029",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "验证水印、权限控制、归档和大文件性能计划完成日为2026-09-09，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "测试人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T029",
+          "row": 32
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T030-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T030",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "验证数据接入、指标模型和经营报表计划完成日为2026-09-14，当前状态为待确认。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "高级开发人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T030",
+          "row": 33
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T031-OVERDUE",
+      "agent": "schedule_resource",
+      "object_id": "T031",
+      "severity": "高",
+      "title": "任务已延期",
+      "detail": "验证权限、钻取、导出和查询性能计划完成日为2026-09-19，当前状态为进行中。",
+      "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
+      "owner": "测试人员",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T031",
+          "row": 34
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T032-DUE14",
+      "agent": "schedule_resource",
+      "object_id": "T032",
+      "severity": "中",
+      "title": "任务14天内到期",
+      "detail": "汇总问题清单、适配结论和产品选型建议将在2026-09-25到期，当前状态为未开始。",
+      "recommendation": "确认交付物、验收人和按期完成证据。",
+      "owner": "项目经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T032",
+          "row": 35
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T033-DUE14",
+      "agent": "schedule_resource",
+      "object_id": "T033",
+      "severity": "中",
+      "title": "任务14天内到期",
+      "detail": "编制并审批项目章程将在2026-10-02到期，当前状态为未开始。",
+      "recommendation": "确认交付物、验收人和按期完成证据。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T033",
+          "row": 36
+        }
+      ]
+    },
+    {
+      "finding_id": "SCH-T034-DUE14",
+      "agent": "schedule_resource",
+      "object_id": "T034",
+      "severity": "中",
+      "title": "任务14天内到期",
+      "detail": "编制范围、里程碑和主进度计划将在2026-10-05到期，当前状态为未开始。",
+      "recommendation": "确认交付物、验收人和按期完成证据。",
+      "owner": "项目经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "计划与进度管理-20260921-V1.xlsx",
+          "sheet": "项目总控台账",
+          "record_id": "T034",
+          "row": 37
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-001",
+      "agent": "risk_issue",
+      "object_id": "RSK-001",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "CA、电子文档、BI产品POC与选型未按期完成",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-001",
+          "row": 9
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-002",
+      "agent": "risk_issue",
+      "object_id": "RSK-002",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "总体技术架构基线未通过评审",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-002",
+          "row": 10
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-003",
+      "agent": "risk_issue",
+      "object_id": "RSK-003",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "外部系统接口边界与联调窗口不明确",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "项目经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-003",
+          "row": 11
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-004",
+      "agent": "risk_issue",
+      "object_id": "RSK-004",
+      "severity": "重大",
+      "title": "重大剩余风险",
+      "detail": "安全合规基线未形成或外部产品不满足要求",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-004",
+          "row": 12
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-005",
+      "agent": "risk_issue",
+      "object_id": "RSK-005",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "30人团队未按阶段计划到位",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-005",
+          "row": 13
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-006",
+      "agent": "risk_issue",
+      "object_id": "RSK-006",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "一期范围与需求基线未确认",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "产品经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-006",
+          "row": 14
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-007",
+      "agent": "risk_issue",
+      "object_id": "RSK-007",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "历史合同数据质量不足或迁移范围失控",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "产品经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-007",
+          "row": 15
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-008",
+      "agent": "risk_issue",
+      "object_id": "RSK-008",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "外部产品采购与合同条款不能支撑项目计划",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-008",
+          "row": 16
+        }
+      ]
+    },
+    {
+      "finding_id": "RSK-RSK-009",
+      "agent": "risk_issue",
+      "object_id": "RSK-009",
+      "severity": "高",
+      "title": "高剩余风险",
+      "detail": "项目章程和整体管理计划未正式批准",
+      "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "风险管理-20260918-V1.xlsx",
+          "sheet": "风险登记册",
+          "record_id": "RSK-009",
+          "row": 17
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G10",
+      "agent": "risk_issue",
+      "object_id": "G10",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "CA、电子文档、BI产品POC与选型未按期完成：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G10",
+          "row": 4
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G09",
+      "agent": "risk_issue",
+      "object_id": "G09",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "总体技术架构基线未通过评审：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G09",
+          "row": 5
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G19",
+      "agent": "risk_issue",
+      "object_id": "G19",
+      "severity": "重大",
+      "title": "未关闭问题",
+      "detail": "外部系统接口边界与联调窗口不明确：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "项目经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G19",
+          "row": 6
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G16",
+      "agent": "risk_issue",
+      "object_id": "G16",
+      "severity": "重大",
+      "title": "未关闭问题",
+      "detail": "安全合规基线未形成或外部产品不满足要求：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G16",
+          "row": 7
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G08",
+      "agent": "risk_issue",
+      "object_id": "G08",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "30人团队未按阶段计划到位：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G08",
+          "row": 8
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G03/G11",
+      "agent": "risk_issue",
+      "object_id": "G03/G11",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "一期范围与需求基线未确认：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "产品经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G03/G11",
+          "row": 9
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G15",
+      "agent": "risk_issue",
+      "object_id": "G15",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "历史合同数据质量不足或迁移范围失控：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "产品经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G15",
+          "row": 10
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G14",
+      "agent": "risk_issue",
+      "object_id": "G14",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "外部产品采购与合同条款不能支撑项目计划：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G14",
+          "row": 11
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G01/G19/G20",
+      "agent": "risk_issue",
+      "object_id": "G01/G19/G20",
+      "severity": "重大",
+      "title": "未关闭问题",
+      "detail": "项目章程和整体管理计划未正式批准：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G01/G19/G20",
+          "row": 12
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G17",
+      "agent": "risk_issue",
+      "object_id": "G17",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "开发测试环境和配置管理未就绪：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "配置人员",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G17",
+          "row": 13
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G05",
+      "agent": "risk_issue",
+      "object_id": "G05",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "预算与成本控制口径未批准：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "项目集经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G05",
+          "row": 14
+        }
+      ]
+    },
+    {
+      "finding_id": "ISS-G07",
+      "agent": "risk_issue",
+      "object_id": "G07",
+      "severity": "高",
+      "title": "未关闭问题",
+      "detail": "关键相关方对目标、范围和职责认知不一致：需在正式启动前完成证据确认",
+      "recommendation": "确认根因、行动、期限和关闭证据。",
+      "owner": "项目经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "问题台账",
+          "record_id": "G07",
+          "row": 15
+        }
+      ]
+    },
+    {
+      "finding_id": "DEC-D-001",
+      "agent": "risk_issue",
+      "object_id": "D-001",
+      "severity": "高",
+      "title": "待决策事项",
+      "detail": "2026-09-16 00:00:00",
+      "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+      "owner": "单一入围；分产品入围；补充POC",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "待决策事项",
+          "record_id": "D-001",
+          "row": 5
+        }
+      ]
+    },
+    {
+      "finding_id": "DEC-D-002",
+      "agent": "risk_issue",
+      "object_id": "D-002",
+      "severity": "高",
+      "title": "待决策事项",
+      "detail": "2026-09-16 00:00:00",
+      "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+      "owner": "一次性全量；P0优先分阶段",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "待决策事项",
+          "record_id": "D-002",
+          "row": 6
+        }
+      ]
+    },
+    {
+      "finding_id": "DEC-D-003",
+      "agent": "risk_issue",
+      "object_id": "D-003",
+      "severity": "高",
+      "title": "待决策事项",
+      "detail": "2026-09-16 00:00:00",
+      "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+      "owner": "统一采购；分项采购；框架协议",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "待决策事项",
+          "record_id": "D-003",
+          "row": 7
+        }
+      ]
+    },
+    {
+      "finding_id": "DEC-D-004",
+      "agent": "risk_issue",
+      "object_id": "D-004",
+      "severity": "高",
+      "title": "待决策事项",
+      "detail": "2026-09-16 00:00:00",
+      "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
+      "owner": "通过；有条件通过；不通过",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "问题与变更管理-20260918-V1.xlsx",
+          "sheet": "待决策事项",
+          "record_id": "D-004",
+          "row": 8
+        }
+      ]
+    },
+    {
+      "finding_id": "COST-BUDGET-INCOMPLETE",
+      "agent": "cost_contract",
+      "object_id": "BUDGET-COMPLETENESS",
+      "severity": "高",
+      "title": "项目总预算尚未完整量化",
+      "detail": "共9个预算项仍待估算：CA及电子签章、电子文档产品、BI报表产品、云资源与基础设施、安全测评与专业测试等。",
+      "recommendation": "完成报价、估算依据和预备费评估，经授权人批准后形成总预算基线。",
+      "owner": "技术经理",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "成本与合同管理-20260918-V5.xlsx",
+          "sheet": "预算基线",
+          "record_id": "BUD-002",
+          "row": 6
+        }
+      ]
+    },
+    {
+      "finding_id": "COST-PKG-001-ESTIMATE",
+      "agent": "cost_contract",
+      "object_id": "PKG-001",
+      "severity": "中",
+      "title": "采购包估算14天内到期",
+      "detail": "CA及电子签章产品估算完成日为2026-09-25，计划金额仍为空。",
+      "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "成本与合同管理-20260918-V5.xlsx",
+          "sheet": "采购包计划",
+          "record_id": "PKG-001",
+          "row": 5
+        }
+      ]
+    },
+    {
+      "finding_id": "COST-PKG-002-ESTIMATE",
+      "agent": "cost_contract",
+      "object_id": "PKG-002",
+      "severity": "中",
+      "title": "采购包估算14天内到期",
+      "detail": "电子文档产品估算完成日为2026-09-25，计划金额仍为空。",
+      "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "成本与合同管理-20260918-V5.xlsx",
+          "sheet": "采购包计划",
+          "record_id": "PKG-002",
+          "row": 6
+        }
+      ]
+    },
+    {
+      "finding_id": "COST-PKG-003-ESTIMATE",
+      "agent": "cost_contract",
+      "object_id": "PKG-003",
+      "severity": "中",
+      "title": "采购包估算14天内到期",
+      "detail": "BI报表产品估算完成日为2026-09-25，计划金额仍为空。",
+      "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+      "owner": "技术经理",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "成本与合同管理-20260918-V5.xlsx",
+          "sheet": "采购包计划",
+          "record_id": "PKG-003",
+          "row": 7
+        }
+      ]
+    },
+    {
+      "finding_id": "COST-PKG-004-ESTIMATE",
+      "agent": "cost_contract",
+      "object_id": "PKG-004",
+      "severity": "中",
+      "title": "采购包估算14天内到期",
+      "detail": "云资源与基础设施估算完成日为2026-09-30，计划金额仍为空。",
+      "recommendation": "确认计价边界、可比报价、估算依据和预算纳入时点。",
+      "owner": "配置人员",
+      "requires_approval": false,
+      "evidence": [
+        {
+          "file": "成本与合同管理-20260918-V5.xlsx",
+          "sheet": "采购包计划",
+          "record_id": "PKG-004",
+          "row": 8
+        }
+      ]
+    },
+    {
+      "finding_id": "COM-DECISION-DEC-001",
+      "agent": "communication_report",
+      "object_id": "DEC-001",
+      "severity": "中",
+      "title": "决策事项14天内到期",
+      "detail": "CA产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+      "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
+      "owner": "项目治理委员会",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "沟通会议与报告-20260918-V3.xlsx",
+          "sheet": "决策日志",
+          "record_id": "DEC-001",
+          "row": 5
+        }
+      ]
+    },
+    {
+      "finding_id": "COM-DECISION-DEC-002",
+      "agent": "communication_report",
+      "object_id": "DEC-002",
+      "severity": "中",
+      "title": "决策事项14天内到期",
+      "detail": "电子文档产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+      "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
+      "owner": "项目治理委员会",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "沟通会议与报告-20260918-V3.xlsx",
+          "sheet": "决策日志",
+          "record_id": "DEC-002",
+          "row": 6
+        }
+      ]
+    },
+    {
+      "finding_id": "COM-DECISION-DEC-003",
+      "agent": "communication_report",
+      "object_id": "DEC-003",
+      "severity": "中",
+      "title": "决策事项14天内到期",
+      "detail": "BI报表产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+      "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
+      "owner": "项目治理委员会",
+      "requires_approval": true,
+      "evidence": [
+        {
+          "file": "沟通会议与报告-20260918-V3.xlsx",
+          "sheet": "决策日志",
+          "record_id": "DEC-003",
+          "row": 7
+        }
+      ]
+    }
+  ]
+}

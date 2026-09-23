@@ -30,6 +30,13 @@ def save_quality_book(path: Path) -> None:
         "代码", "修复", datetime(2026, 9, 19), "V1", "修复中",
     ])
 
+    book.create_sheet("UAT验收")
+    book.save(path)
+
+
+def save_deliverable_book(path: Path) -> None:
+    book = Workbook()
+    book.active.title = "使用说明"
     deliverables = book.create_sheet("交付物台账")
     for _ in range(4):
         deliverables.append([])
@@ -37,17 +44,18 @@ def save_quality_book(path: Path) -> None:
         "D-001", "质量管理计划", "管理", "测试负责人",
         datetime(2026, 10, 31), None, "未开始", "项目经理", "待评审",
     ])
-    book.create_sheet("UAT验收")
     book.save(path)
 
 
 class QualityAcceptanceAgentTests(unittest.TestCase):
     def test_flags_due_gate_and_open_critical_defect(self):
         with tempfile.TemporaryDirectory() as folder:
-            path = Path(folder) / "quality.xlsx"
-            save_quality_book(path)
+            quality = Path(folder) / "quality.xlsx"
+            deliverable = Path(folder) / "deliverable.xlsx"
+            save_quality_book(quality)
+            save_deliverable_book(deliverable)
 
-            result = analyze_quality_acceptance(path, date(2026, 9, 18))
+            result = analyze_quality_acceptance(quality, deliverable, date(2026, 9, 18))
 
             self.assertEqual(
                 {finding.object_id for finding in result.findings},
@@ -56,6 +64,22 @@ class QualityAcceptanceAgentTests(unittest.TestCase):
             defect = next(f for f in result.findings if f.object_id == "BUG-001")
             self.assertEqual(defect.severity, "重大")
             self.assertTrue(defect.requires_approval)
+
+    def test_deliverable_due_findings_come_from_deliverable_book(self):
+        with tempfile.TemporaryDirectory() as folder:
+            quality = Path(folder) / "quality.xlsx"
+            deliverable = Path(folder) / "deliverable.xlsx"
+            save_quality_book(quality)
+            save_deliverable_book(deliverable)
+
+            result = analyze_quality_acceptance(quality, deliverable, date(2026, 10, 25))
+
+            ids = {finding.object_id for finding in result.findings}
+            self.assertIn("D-001", ids)
+            finding = next(f for f in result.findings if f.object_id == "D-001")
+            self.assertEqual(finding.title, "质量交付物14天内到期")
+            self.assertEqual(finding.evidence[0].file, "deliverable.xlsx")
+            self.assertEqual(finding.evidence[0].sheet, "交付物台账")
 
 
 if __name__ == "__main__":

@@ -2,15 +2,21 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
+import sys
 import tempfile
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
+from uuid import uuid4
 
 from openpyxl import load_workbook
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from ai_pmo.current_workbooks import resolve_current
 
 
 @dataclass(frozen=True)
@@ -33,19 +39,30 @@ def extract_cost_metrics(path: Path) -> CostMetrics:
         workbook.close()
 
 
-def newest_workbook(directory: Path, prefix: str) -> Path:
-    candidates = [
-        path for path in directory.glob(f"{prefix}-*.xlsx")
-        if not path.name.startswith("~$") and "_archive" not in path.parts
-    ]
-    if not candidates:
-        raise FileNotFoundError(f"未找到工作簿：{directory}/{prefix}-*.xlsx")
-    return max(candidates, key=lambda path: (path.stat().st_mtime, path.name))
+def preview_sync(suite: Path) -> dict[str, object]:
+    cost = resolve_current(suite, "cost")
+    ai_pmo = resolve_current(suite, "ai_pmo")
+    return {"source": cost, "target": ai_pmo, "metrics": extract_cost_metrics(cost)}
 
 
-def sync(suite: Path) -> tuple[Path, Path, CostMetrics]:
-    cost = newest_workbook(suite / "05_成本与合同管理", "成本与合同管理")
-    ai_pmo = newest_workbook(suite / "11_AI_PMO中心", "AI PMO中心")
+def backup_workbook(target: Path) -> Path:
+    archive = target.parent / "_archive" / "自动刷新前备份"
+    archive.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    backup = archive / f"{target.stem}-{timestamp}-{uuid4().hex[:8]}{target.suffix}"
+    shutil.copy2(target, backup)
+    if hashlib.sha256(target.read_bytes()).digest() != hashlib.sha256(backup.read_bytes()).digest():
+        raise OSError(f"备份校验失败：{backup}")
+    return backup
+
+
+def sync(
+    suite: Path, *, expected_target: Path | None = None,
+) -> tuple[Path, Path, CostMetrics, Path]:
+    cost = resolve_current(suite, "cost")
+    ai_pmo = resolve_current(suite, "ai_pmo")
+    if expected_target is not None and ai_pmo != expected_target:
+        raise RuntimeError(f"刷新目标在预览后已变化：{expected_target} -> {ai_pmo}")
     metrics = extract_cost_metrics(cost)
     today = date.today().isoformat()
     source = cost.relative_to(suite).as_posix()
@@ -63,6 +80,7 @@ def sync(suite: Path) -> tuple[Path, Path, CostMetrics]:
     officecli = shutil.which("officecli")
     if not officecli:
         raise RuntimeError("未找到 officecli，无法在保留图表的前提下更新 AI PMO")
+    backup = backup_workbook(ai_pmo)
     with tempfile.NamedTemporaryFile("w", suffix=".json", encoding="utf-8") as stream:
         json.dump(commands, stream, ensure_ascii=False)
         stream.flush()
@@ -70,17 +88,28 @@ def sync(suite: Path) -> tuple[Path, Path, CostMetrics]:
             [officecli, "batch", str(ai_pmo), "--input", stream.name, "--stop-on-error"],
             check=True,
         )
-    return cost, ai_pmo, metrics
+    return cost, ai_pmo, metrics, backup
 
 
 def main() -> None:
     default_suite = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description="将成本模块指标同步到 AI PMO 数据接口")
     parser.add_argument("--suite", type=Path, default=default_suite)
+    parser.add_argument("--apply", action="store_true", help="备份目标后执行原位刷新；默认仅预览")
     args = parser.parse_args()
-    cost, ai_pmo, metrics = sync(args.suite.resolve())
-    print(f"已从 {cost.name} 同步至 {ai_pmo.name}")
+    suite = args.suite.resolve()
+    preview = preview_sync(suite)
+    print(f"读取成本工作簿：{preview['source']}")
+    print(f"目标工作簿：{preview['target']}")
+    print("将更新：项目驾驶舱 B9:D9、_数据接口 B16:B21")
+    metrics = preview["metrics"]
     print(f"计划人天={metrics.person_days:g}，计划人工成本={metrics.total_cost:g}，平均人日单价={metrics.average_day_rate:.2f}")
+    if not args.apply:
+        print("仅预览，未修改工作簿。执行刷新请添加 --apply。")
+        return
+    cost, ai_pmo, metrics, backup = sync(suite, expected_target=preview["target"])
+    print(f"刷新前备份：{backup}")
+    print(f"已从 {cost.name} 同步至 {ai_pmo.name}")
 
 
 if __name__ == "__main__":

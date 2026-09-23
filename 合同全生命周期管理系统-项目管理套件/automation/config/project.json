@@ -10,8 +10,9 @@
   "currency": "CNY",
   "hours_per_day": 8,
   "hours_per_week": 40,
-  "person_day_rate": 1200,
-  "hourly_rate": 150,
+  "person_day_rate": 1416.8415240198793,
+  "hourly_rate": 177.1051905024849,
+  "person_day_rate_basis": "2026-09-23当前人工成本预算：总成本7697700元/总人天5433（计划人天来源于《月度投入明细》角色×月份人工维护数据）；仅用于初始化，正式成本以登记的成本工作簿为准",
   "effort_rounding_hours": 0.5,
   "template_filename": "AI-PMO-V2模板-20260915.xlsx",
   "pmbok_filename": "PM BOK 指南第8版学习.docx"

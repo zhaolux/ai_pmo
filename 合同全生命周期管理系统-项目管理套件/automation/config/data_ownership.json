@@ -1,0 +1,20 @@
+{
+  "version": "2026-09-23",
+  "objects": [
+    {"object": "stakeholder", "workbook": "gate", "sheet": "相关方管理", "header_row": 8, "key_header": "相关方ID"},
+    {"object": "milestone", "workbook": "plan", "sheet": "里程碑计划", "header_row": 3, "key_header": "里程碑ID"},
+    {"object": "task", "workbook": "plan", "sheet": "项目总控台账", "header_row": 3, "key_header": "任务ID"},
+    {"object": "resource", "workbook": "plan", "sheet": "资源计划", "header_row": 4, "key_header": "人员", "data_start_row": 5, "data_end_row": 34},
+    {"object": "budget", "workbook": "cost", "sheet": "预算基线", "header_row": 4, "key_header": "预算ID"},
+    {"object": "risk", "workbook": "risk", "sheet": "风险登记册", "header_row": 8, "key_header": "风险ID"},
+    {"object": "issue", "workbook": "change", "sheet": "问题台账", "header_row": 3, "key_header": "编号"},
+    {"object": "change", "workbook": "change", "sheet": "变更台账", "header_row": 3, "key_header": "变更编号"},
+    {"object": "decision", "workbook": "change", "sheet": "待决策事项", "header_row": 4, "key_header": "决策ID"},
+    {"object": "test_scenario", "workbook": "quality", "sheet": "测试场景库", "header_row": 4, "key_header": "场景ID"},
+    {"object": "defect", "workbook": "quality", "sheet": "缺陷台账", "header_row": 4, "key_header": "缺陷ID"},
+    {"object": "uat", "workbook": "quality", "sheet": "UAT验收", "header_row": 4, "key_header": "UAT场景ID"},
+    {"object": "deliverable", "workbook": "deliverable", "sheet": "交付物台账", "header_row": 4, "key_header": "交付物ID"},
+    {"object": "action", "workbook": "communication", "sheet": "行动项台账", "header_row": 4, "key_header": "行动项ID"},
+    {"object": "migration_source", "workbook": "migration", "sheet": "来源系统盘点", "header_row": 4, "key_header": "线索ID"}
+  ]
+}

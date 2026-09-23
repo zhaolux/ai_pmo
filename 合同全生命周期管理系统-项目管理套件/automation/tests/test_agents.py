@@ -5,13 +5,14 @@ import tempfile
 import unittest
 from datetime import date, datetime
 from pathlib import Path
+from unittest.mock import patch
 
 from openpyxl import Workbook
 
 from ai_pmo.agent_models import AgentResult, Evidence, Finding
 from ai_pmo.agents.risk_issue import analyze_risk_issue
 from ai_pmo.agents.schedule_resource import analyze_schedule_resource
-from ai_pmo.orchestrator import consolidate
+from ai_pmo.orchestrator import consolidate, run_agents
 from ai_pmo.database import connect, initialize
 
 
@@ -66,6 +67,42 @@ def save_change(path: Path) -> None:
 
 
 class AgentTests(unittest.TestCase):
+    def test_run_agents_uses_registered_sources_not_newer_workbooks(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            files = {
+                "plan": ("02_计划与进度管理", "计划与进度管理"),
+                "risk": ("06_风险问题与变更", "风险管理"),
+                "change": ("06_风险问题与变更", "问题与变更管理"),
+                "cost": ("05_成本与合同管理", "成本与合同管理"),
+                "quality": ("07_质量测试与验收", "质量测试与验收"),
+                "deliverable": ("07_质量测试与验收", "验收交付物"),
+                "communication": ("08_沟通会议与报告", "沟通会议与报告"),
+            }
+            current = {}
+            for key, (directory, prefix) in files.items():
+                path = suite / directory / f"{prefix}-20260918-V1.xlsx"
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"registered")
+                (path.parent / f"{prefix}-20260921-V1.xlsx").write_bytes(b"unregistered")
+                current[key] = path.relative_to(suite).as_posix()
+            registry = suite / "automation" / "config" / "current_workbooks.json"
+            registry.parent.mkdir(parents=True)
+            registry.write_text(json.dumps(current, ensure_ascii=False), encoding="utf-8")
+            empty = AgentResult("test", "无发现", ())
+            with patch("ai_pmo.orchestrator.analyze_schedule_resource", return_value=empty) as schedule, patch(
+                "ai_pmo.orchestrator.analyze_risk_issue", return_value=empty
+            ) as risk_issue, patch("ai_pmo.orchestrator.analyze_cost_contract", return_value=empty) as cost, patch(
+                "ai_pmo.orchestrator.analyze_quality_acceptance", return_value=empty
+            ) as quality, patch("ai_pmo.orchestrator.analyze_communication_report", return_value=empty) as communication:
+                run_agents(suite, "P1", date(2026, 9, 20), suite / "outputs")
+            self.assertEqual(schedule.call_args.args[0].name, "计划与进度管理-20260918-V1.xlsx")
+            self.assertEqual(risk_issue.call_args.args[0].name, "风险管理-20260918-V1.xlsx")
+            self.assertEqual(cost.call_args.args[0].name, "成本与合同管理-20260918-V1.xlsx")
+            self.assertEqual(quality.call_args.args[0].name, "质量测试与验收-20260918-V1.xlsx")
+            self.assertEqual(quality.call_args.args[1].name, "验收交付物-20260918-V1.xlsx")
+            self.assertEqual(communication.call_args.args[0].name, "沟通会议与报告-20260918-V1.xlsx")
+
     def test_finding_serializes_with_evidence_and_approval(self):
         finding = Finding(
             finding_id="F-001", agent="schedule_resource", object_id="T001",

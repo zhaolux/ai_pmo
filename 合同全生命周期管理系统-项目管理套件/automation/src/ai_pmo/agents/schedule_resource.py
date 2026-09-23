@@ -47,6 +47,30 @@ def analyze_schedule_resource(plan_file: Path, as_of: date) -> AgentResult:
                     owner=owner, requires_approval=False,
                     evidence=(Evidence(plan_file.name, sheet.title, task_id, row_number),),
                 ))
+        if "资源计划" in workbook.sheetnames:
+            resource = workbook["资源计划"]
+            person = ""
+            for row_number, row in enumerate(resource.iter_rows(min_row=39, values_only=True), start=39):
+                if row[0]:
+                    person = str(row[0]).strip()
+                week_start = _date(row[1]) if len(row) > 1 else None
+                week_finish = _date(row[2]) if len(row) > 2 else None
+                load_rate = row[6] if len(row) > 6 else None
+                judgment = str(row[7] or "") if len(row) > 7 else ""
+                if not person or not week_start or not week_finish or not (week_start <= as_of <= week_finish):
+                    continue
+                overloaded = judgment == "超负荷" or isinstance(load_rate, (int, float)) and load_rate > 1
+                if overloaded:
+                    week_key = week_start.strftime("%Y%m%d")
+                    task_list = str(row[8] or "未列明") if len(row) > 8 else "未列明"
+                    findings.append(Finding(
+                        finding_id=f"RES-{person}-{week_key}-OVERLOAD", agent="schedule_resource",
+                        object_id=person, severity="高", title="人员当前周超负荷",
+                        detail=f"{person}在{week_start.isoformat()}当周负荷率为{load_rate}，任务为{task_list}。",
+                        recommendation="调整任务分配或明确加班审批，确保单人周计划不超过40小时。",
+                        owner=person, requires_approval=True,
+                        evidence=(Evidence(plan_file.name, resource.title, person, row_number),),
+                    ))
     finally:
         workbook.close()
     return AgentResult("schedule_resource", f"识别{len(findings)}项进度关注事项", tuple(findings))

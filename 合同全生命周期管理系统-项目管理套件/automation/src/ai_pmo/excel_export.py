@@ -6,6 +6,8 @@ from datetime import date
 from pathlib import Path
 from typing import Callable
 
+from .output_guard import ensure_outputs_available
+
 
 DEFAULT_NODE = Path(
     "/Users/zhaolu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node"
@@ -27,7 +29,9 @@ def build_agent_excel(
     *,
     node_bin: Path | None = None,
     runner: Callable[..., object] = subprocess.run,
+    replace_generated: bool = False,
 ) -> Path:
+    ensure_outputs_available((output_path,), replace_generated=replace_generated)
     node = node_bin or Path(os.environ.get("AI_PMO_NODE", str(DEFAULT_NODE)))
     output_path.parent.mkdir(parents=True, exist_ok=True)
     runner(

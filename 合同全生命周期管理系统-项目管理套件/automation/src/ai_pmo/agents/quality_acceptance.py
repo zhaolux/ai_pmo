@@ -20,8 +20,9 @@ def _closed(status: object) -> bool:
     return str(status or "").strip() in {"已关闭", "已验证", "已解决", "不修复", "已取消"}
 
 
-def analyze_quality_acceptance(quality_file: Path, as_of: date) -> AgentResult:
+def analyze_quality_acceptance(quality_file: Path, deliverable_file: Path, as_of: date) -> AgentResult:
     workbook = load_workbook(quality_file, data_only=True, read_only=True)
+    deliverable_book = load_workbook(deliverable_file, data_only=True, read_only=True)
     findings: list[Finding] = []
     try:
         overview = workbook["质量总览"]
@@ -65,7 +66,7 @@ def analyze_quality_acceptance(quality_file: Path, as_of: date) -> AgentResult:
                 evidence=(Evidence(quality_file.name, defects.title, defect_id, row_number),),
             ))
 
-        deliverables = workbook["交付物台账"]
+        deliverables = deliverable_book["交付物台账"]
         for row_number, row in enumerate(deliverables.iter_rows(min_row=5, values_only=True), start=5):
             if not row[0]:
                 continue
@@ -85,7 +86,7 @@ def analyze_quality_acceptance(quality_file: Path, as_of: date) -> AgentResult:
                 detail=f"{row[1] or deliverable_id}计划日期为{due.isoformat()}，当前状态为{status or '空'}。",
                 recommendation="确认版本、评审人、评审结论和存放位置。",
                 owner=str(row[3] or "未指定"), requires_approval=overdue,
-                evidence=(Evidence(quality_file.name, deliverables.title, deliverable_id, row_number),),
+                evidence=(Evidence(deliverable_file.name, deliverables.title, deliverable_id, row_number),),
             ))
 
         uat = workbook["UAT验收"]
@@ -108,5 +109,6 @@ def analyze_quality_acceptance(quality_file: Path, as_of: date) -> AgentResult:
                 evidence=(Evidence(quality_file.name, uat.title, uat_id, row_number),),
             ))
     finally:
+        deliverable_book.close()
         workbook.close()
     return AgentResult("quality_acceptance", f"识别{len(findings)}项质量与验收关注事项", tuple(findings))
