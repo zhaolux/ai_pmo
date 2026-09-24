@@ -24,6 +24,10 @@ summary.getRange("A6:F6").values = [[payload.status, payload.metrics.finding_cou
 summary.getRange("A6:F6").format.font = { name: font, size: 12, bold: true, color: text }; summary.getRange("A6:F6").format.horizontalAlignment = "center";
 summary.getRange("A6").format.fill = payload.status === "红" ? "#F4CCCC" : payload.status === "黄" ? amber : "#D9EAD3";
 summary.getRange("A9:H9").values = [["总体判断", payload.conclusion, "", "", "", "", "", ""]]; summary.mergeCells("B9:H9"); body(summary.getRange("A9:H9")); summary.getRange("A9:H9").format.fill = light; summary.getRange("B9").format.wrapText = true;
+if (payload.cost) {
+  summary.getRange("A10:H10").values = [["成本投入", `计划 ${payload.cost.person_days} 人天 / ${payload.cost.total_cost_wan} 万元 / 均价 ${payload.cost.average_day_rate} 元；实际投入 ${payload.cost.actual_person_days} 人天（完成率 ${payload.cost.completion_rate}），口径与驾驶舱及 G15 材料一致`, "", "", "", "", "", ""]];
+  summary.mergeCells("B10:H10"); body(summary.getRange("A10:H10")); summary.getRange("A10:H10").format.fill = light; summary.getRange("B10").format.wrapText = true;
+}
 summary.getRange("A12:E12").values = [["严重度", "重点事项", "对象ID", "责任人", "建议动作"]]; header(summary.getRange("A12:E12"));
 const priorityRows = payload.priorities.map(x => [x.severity, x.title, x.object_id, x.owner, x.recommendation]);
 if (priorityRows.length) { summary.getRange(`A13:E${12 + priorityRows.length}`).values = priorityRows; body(summary.getRange(`A13:E${12 + priorityRows.length}`)); summary.getRange(`B13:E${12 + priorityRows.length}`).format.wrapText = true; }
@@ -46,6 +50,7 @@ agents.getRange("A:A").format.columnWidth = 26; agents.getRange("B:B").format.co
 const instructions = base("使用说明");
 title(instructions, "项目周报使用说明", "本周报由AI PMO Agent已验证事实自动生成。", "B");
 instructions.getRange("A5:B9").values = [["数据截止日", payload.data_date], ["更新命令", "automation/run.sh weekly-report --date YYYY-MM-DD"], ["数据来源", "AI PMO Agent JSON报告"], ["人工确认", "状态、基线、预算、风险等级和关闭结论须由授权人确认"], ["下周重点", payload.next_action]]; body(instructions.getRange("A5:B9")); instructions.getRange("A5:A9").format.fill = light; instructions.getRange("A5:A9").format.font = { name: font, size: 10, bold: true, color: navy }; instructions.getRange("B5:B9").format.wrapText = true; instructions.getRange("A:A").format.columnWidth = 18; instructions.getRange("B:B").format.columnWidth = 90;
+if (payload.cost) { instructions.getRange("A10:B10").values = [["成本口径", "计划人天/人工成本/单价/实际投入取自当前成本工作簿《人工成本预算》与《月度投入明细》，生成时直读源簿，无需手工同步"]]; body(instructions.getRange("A10:B10")); instructions.getRange("A10").format.fill = light; instructions.getRange("A10").format.font = { name: font, size: 10, bold: true, color: navy }; instructions.getRange("B10").format.wrapText = true; }
 
 wb.recalculate();
 const output = await SpreadsheetFile.exportXlsx(wb);

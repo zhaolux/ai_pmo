@@ -12,6 +12,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
+from openpyxl import load_workbook
+from .current_workbooks import resolve_current
 from .output_guard import ensure_outputs_available
 
 
@@ -19,6 +21,44 @@ DEFAULT_NODE = Path(
     "/Users/zhaolu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node"
 )
 DOC_FONT = "Arial Unicode MS"
+
+
+def extract_cost_overview(suite: Path) -> dict | None:
+    """从当前成本工作簿读取周报成本口径；缺簿或缺合计行时返回 None（周报不因此失败）。
+
+    数字全部为格式化字符串，与 G15 材料口径一致（人天千分位、万元两位、单价两位）。
+    """
+    try:
+        cost = resolve_current(suite, "cost")
+        workbook = load_workbook(cost, data_only=True, read_only=True)
+    except Exception:
+        return None
+    try:
+        budget = workbook["人工成本预算"]
+        total_row = None
+        for row in budget.iter_rows(min_col=1, max_col=1):
+            if row[0].value == "合计":
+                total_row = row[0].row
+                break
+        if total_row is None:
+            return None
+        person_days = float(budget.cell(total_row, 4).value or 0)
+        total_cost = float(budget.cell(total_row, 6).value or 0)
+        if person_days <= 0:
+            return None
+        detail = workbook["月度投入明细"]
+        actual = float(detail["AQ15"].value or 0)
+        return {
+            "person_days": person_days,
+            "total_cost_wan": f"{total_cost / 10000:.2f}",
+            "average_day_rate": f"{total_cost / person_days:,.2f}",
+            "actual_person_days": actual,
+            "completion_rate": (actual / person_days) if person_days else None,
+        }
+    except Exception:
+        return None
+    finally:
+        workbook.close()
 
 
 def _font(run, size: int | None = None, bold: bool | None = None) -> None:
@@ -36,7 +76,7 @@ def weekly_report_paths(suite: Path, as_of: date) -> tuple[Path, Path]:
     return directory / f"{stem}.xlsx", directory / f"{stem}.docx"
 
 
-def weekly_report_payload(report: dict, project_name: str) -> dict:
+def weekly_report_payload(report: dict, project_name: str, cost_overview: dict | None = None) -> dict:
     summary = report["management_summary"]
     decisions = [
         {
@@ -51,7 +91,7 @@ def weekly_report_payload(report: dict, project_name: str) -> dict:
     if not decisions:
         decisions = summary["decisions_needed"]
     decisions.sort(key=lambda item: (not item["object_id"].startswith("DEC-"), item["object_id"]))
-    return {
+    payload = {
         "project_name": project_name,
         "data_date": report["data_date"],
         "status": report["health"],
@@ -73,6 +113,18 @@ def weekly_report_payload(report: dict, project_name: str) -> dict:
         "decisions": decisions[:10],
         "next_action": summary["next_action"],
     }
+    if cost_overview:
+        payload["cost"] = {
+            "person_days": f"{cost_overview['person_days']:,.0f}",
+            "total_cost_wan": cost_overview["total_cost_wan"],
+            "average_day_rate": cost_overview["average_day_rate"],
+            "actual_person_days": f"{cost_overview['actual_person_days']:,.0f}",
+            "completion_rate": (
+                f"{cost_overview['completion_rate'] * 100:.1f}%"
+                if cost_overview.get("completion_rate") is not None else ""
+            ),
+        }
+    return payload
 
 
 def _shade(cell, fill: str) -> None:
@@ -180,7 +232,19 @@ def build_weekly_docx(payload: dict, path: Path) -> Path:
         for item in payload["decisions"]
     ], [2.0, 6.0, 3.0, 5.5])
 
-    document.add_heading("五 下周管理重点", level=1)
+    if payload.get("cost"):
+        cost = payload["cost"]
+        document.add_heading("五 成本投入概况", level=1)
+        document.add_paragraph(
+            "成本口径取自当前成本工作簿《人工成本预算》与《月度投入明细》，"
+            "与驾驶舱及 G15 会前材料同一口径。"
+        )
+        _table(document, ["计划人天", "人工成本(万元)", "平均人日单价(元)", "实际投入(人天)", "完成率"], [[
+            cost["person_days"], cost["total_cost_wan"], cost["average_day_rate"],
+            cost["actual_person_days"], cost["completion_rate"],
+        ]], [2.4, 3.0, 3.4, 3.0, 2.2])
+
+    document.add_heading("六 下周管理重点", level=1)
     document.add_paragraph(payload["next_action"])
     document.add_paragraph("重点完成CA、电子文档和BI报表产品POC证据汇总，为9月30日选型决策提供事实、方案、影响和建议。")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -195,7 +259,7 @@ def build_weekly_reports(
     xlsx_path, docx_path = weekly_report_paths(suite, as_of)
     ensure_outputs_available((xlsx_path, docx_path), replace_generated=replace_generated)
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    payload = weekly_report_payload(report, project_name)
+    payload = weekly_report_payload(report, project_name, extract_cost_overview(suite))
     xlsx_path.parent.mkdir(parents=True, exist_ok=True)
     payload_path = xlsx_path.parent / f".weekly-report-{as_of:%Y%m%d}.json"
     payload_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
