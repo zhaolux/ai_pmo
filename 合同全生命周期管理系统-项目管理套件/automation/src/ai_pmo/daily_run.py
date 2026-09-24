@@ -70,6 +70,10 @@ def build_daily_steps(
             python_executable, str(automation / 'scripts' / 'sync_cost_to_ai_pmo.py'),
             '--suite', str(suite),
         )),
+        DailyStep('成本口径G15联动预览', (
+            python_executable, str(automation / 'scripts' / 'sync_cost_caliber_to_g15.py'),
+            '--suite', str(suite),
+        )),
         DailyStep('Agent分析' if generate_derived else 'Agent输出预览', (
             python_executable, '-m', 'ai_pmo', 'agents', '--date', date_text,
             *agent_arguments,

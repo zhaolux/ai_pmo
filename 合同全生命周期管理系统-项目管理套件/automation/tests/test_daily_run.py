@@ -55,7 +55,7 @@ class DailyRunTests(unittest.TestCase):
         steps = build_daily_steps(suite, date(2026, 9, 21), 'python3')
         self.assertEqual(
             [step.name for step in steps],
-            ['数据主源审计', '数据联动审计', '接口快照同步预览', '项目组合联动审计', 'AI PMO全量刷新预览', '成本刷新预览', 'Agent输出预览', '周报输出预览'],
+            ['数据主源审计', '数据联动审计', '接口快照同步预览', '项目组合联动审计', 'AI PMO全量刷新预览', '成本刷新预览', '成本口径G15联动预览', 'Agent输出预览', '周报输出预览'],
         )
         flattened = [argument for step in steps for argument in step.command]
         self.assertNotIn('--apply', flattened)
