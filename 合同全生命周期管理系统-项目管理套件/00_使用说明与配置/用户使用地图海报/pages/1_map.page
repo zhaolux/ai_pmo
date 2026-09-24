@@ -1,0 +1,760 @@
+pageType: content
+background:
+  type: solid
+  color: "$paper"
+elements:
+  # ===== 顶部标识条 =====
+  - elementId: top-strip
+    elementType: shape
+    bounds: [0, 0, 960, 6]
+    shapeName: rect
+    fill: {type: solid, color: "$navydark"}
+
+  # ===== 页眉 =====
+  - elementId: title
+    elementType: text
+    bounds: [60, 30, 520, 52]
+    content:
+      fontSize: 40
+      bold: true
+      color: "$ink"
+      wrap: false
+      align: [left, middle]
+      text: 用户使用地图
+  - elementId: subtitle
+    elementType: text
+    bounds: [60, 88, 720, 20]
+    content:
+      fontSize: 13
+      color: "$gray"
+      wrap: false
+      align: [left, middle]
+      text: 能源行业合同全生命周期管理系统 · 项目管理套件 —— 我是谁 · 什么时候来 · 去哪个目录 · 跑哪条命令
+  - elementId: version
+    elementType: text
+    bounds: [760, 44, 140, 20]
+    content:
+      fontSize: 11
+      color: "$gray"
+      wrap: false
+      align: [right, middle]
+      text: V1 · 2026-09-24
+  - elementId: head-line
+    elementType: shape
+    bounds: [60, 122, 840, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+
+  # ===== 01 一张图看懂 =====
+  - elementId: s1-sq
+    elementType: shape
+    bounds: [60, 150, 10, 10]
+    shapeName: rect
+    fill: {type: solid, color: "$navy"}
+  - elementId: s1-label
+    elementType: text
+    bounds: [78, 142, 400, 26]
+    content:
+      style: "$section"
+      wrap: false
+      align: [left, middle]
+      text: 01 · 一张图看懂
+  # 流程三层
+  - elementId: f1-tab
+    elementType: shape
+    bounds: [60, 180, 6, 42]
+    shapeName: rect
+    fill: {type: solid, color: "$green"}
+  - elementId: f1-title
+    elementType: text
+    bounds: [80, 180, 320, 42]
+    content:
+      fontSize: 15
+      bold: true
+      color: "$ink"
+      align: [left, middle]
+      wrap: false
+      text: ① 业务台账 · 人工录入
+  - elementId: f1-desc
+    elementType: text
+    bounds: [410, 180, 340, 42]
+    content:
+      style: "$small"
+      align: [left, middle]
+      text: 01–10 各领域工作簿，黄色字段由责任人维护，唯一事实源
+  - elementId: f1-actor
+    elementType: text
+    bounds: [770, 180, 130, 42]
+    content:
+      style: "$small"
+      align: [right, middle]
+      wrap: false
+      text: 领域责任人
+  - elementId: f-arrow1
+    elementType: icon
+    bounds: [68, 226, 12, 12]
+    iconName: "fas:angle-down"
+    fill: {type: solid, color: "$gray"}
+  - elementId: f2-tab
+    elementType: shape
+    bounds: [60, 244, 6, 42]
+    shapeName: rect
+    fill: {type: solid, color: "$navy"}
+  - elementId: f2-title
+    elementType: text
+    bounds: [80, 244, 320, 42]
+    content:
+      fontSize: 15
+      bold: true
+      color: "$ink"
+      align: [left, middle]
+      wrap: false
+      text: ② 自动同步 · automation
+  - elementId: f2-desc
+    elementType: text
+    bounds: [410, 244, 340, 42]
+    content:
+      style: "$small"
+      align: [left, middle]
+      text: 驾驶舱全量刷新 · 成本联动 · 03↔04 接口快照，先预览后执行
+  - elementId: f2-actor
+    elementType: text
+    bounds: [770, 244, 130, 42]
+    content:
+      style: "$small"
+      align: [right, middle]
+      wrap: false
+      text: 数据维护人
+  - elementId: f-arrow2
+    elementType: icon
+    bounds: [68, 290, 12, 12]
+    iconName: "fas:angle-down"
+    fill: {type: solid, color: "$gray"}
+  - elementId: f3-tab
+    elementType: shape
+    bounds: [60, 308, 6, 42]
+    shapeName: rect
+    fill: {type: solid, color: "$amber"}
+  - elementId: f3-title
+    elementType: text
+    bounds: [80, 308, 320, 42]
+    content:
+      fontSize: 15
+      bold: true
+      color: "$ink"
+      align: [left, middle]
+      wrap: false
+      text: ③ 派生产出 · 只读
+  - elementId: f3-desc
+    elementType: text
+    bounds: [410, 308, 340, 42]
+    content:
+      style: "$small"
+      align: [left, middle]
+      text: 驾驶舱 · Agent结果 · 周报 · 决策简报，不反向写台账
+  - elementId: f3-actor
+    elementType: text
+    bounds: [770, 308, 130, 42]
+    content:
+      style: "$small"
+      align: [right, middle]
+      wrap: false
+      text: 项目集经理 / 委员会
+  # 铁律条
+  - elementId: rule-bar
+    elementType: shape
+    bounds: [60, 366, 840, 38]
+    shapeName: rect
+    fill: {type: solid, color: "$navydark"}
+  - elementId: rule-text
+    elementType: text
+    bounds: [76, 366, 810, 38]
+    content:
+      fontSize: 13
+      bold: true
+      color: "#FFFFFF"
+      align: [left, middle]
+      wrap: false
+      text: 铁律：事实只录入一次，②③ 全部自动跟随 —— 报告和驾驶舱永远不是录入入口。
+
+  # ===== 02 每周节奏（地铁线） =====
+  - elementId: s2-sq
+    elementType: shape
+    bounds: [60, 434, 10, 10]
+    shapeName: rect
+    fill: {type: solid, color: "$navy"}
+  - elementId: s2-label
+    elementType: text
+    bounds: [78, 426, 500, 26]
+    content:
+      style: "$section"
+      wrap: false
+      align: [left, middle]
+      text: 02 · 每周节奏 —— 一条线看全周期
+  # 地铁主线
+  - elementId: metro-line
+    elementType: shape
+    bounds: [100, 555, 760, 3]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  # 站点 1 每天巡检（上）
+  - elementId: st1-tick
+    elementType: shape
+    bounds: [119, 526, 1, 22]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: st1-dot
+    elementType: shape
+    bounds: [111, 548, 18, 18]
+    shapeName: ellipse
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2.5, color: "$green"}
+  - elementId: st1-num
+    elementType: text
+    bounds: [111, 548, 18, 18]
+    content: {fontSize: 10, bold: true, color: "$green", align: [center, middle], wrap: false, text: "1"}
+  - elementId: st1-label
+    elementType: text
+    bounds: [46, 458, 148, 62]
+    content:
+      align: [center, top]
+      lineHeight: 1.4
+      text: |
+        <p style="text-align:center"><span style="font-size:12px; color:$ink;"><strong>每天 09:30</strong></span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">自动巡检（只读）</span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">定时任务已配</span></p>
+  # 站点 2 随时刷新（下）
+  - elementId: st2-tick
+    elementType: shape
+    bounds: [271, 567, 1, 15]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: st2-dot
+    elementType: shape
+    bounds: [263, 548, 18, 18]
+    shapeName: ellipse
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2.5, color: "$navy"}
+  - elementId: st2-num
+    elementType: text
+    bounds: [263, 548, 18, 18]
+    content: {fontSize: 10, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "2"}
+  - elementId: st2-label
+    elementType: text
+    bounds: [198, 584, 148, 62]
+    content:
+      align: [center, top]
+      lineHeight: 1.4
+      text: |
+        <p style="text-align:center"><span style="font-size:12px; color:$ink;"><strong>随时</strong></span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">台账变更 →</span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">刷新同步</span></p>
+  # 站点 3 每周周报（上）
+  - elementId: st3-tick
+    elementType: shape
+    bounds: [423, 526, 1, 22]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: st3-dot
+    elementType: shape
+    bounds: [415, 548, 18, 18]
+    shapeName: ellipse
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2.5, color: "$amber"}
+  - elementId: st3-num
+    elementType: text
+    bounds: [415, 548, 18, 18]
+    content: {fontSize: 10, bold: true, color: "$amber", align: [center, middle], wrap: false, text: "3"}
+  - elementId: st3-label
+    elementType: text
+    bounds: [350, 458, 148, 62]
+    content:
+      align: [center, top]
+      lineHeight: 1.4
+      text: |
+        <p style="text-align:center"><span style="font-size:12px; color:$ink;"><strong>每周 例会前</strong></span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">agents → 人工确认</span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">→ weekly-report</span></p>
+  # 站点 4 每月填报（下）
+  - elementId: st4-tick
+    elementType: shape
+    bounds: [575, 567, 1, 15]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: st4-dot
+    elementType: shape
+    bounds: [567, 548, 18, 18]
+    shapeName: ellipse
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2.5, color: "$green"}
+  - elementId: st4-num
+    elementType: text
+    bounds: [567, 548, 18, 18]
+    content: {fontSize: 10, bold: true, color: "$green", align: [center, middle], wrap: false, text: "4"}
+  - elementId: st4-label
+    elementType: text
+    bounds: [502, 584, 148, 62]
+    content:
+      align: [center, top]
+      lineHeight: 1.4
+      text: |
+        <p style="text-align:center"><span style="font-size:12px; color:$ink;"><strong>每月</strong></span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">投入明细</span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">填实际列</span></p>
+  # 站点 5 事件驱动上会（上）
+  - elementId: st5-tick
+    elementType: shape
+    bounds: [727, 526, 1, 22]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: st5-dot
+    elementType: shape
+    bounds: [719, 548, 18, 18]
+    shapeName: ellipse
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2.5, color: "$red"}
+  - elementId: st5-num
+    elementType: text
+    bounds: [719, 548, 18, 18]
+    content: {fontSize: 10, bold: true, color: "$red", align: [center, middle], wrap: false, text: "5"}
+  - elementId: st5-label
+    elementType: text
+    bounds: [654, 458, 148, 62]
+    content:
+      align: [center, top]
+      lineHeight: 1.4
+      text: |
+        <p style="text-align:center"><span style="font-size:12px; color:$ink;"><strong>事件驱动</strong></span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">上会材料 · G15</span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">decision-brief</span></p>
+  # 站点 6 版本登记（下）
+  - elementId: st6-tick
+    elementType: shape
+    bounds: [863, 567, 1, 15]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: st6-dot
+    elementType: shape
+    bounds: [855, 548, 18, 18]
+    shapeName: ellipse
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2.5, color: "$gray"}
+  - elementId: st6-num
+    elementType: text
+    bounds: [855, 548, 18, 18]
+    content: {fontSize: 10, bold: true, color: "$gray", align: [center, middle], wrap: false, text: "6"}
+  - elementId: st6-label
+    elementType: text
+    bounds: [790, 584, 148, 62]
+    content:
+      align: [center, top]
+      lineHeight: 1.4
+      text: |
+        <p style="text-align:center"><span style="font-size:12px; color:$ink;"><strong>发布新版</strong></span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">登记</span></p>
+        <p style="text-align:center"><span style="font-size:10.5px; color:$gray;">current_workbooks</span></p>
+  # 节奏提示
+  - elementId: s2-note1
+    elementType: text
+    bounds: [60, 660, 410, 40]
+    content:
+      style: "$small"
+      align: [left, middle]
+      text: |
+        <p><span style="color:$navy;"><strong>写入纪律</strong></span>：一律先预览 → 确认输出 → 加 --apply</p>
+        <p>（自动备份到 _archive/自动刷新前备份/）</p>
+  - elementId: s2-note2
+    elementType: text
+    bounds: [490, 660, 410, 40]
+    content:
+      style: "$small"
+      align: [left, middle]
+      text: |
+        <p><span style="color:$red;"><strong>勿用</strong></span>：build / run 会生成当日新簿，</p>
+        <p>不是日常刷新命令</p>
+
+  # ===== 03 角色速查 =====
+  - elementId: s3-sq
+    elementType: shape
+    bounds: [60, 730, 10, 10]
+    shapeName: rect
+    fill: {type: solid, color: "$navy"}
+  - elementId: s3-label
+    elementType: text
+    bounds: [78, 722, 500, 26]
+    content:
+      style: "$section"
+      wrap: false
+      align: [left, middle]
+      text: 03 · 角色速查 —— 你是谁，就去哪
+  - elementId: r1-icon
+    elementType: icon
+    bounds: [60, 762, 20, 20]
+    iconName: "fas:user-tie"
+    fill: {type: solid, color: "$navy"}
+  - elementId: r1-name
+    elementType: text
+    bounds: [88, 762, 130, 20]
+    content: {fontSize: 13, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 项目集经理/PMO}
+  - elementId: r1-dest
+    elementType: text
+    bounds: [60, 788, 160, 44]
+    content:
+      fontSize: 10.5
+      color: "$gray"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 11_AI_PMO中心 驾驶舱与 AI项目诊断，识别红黄项
+  - elementId: r-sep1
+    elementType: shape
+    bounds: [226, 762, 1, 70]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: r2-icon
+    elementType: icon
+    bounds: [242, 762, 20, 20]
+    iconName: "fas:clipboard-check"
+    fill: {type: solid, color: "$navy"}
+  - elementId: r2-name
+    elementType: text
+    bounds: [270, 762, 130, 20]
+    content: {fontSize: 13, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 项目经理}
+  - elementId: r2-dest
+    elementType: text
+    bounds: [242, 788, 160, 44]
+    content:
+      fontSize: 10.5
+      color: "$gray"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 各领域台账维护事实，Agent 结果簿黄色列填确认结论
+  - elementId: r-sep2
+    elementType: shape
+    bounds: [408, 762, 1, 70]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: r3-icon
+    elementType: icon
+    bounds: [424, 762, 20, 20]
+    iconName: "fas:pen-to-square"
+    fill: {type: solid, color: "$green"}
+  - elementId: r3-name
+    elementType: text
+    bounds: [452, 762, 130, 20]
+    content: {fontSize: 13, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 领域责任人}
+  - elementId: r3-dest
+    elementType: text
+    bounds: [424, 788, 160, 44]
+    content:
+      fontSize: 10.5
+      color: "$gray"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 01–10 对应工作簿黄色字段录入，唯一事实源
+  - elementId: r-sep3
+    elementType: shape
+    bounds: [590, 762, 1, 70]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: r4-icon
+    elementType: icon
+    bounds: [606, 762, 20, 20]
+    iconName: "fas:gears"
+    fill: {type: solid, color: "$amber"}
+  - elementId: r4-name
+    elementType: text
+    bounds: [634, 762, 130, 20]
+    content: {fontSize: 13, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 数据维护人}
+  - elementId: r4-dest
+    elementType: text
+    bounds: [606, 788, 160, 44]
+    content:
+      fontSize: 10.5
+      color: "$gray"
+      lineHeight: 1.4
+      align: [left, top]
+      text: automation/ 跑命令、更新 current_workbooks.json 登记
+  - elementId: r-sep4
+    elementType: shape
+    bounds: [772, 762, 1, 70]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: r5-icon
+    elementType: icon
+    bounds: [788, 762, 20, 20]
+    iconName: "fas:landmark"
+    fill: {type: solid, color: "$red"}
+  - elementId: r5-name
+    elementType: text
+    bounds: [816, 762, 120, 20]
+    content: {fontSize: 13, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 治理委员会}
+  - elementId: r5-dest
+    elementType: text
+    bounds: [788, 788, 150, 44]
+    content:
+      fontSize: 10.5
+      color: "$gray"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 看驾驶舱，审 08 决策简报并签署结论
+
+  # ===== 04 场景路线 =====
+  - elementId: s4-sq
+    elementType: shape
+    bounds: [60, 872, 10, 10]
+    shapeName: rect
+    fill: {type: solid, color: "$navy"}
+  - elementId: s4-label
+    elementType: text
+    bounds: [78, 864, 500, 26]
+    content:
+      style: "$section"
+      wrap: false
+      align: [left, middle]
+      text: 04 · 场景路线 —— 我来干什么，就按哪条走
+  # 路线 1
+  - elementId: p1-chip
+    elementType: shape
+    bounds: [60, 906, 24, 24]
+    shapeName: rect
+    fill: {type: solid, color: "$chip"}
+  - elementId: p1-num
+    elementType: text
+    bounds: [60, 906, 24, 24]
+    content: {fontSize: 12, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "1"}
+  - elementId: p1-title
+    elementType: text
+    bounds: [94, 906, 380, 20]
+    content: {fontSize: 13.5, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 只看项目状态}
+  - elementId: p1-desc
+    elementType: text
+    bounds: [94, 928, 380, 40]
+    content:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>打开 11_AI_PMO中心 驾驶舱与 AI项目诊断，</p>
+        <p>无需跑任何命令</p>
+  # 路线 2
+  - elementId: p2-chip
+    elementType: shape
+    bounds: [490, 906, 24, 24]
+    shapeName: rect
+    fill: {type: solid, color: "$chip"}
+  - elementId: p2-num
+    elementType: text
+    bounds: [490, 906, 24, 24]
+    content: {fontSize: 12, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "2"}
+  - elementId: p2-title
+    elementType: text
+    bounds: [524, 906, 380, 20]
+    content: {fontSize: 13.5, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 台账更新后刷新驾驶舱}
+  - elementId: p2-desc
+    elementType: text
+    bounds: [524, 928, 380, 40]
+    content:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>sync_all_to_ai_pmo.py --date … 预览</p>
+        <p>确认后加 --apply</p>
+  # 路线 3
+  - elementId: p3-chip
+    elementType: shape
+    bounds: [60, 988, 24, 24]
+    shapeName: rect
+    fill: {type: solid, color: "$chip"}
+  - elementId: p3-num
+    elementType: text
+    bounds: [60, 988, 24, 24]
+    content: {fontSize: 12, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "3"}
+  - elementId: p3-title
+    elementType: text
+    bounds: [94, 988, 380, 20]
+    content: {fontSize: 13.5, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 改了人工成本或预算}
+  - elementId: p3-desc
+    elementType: text
+    bounds: [94, 1010, 380, 40]
+    content:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>sync_cost_all.py --apply 一次完成：</p>
+        <p>驾驶舱四项指标 + G15 三份材料口径</p>
+  # 路线 4
+  - elementId: p4-chip
+    elementType: shape
+    bounds: [490, 988, 24, 24]
+    shapeName: rect
+    fill: {type: solid, color: "$chip"}
+  - elementId: p4-num
+    elementType: text
+    bounds: [490, 988, 24, 24]
+    content: {fontSize: 12, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "4"}
+  - elementId: p4-title
+    elementType: text
+    bounds: [524, 988, 380, 20]
+    content: {fontSize: 13.5, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 每周发周报}
+  - elementId: p4-desc
+    elementType: text
+    bounds: [524, 1010, 380, 40]
+    content:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>agents → 项目经理 review-import 确认</p>
+        <p>→ weekly-report，产出在 08/周报/</p>
+  # 路线 5
+  - elementId: p5-chip
+    elementType: shape
+    bounds: [60, 1070, 24, 24]
+    shapeName: rect
+    fill: {type: solid, color: "$chip"}
+  - elementId: p5-num
+    elementType: text
+    bounds: [60, 1070, 24, 24]
+    content: {fontSize: 12, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "5"}
+  - elementId: p5-title
+    elementType: text
+    bounds: [94, 1070, 380, 20]
+    content: {fontSize: 13.5, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 上会前备材料}
+  - elementId: p5-desc
+    elementType: text
+    bounds: [94, 1092, 380, 40]
+    content:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>decision-brief 生成简报草稿；</p>
+        <p>评分/报价/会签台账由人工签认后作为附件</p>
+  # 路线 6
+  - elementId: p6-chip
+    elementType: shape
+    bounds: [490, 1070, 24, 24]
+    shapeName: rect
+    fill: {type: solid, color: "$chip"}
+  - elementId: p6-num
+    elementType: text
+    bounds: [490, 1070, 24, 24]
+    content: {fontSize: 12, bold: true, color: "$navy", align: [center, middle], wrap: false, text: "6"}
+  - elementId: p6-title
+    elementType: text
+    bounds: [524, 1070, 380, 20]
+    content: {fontSize: 13.5, bold: true, color: "$ink", wrap: false, align: [left, middle], text: 数据体检（只读，随时可跑）}
+  - elementId: p6-desc
+    elementType: text
+    bounds: [524, 1092, 380, 40]
+    content:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+      align: [left, top]
+      text: |
+        <p>run_daily_pmo.py · audit_data_links.py</p>
+        <p>audit_portfolio_links.py，不写业务工作簿</p>
+
+  # ===== 05 红线 =====
+  - elementId: s5-sq
+    elementType: shape
+    bounds: [60, 1156, 10, 10]
+    shapeName: rect
+    fill: {type: solid, color: "$red"}
+  - elementId: s5-label
+    elementType: text
+    bounds: [78, 1148, 400, 26]
+    content:
+      style: "$section"
+      wrap: false
+      align: [left, middle]
+      text: 05 · 红线
+  - elementId: red1-sq
+    elementType: shape
+    bounds: [60, 1188, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$red"}
+  - elementId: red1
+    elementType: text
+    bounds: [76, 1182, 196, 52]
+    content:
+      fontSize: 10.5
+      color: "$ink"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 颜色纪律：黄=人工录，灰=勿改，蓝=程序生成，红=待处理
+  - elementId: red2-sq
+    elementType: shape
+    bounds: [290, 1188, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$red"}
+  - elementId: red2
+    elementType: text
+    bounds: [306, 1182, 196, 52]
+    content:
+      fontSize: 10.5
+      color: "$ink"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 基线·预算·风险等级·问题关闭·采购选型，只由授权人确认
+  - elementId: red3-sq
+    elementType: shape
+    bounds: [520, 1188, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$red"}
+  - elementId: red3
+    elementType: text
+    bounds: [536, 1182, 190, 52]
+    content:
+      fontSize: 10.5
+      color: "$ink"
+      lineHeight: 1.4
+      align: [left, top]
+      text: 新簿发布先登记 current_workbooks.json，不按修改时间猜最新版
+  - elementId: red4-sq
+    elementType: shape
+    bounds: [744, 1188, 8, 8]
+    shapeName: rect
+    fill: {type: solid, color: "$red"}
+  - elementId: red4
+    elementType: text
+    bounds: [760, 1182, 170, 52]
+    content:
+      fontSize: 10.5
+      color: "$ink"
+      lineHeight: 1.4
+      align: [left, top]
+      text: _archive 仅供追溯，不得当作当前基线引用
+
+  # ===== 页脚 =====
+  - elementId: foot-line
+    elementType: shape
+    bounds: [60, 1246, 840, 1]
+    shapeName: rect
+    fill: {type: solid, color: "$hairline"}
+  - elementId: foot-left
+    elementType: text
+    bounds: [60, 1256, 640, 16]
+    content:
+      fontSize: 10
+      color: "$gray"
+      wrap: false
+      align: [left, middle]
+      text: 配套阅读：AGENTS.md · ROADMAP.md · automation/README.md（命令权威说明）· 数据血缘与写入边界
+  - elementId: foot-right
+    elementType: text
+    bounds: [700, 1256, 200, 16]
+    content:
+      fontSize: 10
+      color: "$gray"
+      wrap: false
+      align: [right, middle]
+      text: 维护：PMO

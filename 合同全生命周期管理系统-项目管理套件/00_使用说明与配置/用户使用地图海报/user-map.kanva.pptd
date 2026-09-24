@@ -1,0 +1,30 @@
+version: v2
+title: 用户使用地图
+size: [960, 1280]
+theme:
+  colors:
+    paper: "#FAF7F1"
+    ink: "#22303E"
+    gray: "#6B7684"
+    hairline: "#DCD5C8"
+    navy: "#0B6FA4"
+    navydark: "#08486E"
+    amber: "#C97B1F"
+    green: "#3E7C59"
+    red: "#B3402A"
+    chip: "#F0EAE0"
+  textStyles:
+    section:
+      fontSize: 19
+      bold: true
+      color: "$ink"
+    body:
+      fontSize: 13
+      color: "$ink"
+      lineHeight: 1.5
+    small:
+      fontSize: 11
+      color: "$gray"
+      lineHeight: 1.45
+pages:
+  - pages/1_map.page
