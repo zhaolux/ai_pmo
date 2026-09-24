@@ -20,6 +20,7 @@ def make_suite(root: Path) -> tuple[Path, Path]:
     book = Workbook()
     sheet = book.active
     sheet.title = "人工成本预算"
+    sheet["A14"] = "合计"
     sheet["D14"] = 20
     sheet["F14"] = 24000
     book.save(cost)
@@ -67,6 +68,25 @@ class CostSyncSafetyTests(unittest.TestCase):
         ), patch.object(cost_sync, "sync") as apply:
             cost_sync.main()
             apply.assert_not_called()
+
+    def test_total_row_located_by_label_not_fixed_row(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source, _ = make_suite(root)
+            book = __import__("openpyxl").load_workbook(source)
+            sheet = book["人工成本预算"]
+            sheet.insert_rows(14, 1)
+            sheet["A14"] = "中级测试人员"
+            sheet["A15"] = "合计"
+            sheet["D15"] = 21
+            sheet["F15"] = 25200
+            book.save(source)
+
+            metrics = cost_sync.extract_cost_metrics(source)
+
+            self.assertEqual(metrics.person_days, 21)
+            self.assertEqual(metrics.total_cost, 25200)
+            self.assertEqual(metrics.average_day_rate, 1200)
 
     def test_apply_rejects_target_changed_after_preview(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -412,11 +412,13 @@ def audit_portfolio(plan_path: Path, risk_path: Path, change_path: Path,
         decision_ids = _ids(change['待决策事项'], 'D-', 5)
         task_ids = _ids(plan['项目总控台账'], 'T', 4)
         cost_sheet = cost['人工成本预算']
+        total_row = next((r for r in range(1, cost_sheet.max_row + 1)
+                          if cost_sheet.cell(r, 1).value == '合计'), None)
         expected_metrics = {
             '总任务数': len(task_ids), '风险总数': len(risk_ids),
             '待决策事项': len(decision_ids), '里程碑总数': len(milestone_ids),
-            '计划投入人天': cost_sheet['D14'].value,
-            '计划人工成本': cost_sheet['F14'].value,
+            '计划投入人天': cost_sheet.cell(total_row, 4).value if total_row else None,
+            '计划人工成本': cost_sheet.cell(total_row, 6).value if total_row else None,
             '人日单价': cost_sheet['E3'].value,
         }
         actual_metrics = {name: interface.get(name) for name in ('总任务数', '风险总数')}

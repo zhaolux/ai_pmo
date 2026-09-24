@@ -30,8 +30,15 @@ def extract_cost_metrics(path: Path) -> CostMetrics:
     workbook = load_workbook(path, data_only=True, read_only=True)
     try:
         sheet = workbook["人工成本预算"]
-        person_days = float(sheet["D14"].value or 0)
-        total_cost = float(sheet["F14"].value or 0)
+        total_row = None
+        for row in sheet.iter_rows(min_col=1, max_col=1):
+            if row[0].value == "合计":
+                total_row = row[0].row
+                break
+        if total_row is None:
+            raise ValueError("人工成本预算 缺少'合计'行，无法定位总人天")
+        person_days = float(sheet.cell(total_row, 4).value or 0)
+        total_cost = float(sheet.cell(total_row, 6).value or 0)
         if person_days <= 0:
             raise ValueError("人工成本预算!D14 总人天必须大于0")
         return CostMetrics(person_days, total_cost, total_cost / person_days)
