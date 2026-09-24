@@ -74,6 +74,14 @@ python3 scripts/sync_cost_caliber_to_g15.py
 
 确认后执行 `python3 scripts/sync_cost_caliber_to_g15.py --apply`。脚本按文件名模式定位最新的 `G15-会前签认跟踪-*.xlsx`、`G15-未决事项处置建议包-*.md`、`G15-会前材料包清单与缺口对照-*.md`，把人天/万元/单价三连、人工成本万元数、签认引述和驾驶舱口径行的数字改写为当前成本口径（xlsx 走 zipfile 级字符串替换，不动公式缓存）。默认仅预览命中处数；`--apply` 执行前备份各目标到 `_archive/自动刷新前备份/`。改写为相同值时幂等，可重复执行。日常巡检第 7 步以预览方式运行本命令。
 
+两段联动（驾驶舱 + G15）也可一次完成，推荐日常使用统一入口：
+
+```bash
+python3 scripts/sync_cost_all.py
+```
+
+确认后执行 `python3 scripts/sync_cost_all.py --apply`。先跑驾驶舱同步（officecli 白名单写入，备份 AI PMO 工作簿），再跑 G15 口径联动（备份各目标）；两段都带预览后目标防切换守卫，第一段失败即停、第二段不执行。`sync_cost_to_ai_pmo.py` 与 `sync_cost_caliber_to_g15.py` 仍可单独使用。
+
 03 需求与范围管理与 04 系统集成管理的接口快照支持按列归属双向同步：
 
 ```bash
