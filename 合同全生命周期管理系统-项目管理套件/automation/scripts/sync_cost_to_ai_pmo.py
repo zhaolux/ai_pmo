@@ -24,6 +24,7 @@ class CostMetrics:
     person_days: float
     total_cost: float
     average_day_rate: float
+    total_budget: float
 
 
 def extract_cost_metrics(path: Path) -> CostMetrics:
@@ -41,7 +42,17 @@ def extract_cost_metrics(path: Path) -> CostMetrics:
         total_cost = float(sheet.cell(total_row, 6).value or 0)
         if person_days <= 0:
             raise ValueError("人工成本预算!D14 总人天必须大于0")
-        return CostMetrics(person_days, total_cost, total_cost / person_days)
+        budget_sheet = workbook["预算基线"]
+        total_budget = 0.0
+        for row in budget_sheet.iter_rows(min_row=5, max_row=104, min_col=1, max_col=10):
+            if row[0].value == "合计":
+                continue
+            amount = row[9].value
+            if isinstance(amount, (int, float)):
+                total_budget += float(amount)
+        if total_budget <= 0:
+            raise ValueError("预算基线 J5:J104 已量化总预算必须大于0")
+        return CostMetrics(person_days, total_cost, total_cost / person_days, total_budget)
     finally:
         workbook.close()
 
@@ -77,12 +88,15 @@ def sync(
         {"command": "set", "path": "/项目驾驶舱/B9", "props": {"formula": "'_数据接口'!B17"}},
         {"command": "set", "path": "/项目驾驶舱/C9", "props": {"formula": "'_数据接口'!B18"}},
         {"command": "set", "path": "/项目驾驶舱/D9", "props": {"formula": "'_数据接口'!B19"}},
+        {"command": "set", "path": "/项目驾驶舱/I9", "props": {"formula": "'_数据接口'!B43"}},
         {"command": "set", "path": "/_数据接口/B16", "props": {"value": source}},
         {"command": "set", "path": "/_数据接口/B17", "props": {"value": metrics.person_days, "type": "number"}},
         {"command": "set", "path": "/_数据接口/B18", "props": {"value": metrics.total_cost, "type": "number"}},
         {"command": "set", "path": "/_数据接口/B19", "props": {"value": metrics.average_day_rate, "type": "number"}},
         {"command": "set", "path": "/_数据接口/B20", "props": {"value": today, "type": "string"}},
         {"command": "set", "path": "/_数据接口/B21", "props": {"value": "已同步"}},
+        {"command": "set", "path": "/_数据接口/A43", "props": {"value": "已量化总预算"}},
+        {"command": "set", "path": "/_数据接口/B43", "props": {"value": metrics.total_budget, "type": "number"}},
     ]
     officecli = shutil.which("officecli")
     if not officecli:
@@ -108,9 +122,9 @@ def main() -> None:
     preview = preview_sync(suite)
     print(f"读取成本工作簿：{preview['source']}")
     print(f"目标工作簿：{preview['target']}")
-    print("将更新：项目驾驶舱 B9:D9、_数据接口 B16:B21")
+    print("将更新：项目驾驶舱 B9:D9 与 I9、_数据接口 B16:B21 与 A43:B43")
     metrics = preview["metrics"]
-    print(f"计划人天={metrics.person_days:g}，计划人工成本={metrics.total_cost:g}，平均人日单价={metrics.average_day_rate:.2f}")
+    print(f"计划人天={metrics.person_days:g}，计划人工成本={metrics.total_cost:g}，平均人日单价={metrics.average_day_rate:.2f}，已量化总预算={metrics.total_budget:g}")
     if not args.apply:
         print("仅预览，未修改工作簿。执行刷新请添加 --apply。")
         return

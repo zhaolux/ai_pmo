@@ -20,6 +20,9 @@ def make_suite(root: Path) -> Path:
     sheet["A15"] = "合计"
     sheet["D15"] = 4721
     sheet["F15"] = 6525700
+    budget = book.create_sheet("预算基线")
+    budget["J5"] = 6525700
+    budget["J6"] = 9000000
     book.save(cost)
     registry = root / "automation" / "config" / "current_workbooks.json"
     registry.parent.mkdir(parents=True)

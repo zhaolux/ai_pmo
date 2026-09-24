@@ -23,6 +23,11 @@ def make_suite(root: Path) -> tuple[Path, Path]:
     sheet["A14"] = "合计"
     sheet["D14"] = 20
     sheet["F14"] = 24000
+    budget = book.create_sheet("预算基线")
+    budget["J5"] = 100
+    budget["J6"] = 200
+    budget["A20"] = "合计"
+    budget["J20"] = 999  # '合计'行是求和结果，不应重复计入总预算
     book.save(cost)
     target = target_dir / "AI PMO中心-20260920-V1.xlsx"
     target.write_bytes(b"human-edited-workbook")
@@ -46,6 +51,7 @@ class CostSyncSafetyTests(unittest.TestCase):
             self.assertEqual(preview["source"], source)
             self.assertEqual(preview["target"], target)
             self.assertEqual(preview["metrics"].average_day_rate, 1200)
+            self.assertEqual(preview["metrics"].total_budget, 300)
             self.assertEqual(target.read_bytes(), b"human-edited-workbook")
             self.assertFalse((target.parent / "_archive").exists())
 
@@ -61,7 +67,7 @@ class CostSyncSafetyTests(unittest.TestCase):
     def test_default_main_does_not_apply(self):
         preview = {
             "source": Path("/tmp/cost.xlsx"), "target": Path("/tmp/pmo.xlsx"),
-            "metrics": cost_sync.CostMetrics(20, 24000, 1200),
+            "metrics": cost_sync.CostMetrics(20, 24000, 1200, 300),
         }
         with patch("sys.argv", ["sync_cost_to_ai_pmo.py", "--suite", "/tmp/suite"]), patch.object(
             cost_sync, "preview_sync", return_value=preview
@@ -126,10 +132,19 @@ class CostSyncSafetyTests(unittest.TestCase):
             self.assertEqual(target.read_bytes(), b"human-edited-workbook")
             paths = {command["path"] for command in captured["commands"]}
             self.assertEqual(paths, {
-                "/项目驾驶舱/B9", "/项目驾驶舱/C9", "/项目驾驶舱/D9",
+                "/项目驾驶舱/B9", "/项目驾驶舱/C9", "/项目驾驶舱/D9", "/项目驾驶舱/I9",
                 "/_数据接口/B16", "/_数据接口/B17", "/_数据接口/B18",
                 "/_数据接口/B19", "/_数据接口/B20", "/_数据接口/B21",
+                "/_数据接口/A43", "/_数据接口/B43",
             })
+            budget_commands = {
+                command["path"]: command["props"]
+                for command in captured["commands"]
+                if command["path"] in {"/项目驾驶舱/I9", "/_数据接口/A43", "/_数据接口/B43"}
+            }
+            self.assertEqual(budget_commands["/项目驾驶舱/I9"]["formula"], "'_数据接口'!B43")
+            self.assertEqual(budget_commands["/_数据接口/A43"]["value"], "已量化总预算")
+            self.assertEqual(budget_commands["/_数据接口/B43"], {"value": 300, "type": "number"})
 
 
 if __name__ == "__main__":
