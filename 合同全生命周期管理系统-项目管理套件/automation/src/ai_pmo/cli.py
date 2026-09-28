@@ -15,6 +15,7 @@ from .weekly_report import build_weekly_reports, weekly_report_paths
 from .decision_brief import build_decision_brief, decision_brief_paths
 from .output_guard import ensure_outputs_available
 from .finding_review import import_reviews, review_summary
+from .explanation import write_explanations
 
 
 def _log(command: str, status: str, message: str) -> None:
@@ -45,6 +46,8 @@ def _preview_targets(
         targets = list(weekly_report_paths(paths.suite, report_date))
     elif command == "decision-brief":
         targets = list(decision_brief_paths(paths.suite, report_date))
+    elif command == "explain":
+        targets = [paths.outputs / "agents" / f"agent-explanations-{report_date:%Y%m%d}.json"]
     else:
         raise ValueError(f"{command} 不生成文件，无需预览目标")
     print(f"{command} 目标清单（只读预览）：")
@@ -64,7 +67,7 @@ def execute(
     paths = get_paths()
     project = load_json("project.json")
     try:
-        if replace_generated and command not in {"agents", "weekly-report", "decision-brief"}:
+        if replace_generated and command not in {"agents", "weekly-report", "decision-brief", "explain"}:
             raise ValueError("--replace-generated 仅适用于 agents、weekly-report、decision-brief")
         if preview_targets:
             _preview_targets(
@@ -143,6 +146,19 @@ def execute(
             )
             print(f"已生成POC决策事实包：{json_file}")
             print(f"已生成POC选型决策简报：{docx_file}")
+        if command == "explain":
+            report_date = as_of or date.today()
+            report_path = paths.outputs / "agents" / f"agent-report-{report_date:%Y%m%d}.json"
+            if not report_path.exists():
+                raise FileNotFoundError(f"请先运行 agents 命令生成报告：{report_path}")
+            output_path = paths.outputs / "agents" / f"agent-explanations-{report_date:%Y%m%d}.json"
+            ensure_outputs_available((output_path,), replace_generated=replace_generated)
+            payload = write_explanations(report_path, output_path)
+            ok = sum(1 for entry in payload["explanations"] if entry["status"] == "ok")
+            failed = sum(1 for entry in payload["explanations"] if entry["status"] == "error")
+            skipped = sum(1 for entry in payload["explanations"] if entry["status"] == "skipped_no_key")
+            print(f"已生成AI解释：{output_path}（成功{ok}条，失败{failed}条，"
+                  f"未配置模型密钥跳过{skipped}条；解释仅为建议，不构成审批结论）")
         if command == "review-import":
             if review_file is None or not reviewer:
                 raise ValueError("review-import需要--file和--reviewer")
@@ -170,7 +186,7 @@ def execute(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="能源行业合同管理AI PMO生成器")
-    parser.add_argument("command", choices=["init", "seed", "scan", "validate", "build", "run", "agents", "weekly-report", "decision-brief", "review-import", "review-summary"])
+    parser.add_argument("command", choices=["init", "seed", "scan", "validate", "build", "run", "agents", "weekly-report", "decision-brief", "explain", "review-import", "review-summary"])
     parser.add_argument("--date", type=date.fromisoformat, default=None, help="Agent分析的数据日期，格式YYYY-MM-DD")
     parser.add_argument("--replace-generated", action="store_true", help="显式替换同日期派生报告，不适用于业务工作簿")
     parser.add_argument("--preview-targets", action="store_true", help="只读列出生成文件及同名冲突，不执行命令")

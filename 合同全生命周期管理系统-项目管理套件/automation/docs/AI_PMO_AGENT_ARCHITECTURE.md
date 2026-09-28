@@ -52,4 +52,6 @@ JSON、数据库和Excel由同一条`agents`命令连续生成，避免人工单
 
 2026-09-28 数据上下文包落地（`finding_context` 模块，为大模型解释层预备的结构化上下文，纯确定性、只读源台账）：每条发现新增 `context` 字段——①本期口径：`rule_count`（同规则本期命中数，衡量问题规模）、`owner_load`（同责任人本期发现数，衡量责任人压力）、`object_hits`（同一对象被其他发现命中的次数，衡量对象多维暴露）；②历史口径：`history_runs`/`history_first`/`history_last`（同规则在既往运行中出现的期数与最早/最晚数据日期，取自中央库 `agent_finding` 按 agent+title 聚合）。编排器在跨期记忆标注之后附加；JSON 报告全量携带，Excel 结果簿本期不变（解释层直接消费 JSON）。
 
+2026-09-28 大模型解释层 POC 落地（`explanation` 模块 + `explain` 命令）：对已验证事实生成"原因分析/情景建议/风险提示"三段建议。确定性筛选（需审批优先、按严重度、同档按 finding_id、默认前 5 条）→ 把事实、证据出处与数据上下文组装为提示词（明确要求只基于事实、不得臆造、输出为建议）→ OpenAI 兼容 chat/completions 客户端（仅标准库，环境变量 `AI_PMO_LLM_API_KEY`/`AI_PMO_LLM_BASE_URL`/`AI_PMO_LLM_MODEL` 配置，密钥不落地任何输出）→ 写出 `outputs/agents/agent-explanations-YYYYMMDD.json`（含 `boundary`：仅为建议、不构成审批结论、不修改源台账）。降级路径：无密钥全部标记 `skipped_no_key` 正常退出；单条调用失败标记 `error` 不中断。不修改 Agent 报告本体与任何源台账。
+
 POC选型决策简报由`./run.sh decision-brief --date YYYY-MM-DD`生成。系统按显式ID映射关联决策日志、采购包和预算项，保留文件/Sheet/ID/行号证据，将“已记录事实”与“分析假设”分开。该简报不自动评分、选定厂商或写回审批结果。

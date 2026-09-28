@@ -1,0 +1,48 @@
+{
+  "source_report": "agent-report-20260925.json",
+  "data_date": "2026-09-25",
+  "model": "",
+  "boundary": "AI解释仅为建议，不构成审批结论，不修改任何源台账",
+  "explanations": [
+    {
+      "finding_id": "DEC-D-001",
+      "title": "决策事项7天内到期",
+      "severity": "重大",
+      "status": "skipped_no_key",
+      "explanation": "",
+      "error": ""
+    },
+    {
+      "finding_id": "DEC-D-002",
+      "title": "待决策事项",
+      "severity": "重大",
+      "status": "skipped_no_key",
+      "explanation": "",
+      "error": ""
+    },
+    {
+      "finding_id": "DEC-D-003",
+      "title": "待决策事项",
+      "severity": "重大",
+      "status": "skipped_no_key",
+      "explanation": "",
+      "error": ""
+    },
+    {
+      "finding_id": "DEC-D-004",
+      "title": "待决策事项",
+      "severity": "重大",
+      "status": "skipped_no_key",
+      "explanation": "",
+      "error": ""
+    },
+    {
+      "finding_id": "RSK-RSK-004",
+      "title": "重大剩余风险",
+      "severity": "重大",
+      "status": "skipped_no_key",
+      "explanation": "",
+      "error": ""
+    }
+  ]
+}

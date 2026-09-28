@@ -157,10 +157,18 @@ python3 scripts/audit_migration_gates.py \
 
 结果写入`08_沟通会议与报告/决策简报/`，包含供后续 AI 使用的 JSON 事实包和供项目治理委员会审阅的 Word 文档。命令只读源台账；缺少评分和报价时标为“未取得/未核验”，采购金额未填写时标为“待估算”。简报是分析材料，不代替选型、预算或采购审批。
 
-架构、字段和权限说明见`docs/AI_PMO_AGENT_ARCHITECTURE.md`。
-同日期 Agent 报告、周报和决策简报默认拒绝覆盖。确需重生成纯派生输出时，显式添加 `--replace-generated`，例如 `./run.sh agents --date 2026-09-18 --replace-generated`；该参数不适用于 `build/run`，也不代表可覆盖人工审批结论。外发前仍应核对数据截止日、证据和人工确认结论。
+对已验证的 Agent 发现生成大模型解释（POC）：
 
-运行 `build`、`run`、`agents`、`weekly-report` 或 `decision-brief` 前，可添加 `--preview-targets` 查看将生成的每个文件及“将新建/已存在”状态，例如 `./run.sh agents --date 2026-09-20 --preview-targets`。预览不初始化数据库、不写日志或工作簿，也不执行源数据扫描；因此它只核对输出路径，不证明输入完整或生成一定成功。正式执行时会重新检查同名目标。
+```bash
+./run.sh explain --date 2026-09-18
+```
+
+运行前需已执行同日期的`agents`命令。命令从当日报告中优先选取需审批、严重度最高的前 5 条发现，把已核实事实、证据出处和数据上下文（同规则命中数、责任人压力、历史期数）组装为提示词，调用 OpenAI 兼容接口生成"原因分析/情景建议/风险提示"三段解释，写入`outputs/agents/agent-explanations-YYYYMMDD.json`。模型服务通过环境变量配置：`AI_PMO_LLM_API_KEY`（必填，缺失时全部条目标记"未配置模型密钥跳过"，命令仍正常退出）、`AI_PMO_LLM_BASE_URL`（默认 `https://api.moonshot.cn/v1`）、`AI_PMO_LLM_MODEL`（默认 `moonshot-v1-8k`）。单条调用失败只标记该条错误，不中断其余条目；密钥只用于请求头，不写入任何输出或日志。解释仅为建议、不构成审批结论，不修改任何源台账或 Agent 报告本体。
+
+架构、字段和权限说明见`docs/AI_PMO_AGENT_ARCHITECTURE.md`。
+同日期 Agent 报告、周报、决策简报和 AI 解释默认拒绝覆盖。确需重生成纯派生输出时，显式添加 `--replace-generated`，例如 `./run.sh agents --date 2026-09-18 --replace-generated`；该参数不适用于 `build/run`，也不代表可覆盖人工审批结论。外发前仍应核对数据截止日、证据和人工确认结论。
+
+运行 `build`、`run`、`agents`、`weekly-report`、`decision-brief` 或 `explain` 前，可添加 `--preview-targets` 查看将生成的每个文件及“将新建/已存在”状态，例如 `./run.sh agents --date 2026-09-20 --preview-targets`。预览不初始化数据库、不写日志或工作簿，也不执行源数据扫描；因此它只核对输出路径，不证明输入完整或生成一定成功。正式执行时会重新检查同名目标。
 
 ## 配置
 
