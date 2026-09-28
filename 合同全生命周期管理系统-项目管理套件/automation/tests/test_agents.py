@@ -130,6 +130,104 @@ class AgentTests(unittest.TestCase):
                 {"RSK-001", "ISS-001", "CHG-001", "DEC-001"},
             )
 
+class RiskIssueGradingTests(unittest.TestCase):
+    def save_risk_rows(self, path: Path, rows: list[dict]) -> None:
+        book = Workbook()
+        sheet = book.active
+        sheet.title = "风险登记册"
+        for _ in range(8):
+            sheet.append([])
+        for item in rows:
+            row = [None] * 44
+            row[0], row[1] = item["id"], item["name"]
+            row[22], row[28], row[33] = item.get("owner", "技术经理"), item.get("status", "处理中"), item.get("level", "中")
+            if item.get("response_due"):
+                row[27] = item["response_due"]
+            sheet.append(row)
+        book.save(path)
+
+    def save_decisions(self, path: Path, rows: list[dict]) -> None:
+        book = Workbook()
+        issue = book.active
+        issue.title = "问题台账"
+        change = book.create_sheet("变更台账")
+        decision = book.create_sheet("待决策事项")
+        for _ in range(4):
+            decision.append([])
+        for item in rows:
+            row = [None] * 13
+            row[0], row[2], row[6], row[8] = item["id"], item["topic"], item.get("decider", "指导委员会"), item.get("status", "待决策")
+            if item.get("due"):
+                row[7] = item["due"]
+            decision.append(row)
+        book.save(path)
+
+    def test_decision_overdue_escalates_to_major(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            risk, change = root / "risk.xlsx", root / "change.xlsx"
+            self.save_risk_rows(risk, [])
+            self.save_decisions(change, [{"id": "DEC-009", "topic": "产品选型", "due": datetime(2026, 9, 20)}])
+            result = analyze_risk_issue(risk, change, date(2026, 9, 28))
+            finding = next(f for f in result.findings if f.object_id == "DEC-009")
+            self.assertEqual(finding.severity, "重大")
+            self.assertEqual(finding.title, "决策事项已逾期")
+            self.assertEqual(finding.owner, "指导委员会")
+            self.assertIn("产品选型", finding.detail)
+
+    def test_decision_due_within_7_days_flagged(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            risk, change = root / "risk.xlsx", root / "change.xlsx"
+            self.save_risk_rows(risk, [])
+            self.save_decisions(change, [{"id": "DEC-010", "topic": "预算批准", "due": datetime(2026, 10, 2)}])
+            result = analyze_risk_issue(risk, change, date(2026, 9, 28))
+            finding = next(f for f in result.findings if f.object_id == "DEC-010")
+            self.assertEqual(finding.severity, "高")
+            self.assertEqual(finding.title, "决策事项7天内到期")
+
+    def test_decision_without_date_keeps_generic_finding(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            risk, change = root / "risk.xlsx", root / "change.xlsx"
+            self.save_risk_rows(risk, [])
+            self.save_decisions(change, [{"id": "DEC-011", "topic": "范围确认"}])
+            result = analyze_risk_issue(risk, change, date(2026, 9, 28))
+            finding = next(f for f in result.findings if f.object_id == "DEC-011")
+            self.assertEqual(finding.title, "待决策事项")
+            self.assertEqual(finding.severity, "高")
+
+    def test_decided_item_not_flagged(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            risk, change = root / "risk.xlsx", root / "change.xlsx"
+            self.save_risk_rows(risk, [])
+            self.save_decisions(change, [{"id": "DEC-012", "topic": "已决项", "due": datetime(2026, 9, 1), "status": "已决策"}])
+            result = analyze_risk_issue(risk, change, date(2026, 9, 28))
+            self.assertNotIn("DEC-012", {f.object_id for f in result.findings})
+
+    def test_risk_response_overdue_flagged_regardless_of_level(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            risk, change = root / "risk.xlsx", root / "change.xlsx"
+            self.save_risk_rows(risk, [{"id": "RSK-009", "name": "资源不足", "level": "中", "response_due": datetime(2026, 9, 10)}])
+            self.save_decisions(change, [])
+            result = analyze_risk_issue(risk, change, date(2026, 9, 28))
+            finding = next(f for f in result.findings if f.finding_id == "RSK-RSK-009-RESPONSE")
+            self.assertEqual(finding.severity, "高")
+            self.assertEqual(finding.title, "风险应对已逾期")
+            self.assertEqual(finding.owner, "技术经理")
+            self.assertTrue(finding.requires_approval)
+
+    def test_closed_risk_response_not_flagged(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            risk, change = root / "risk.xlsx", root / "change.xlsx"
+            self.save_risk_rows(risk, [{"id": "RSK-010", "name": "已关闭风险", "level": "高", "status": "已关闭", "response_due": datetime(2026, 9, 1)}])
+            self.save_decisions(change, [])
+            result = analyze_risk_issue(risk, change, date(2026, 9, 28))
+            self.assertNotIn("RSK-RSK-010-RESPONSE", {f.finding_id for f in result.findings})
+
     def test_controller_returns_red_health_and_read_only_boundary(self):
         report = consolidate("ECM-2026", date(2026, 9, 18), [])
         self.assertEqual(report["health"], "绿")
