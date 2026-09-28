@@ -26,6 +26,8 @@ class Finding:
     owner: str
     requires_approval: bool
     evidence: tuple[Evidence, ...]
+    age_runs: int = 1
+    review_state: str = ""
 
     def to_dict(self) -> dict:
         data = asdict(self)

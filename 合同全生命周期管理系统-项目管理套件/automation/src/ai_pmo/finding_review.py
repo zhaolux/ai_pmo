@@ -28,8 +28,8 @@ def _read_review_workbook(path: Path) -> tuple[str, list[dict]]:
         rows: list[dict] = []
         for row in sheet.iter_rows(min_row=5, values_only=True):
             finding_id = str(row[0] or "").strip()
-            status = str(row[10] or "").strip() if len(row) > 10 else ""
-            conclusion = str(row[11] or "").strip() if len(row) > 11 else ""
+            status = str(row[12] or "").strip() if len(row) > 12 else ""
+            conclusion = str(row[13] or "").strip() if len(row) > 13 else ""
             if not finding_id:
                 continue
             rows.append({"finding_id": finding_id, "status": status or "待确认", "conclusion": conclusion})

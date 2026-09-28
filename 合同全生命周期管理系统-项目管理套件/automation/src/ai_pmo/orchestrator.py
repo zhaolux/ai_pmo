@@ -14,6 +14,7 @@ from .database import connect
 from .current_workbooks import resolve_current
 from .output_guard import ensure_outputs_available
 from .health_model import calculate_health, load_health_model
+from .finding_memory import annotate_results
 
 
 def consolidate(project_id: str, as_of: date, results: list[AgentResult], health_model: dict | None = None) -> dict:
@@ -120,6 +121,9 @@ def run_agents(
         analyze_quality_acceptance(quality, deliverable, as_of),
         analyze_communication_report(communication, as_of),
     ]
+    if database is not None and database.exists():
+        with connect(database) as connection:
+            results = annotate_results(results, connection)
     health_config = suite / "automation" / "config" / "health_model.json"
     report = consolidate(project_id, as_of, results, load_health_model(health_config) if health_config.exists() else None)
     output_dir.mkdir(parents=True, exist_ok=True)

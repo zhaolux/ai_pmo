@@ -31,9 +31,9 @@ def save_review(path: Path, rows: list[tuple[str, str, str]], run_id: str = "RUN
     sheet.append([])
     sheet.append([])
     sheet.append([])
-    sheet.append(["发现ID", "Agent", "严重度", "对象ID", "标题", "详细说明", "建议动作", "责任人", "需审批", "数据日期", "确认状态", "人工结论"])
+    sheet.append(["发现ID", "Agent", "严重度", "对象ID", "标题", "详细说明", "建议动作", "责任人", "需审批", "数据日期", "持续期数", "处置状态", "确认状态", "人工结论"])
     for finding_id, status, conclusion in rows:
-        sheet.append([finding_id, "Agent", "中", "O", "标题", "", "", "PM", "否", "2026-09-23", status, conclusion])
+        sheet.append([finding_id, "Agent", "中", "O", "标题", "", "", "PM", "否", "2026-09-23", 1, "", status, conclusion])
     instructions = book.create_sheet("使用说明")
     instructions.append(["运行ID", run_id])
     book.save(path)

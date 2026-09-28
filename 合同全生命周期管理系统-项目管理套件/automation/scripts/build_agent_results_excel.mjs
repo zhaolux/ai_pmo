@@ -60,7 +60,7 @@ overview.getRange("A6:H6").formulas = [[
   "=COUNTIF('发现清单'!$C$5:$C$204,\"高\")",
   "=COUNTIF('发现清单'!$C$5:$C$204,\"中\")",
   "=COUNTIF('发现清单'!$I$5:$I$204,\"是\")",
-  "=COUNTIF('发现清单'!$K$5:$K$204,\"待确认\")",
+  "=COUNTIF('发现清单'!$M$5:$M$204,\"待确认\")",
   "=\"只读建议\"",
 ]];
 body(overview.getRange("A6:H6"));
@@ -141,9 +141,9 @@ management.getRange("F:F").format.columnWidth = 14;
 const findings = baseSheet("发现清单");
 findings.tabColor = blue;
 title(findings, "A2", "Agent发现清单", "黄色列由项目经理或授权人确认；源项目台账不会被本文件自动修改。", "L");
-const findingHeaders = ["发现ID", "Agent", "严重度", "对象ID", "标题", "详细说明", "建议动作", "责任人", "需审批", "数据日期", "确认状态", "人工结论"];
-findings.getRange("A4:L4").values = [findingHeaders];
-header(findings.getRange("A4:L4"));
+const findingHeaders = ["发现ID", "Agent", "严重度", "对象ID", "标题", "详细说明", "建议动作", "责任人", "需审批", "数据日期", "持续期数", "处置状态", "确认状态", "人工结论"];
+findings.getRange("A4:N4").values = [findingHeaders];
+header(findings.getRange("A4:N4"));
 const findingRows = report.findings.map(item => [
   item.finding_id,
   (agentLabels[item.agent] || [item.agent])[0],
@@ -155,16 +155,18 @@ const findingRows = report.findings.map(item => [
   item.owner,
   item.requires_approval ? "是" : "否",
   new Date(`${report.data_date}T00:00:00`),
+  item.age_runs ?? 1,
+  item.review_state || "",
   "待确认",
   "",
 ]);
 const lastFindingRow = 4 + findingRows.length;
-findings.getRange(`A5:L${lastFindingRow}`).values = findingRows;
-body(findings.getRange(`A5:L${lastFindingRow}`));
+findings.getRange(`A5:N${lastFindingRow}`).values = findingRows;
+body(findings.getRange(`A5:N${lastFindingRow}`));
 findings.getRange(`F5:G${lastFindingRow}`).format.wrapText = true;
 findings.getRange(`J5:J${lastFindingRow}`).setNumberFormat("yyyy-mm-dd");
-findings.getRange(`K5:L${lastFindingRow}`).format.fill = amber;
-findings.getRange(`K5:K${lastFindingRow}`).dataValidation = { rule: { type: "list", values: ["待确认", "已接受", "需调整", "已关闭"] } };
+findings.getRange(`M5:N${lastFindingRow}`).format.fill = amber;
+findings.getRange(`M5:M${lastFindingRow}`).dataValidation = { rule: { type: "list", values: ["待确认", "已接受", "需调整", "已关闭"] } };
 for (let row = 5; row <= lastFindingRow; row += 1) {
   const severity = findings.getRange(`C${row}`);
   const value = findingRows[row - 5][2];
