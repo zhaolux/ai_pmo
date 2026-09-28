@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 
 
 @dataclass(frozen=True)
@@ -28,6 +28,7 @@ class Finding:
     evidence: tuple[Evidence, ...]
     age_runs: int = 1
     review_state: str = ""
+    context: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         data = asdict(self)

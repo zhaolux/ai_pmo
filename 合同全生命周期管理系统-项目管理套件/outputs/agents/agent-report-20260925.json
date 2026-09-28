@@ -1,8 +1,8 @@
 {
-  "run_id": "AGENT-20260925-090621",
+  "run_id": "AGENT-20260925-102612",
   "project_id": "ECM-2026",
   "data_date": "2026-09-25",
-  "generated_at": "2026-09-28T09:06:21",
+  "generated_at": "2026-09-28T10:26:12",
   "health": "红",
   "health_score": 50.5,
   "health_model_version": "2026-09-23",
@@ -172,7 +172,7 @@
           "object_id": "T008",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第5期出现】汇编可研报告并组织评审计划完成日为2026-09-18，当前状态为进行中。",
+          "detail": "【连续第6期出现】汇编可研报告并组织评审计划完成日为2026-09-18，当前状态为进行中。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "项目经理",
           "requires_approval": true,
@@ -184,8 +184,16 @@
               "row": 11
             }
           ],
-          "age_runs": 5,
-          "review_state": ""
+          "age_runs": 6,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 12,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T008-NORISK",
@@ -193,7 +201,7 @@
           "object_id": "T008",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "汇编可研报告并组织评审（T008）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】汇编可研报告并组织评审（T008）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -205,8 +213,16 @@
               "row": 11
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 12,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T011-OVERDUE",
@@ -214,7 +230,7 @@
           "object_id": "T011",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】盘点既有系统、接口与数据计划完成日为2026-05-05，当前状态为进行中。",
+          "detail": "【连续第12期出现】盘点既有系统、接口与数据计划完成日为2026-05-05，当前状态为进行中。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -226,8 +242,16 @@
               "row": 14
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T011-NORISK",
@@ -235,7 +259,7 @@
           "object_id": "T011",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "盘点既有系统、接口与数据（T011）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】盘点既有系统、接口与数据（T011）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -247,8 +271,16 @@
               "row": 14
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T012-OVERDUE",
@@ -256,7 +288,7 @@
           "object_id": "T012",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】访谈业务部门并形成痛点清单计划完成日为2026-06-02，当前状态为待确认。",
+          "detail": "【连续第12期出现】访谈业务部门并形成痛点清单计划完成日为2026-06-02，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "产品经理",
           "requires_approval": true,
@@ -268,8 +300,16 @@
               "row": 15
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T012-NORISK",
@@ -277,7 +317,7 @@
           "object_id": "T012",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "访谈业务部门并形成痛点清单（T012）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】访谈业务部门并形成痛点清单（T012）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "产品经理",
           "requires_approval": false,
@@ -289,8 +329,16 @@
               "row": 15
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T013-OVERDUE",
@@ -298,7 +346,7 @@
           "object_id": "T013",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】确认现状流程、问题与改进机会基线计划完成日为2026-06-30，当前状态为待确认。",
+          "detail": "【连续第12期出现】确认现状流程、问题与改进机会基线计划完成日为2026-06-30，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "项目经理",
           "requires_approval": true,
@@ -310,8 +358,16 @@
               "row": 16
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 12,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T013-NORISK",
@@ -319,7 +375,7 @@
           "object_id": "T013",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "确认现状流程、问题与改进机会基线（T013）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】确认现状流程、问题与改进机会基线（T013）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -331,8 +387,16 @@
               "row": 16
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 12,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T014-OVERDUE",
@@ -340,7 +404,7 @@
           "object_id": "T014",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】制定项目治理、会议与报告机制计划完成日为2026-07-12，当前状态为待确认。",
+          "detail": "【连续第12期出现】制定项目治理、会议与报告机制计划完成日为2026-07-12，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "项目经理",
           "requires_approval": true,
@@ -352,8 +416,16 @@
               "row": 17
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 12,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T014-NORISK",
@@ -361,7 +433,7 @@
           "object_id": "T014",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "制定项目治理、会议与报告机制（T014）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】制定项目治理、会议与报告机制（T014）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -373,8 +445,16 @@
               "row": 17
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 12,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T015-OVERDUE",
@@ -382,7 +462,7 @@
           "object_id": "T015",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】制定需求分级、跟踪与变更规范计划完成日为2026-07-24，当前状态为待确认。",
+          "detail": "【连续第12期出现】制定需求分级、跟踪与变更规范计划完成日为2026-07-24，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "产品经理",
           "requires_approval": true,
@@ -394,8 +474,16 @@
               "row": 18
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T015-NORISK",
@@ -403,7 +491,7 @@
           "object_id": "T015",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "制定需求分级、跟踪与变更规范（T015）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】制定需求分级、跟踪与变更规范（T015）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "产品经理",
           "requires_approval": false,
@@ -415,8 +503,16 @@
               "row": 18
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T016-OVERDUE",
@@ -424,7 +520,7 @@
           "object_id": "T016",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】制定设计、编码与代码评审规范计划完成日为2026-08-06，当前状态为待确认。",
+          "detail": "【连续第12期出现】制定设计、编码与代码评审规范计划完成日为2026-08-06，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -436,8 +532,16 @@
               "row": 19
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T016-NORISK",
@@ -445,7 +549,7 @@
           "object_id": "T016",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "制定设计、编码与代码评审规范（T016）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】制定设计、编码与代码评审规范（T016）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -457,8 +561,16 @@
               "row": 19
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T017-OVERDUE",
@@ -466,7 +578,7 @@
           "object_id": "T017",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】制定测试、缺陷与质量门禁规范计划完成日为2026-08-18，当前状态为待确认。",
+          "detail": "【连续第12期出现】制定测试、缺陷与质量门禁规范计划完成日为2026-08-18，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": true,
@@ -478,8 +590,16 @@
               "row": 20
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T017-NORISK",
@@ -487,7 +607,7 @@
           "object_id": "T017",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "制定测试、缺陷与质量门禁规范（T017）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】制定测试、缺陷与质量门禁规范（T017）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": false,
@@ -499,8 +619,16 @@
               "row": 20
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T018-OVERDUE",
@@ -508,7 +636,7 @@
           "object_id": "T018",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】制定配置、发布与文档归档规范计划完成日为2026-08-31，当前状态为待确认。",
+          "detail": "【连续第12期出现】制定配置、发布与文档归档规范计划完成日为2026-08-31，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "配置人员",
           "requires_approval": true,
@@ -520,8 +648,16 @@
               "row": 21
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 5,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T018-NORISK",
@@ -529,7 +665,7 @@
           "object_id": "T018",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "制定配置、发布与文档归档规范（T018）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】制定配置、发布与文档归档规范（T018）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "配置人员",
           "requires_approval": false,
@@ -541,8 +677,16 @@
               "row": 21
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 5,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T019-OVERDUE",
@@ -550,7 +694,7 @@
           "object_id": "T019",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】完成系统分层、模块与服务边界设计计划完成日为2026-07-15，当前状态为待确认。",
+          "detail": "【连续第12期出现】完成系统分层、模块与服务边界设计计划完成日为2026-07-15，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -562,8 +706,16 @@
               "row": 22
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T019-NORISK",
@@ -571,7 +723,7 @@
           "object_id": "T019",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "完成系统分层、模块与服务边界设计（T019）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】完成系统分层、模块与服务边界设计（T019）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -583,8 +735,16 @@
               "row": 22
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T020-OVERDUE",
@@ -592,7 +752,7 @@
           "object_id": "T020",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】完成主数据、交易数据与分析数据架构计划完成日为2026-07-30，当前状态为待确认。",
+          "detail": "【连续第12期出现】完成主数据、交易数据与分析数据架构计划完成日为2026-07-30，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -604,8 +764,16 @@
               "row": 23
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T020-NORISK",
@@ -613,7 +781,7 @@
           "object_id": "T020",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "完成主数据、交易数据与分析数据架构（T020）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】完成主数据、交易数据与分析数据架构（T020）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -625,8 +793,16 @@
               "row": 23
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T021-OVERDUE",
@@ -634,7 +810,7 @@
           "object_id": "T021",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】完成内部及外部接口总体架构计划完成日为2026-08-15，当前状态为待确认。",
+          "detail": "【连续第12期出现】完成内部及外部接口总体架构计划完成日为2026-08-15，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级开发人员",
           "requires_approval": true,
@@ -646,8 +822,16 @@
               "row": 24
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 6,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T021-NORISK",
@@ -655,7 +839,7 @@
           "object_id": "T021",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "完成内部及外部接口总体架构（T021）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】完成内部及外部接口总体架构（T021）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级开发人员",
           "requires_approval": false,
@@ -667,8 +851,16 @@
               "row": 24
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 6,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T022-OVERDUE",
@@ -676,7 +868,7 @@
           "object_id": "T022",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】完成身份、权限、审计与数据安全设计计划完成日为2026-08-30，当前状态为待确认。",
+          "detail": "【连续第12期出现】完成身份、权限、审计与数据安全设计计划完成日为2026-08-30，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -688,8 +880,16 @@
               "row": 25
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T022-NORISK",
@@ -697,7 +897,7 @@
           "object_id": "T022",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "完成身份、权限、审计与数据安全设计（T022）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】完成身份、权限、审计与数据安全设计（T022）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -709,8 +909,16 @@
               "row": 25
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T023-OVERDUE",
@@ -718,7 +926,7 @@
           "object_id": "T023",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】完成环境、网络、容灾和DevOps设计计划完成日为2026-09-14，当前状态为待确认。",
+          "detail": "【连续第12期出现】完成环境、网络、容灾和DevOps设计计划完成日为2026-09-14，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "配置人员",
           "requires_approval": true,
@@ -730,8 +938,16 @@
               "row": 26
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 5,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T023-NORISK",
@@ -739,7 +955,7 @@
           "object_id": "T023",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "完成环境、网络、容灾和DevOps设计（T023）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】完成环境、网络、容灾和DevOps设计（T023）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "配置人员",
           "requires_approval": false,
@@ -751,8 +967,16 @@
               "row": 26
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 5,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T024-DUE14",
@@ -760,7 +984,7 @@
           "object_id": "T024",
           "severity": "高",
           "title": "任务14天内到期",
-          "detail": "【连续第11期出现】汇编总体技术架构并完成基线评审将在2026-09-30到期，当前状态为进行中。",
+          "detail": "【连续第12期出现】汇编总体技术架构并完成基线评审将在2026-09-30到期，当前状态为进行中。",
           "recommendation": "确认交付物、验收人和按期完成证据。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -772,8 +996,16 @@
               "row": 27
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 5,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T025-OVERDUE",
@@ -781,7 +1013,7 @@
           "object_id": "T025",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】编制CA、电子文档、BI报表POC方案与评分标准计划完成日为2026-08-19，当前状态为待确认。",
+          "detail": "【连续第12期出现】编制CA、电子文档、BI报表POC方案与评分标准计划完成日为2026-08-19，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -793,8 +1025,16 @@
               "row": 28
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T025-NORISK",
@@ -802,7 +1042,7 @@
           "object_id": "T025",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "编制CA、电子文档、BI报表POC方案与评分标准（T025）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】编制CA、电子文档、BI报表POC方案与评分标准（T025）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -814,8 +1054,16 @@
               "row": 28
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 19,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T026-OVERDUE",
@@ -823,7 +1071,7 @@
           "object_id": "T026",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】验证证书签发、身份认证和证书管理计划完成日为2026-08-24，当前状态为待确认。",
+          "detail": "【连续第12期出现】验证证书签发、身份认证和证书管理计划完成日为2026-08-24，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级开发人员",
           "requires_approval": true,
@@ -835,8 +1083,16 @@
               "row": 29
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 6,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T026-NORISK",
@@ -844,7 +1100,7 @@
           "object_id": "T026",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "验证证书签发、身份认证和证书管理（T026）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】验证证书签发、身份认证和证书管理（T026）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级开发人员",
           "requires_approval": false,
@@ -856,8 +1112,16 @@
               "row": 29
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 6,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T027-OVERDUE",
@@ -865,7 +1129,7 @@
           "object_id": "T027",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】验证电子签名、验签、时间戳和审计追溯计划完成日为2026-08-29，当前状态为待确认。",
+          "detail": "【连续第12期出现】验证电子签名、验签、时间戳和审计追溯计划完成日为2026-08-29，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": true,
@@ -877,8 +1141,16 @@
               "row": 30
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T027-NORISK",
@@ -886,7 +1158,7 @@
           "object_id": "T027",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "验证电子签名、验签、时间戳和审计追溯（T027）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】验证电子签名、验签、时间戳和审计追溯（T027）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": false,
@@ -898,8 +1170,16 @@
               "row": 30
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T028-OVERDUE",
@@ -907,7 +1187,7 @@
           "object_id": "T028",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】验证模板生成、在线预览和格式转换计划完成日为2026-09-04，当前状态为待确认。",
+          "detail": "【连续第12期出现】验证模板生成、在线预览和格式转换计划完成日为2026-09-04，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "中级开发人员",
           "requires_approval": true,
@@ -919,8 +1199,16 @@
               "row": 31
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 2,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T028-NORISK",
@@ -928,7 +1216,7 @@
           "object_id": "T028",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "验证模板生成、在线预览和格式转换（T028）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】验证模板生成、在线预览和格式转换（T028）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "中级开发人员",
           "requires_approval": false,
@@ -940,8 +1228,16 @@
               "row": 31
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 2,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T029-OVERDUE",
@@ -949,7 +1245,7 @@
           "object_id": "T029",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】验证水印、权限控制、归档和大文件性能计划完成日为2026-09-09，当前状态为待确认。",
+          "detail": "【连续第12期出现】验证水印、权限控制、归档和大文件性能计划完成日为2026-09-09，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": true,
@@ -961,8 +1257,16 @@
               "row": 32
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T029-NORISK",
@@ -970,7 +1274,7 @@
           "object_id": "T029",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "验证水印、权限控制、归档和大文件性能（T029）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】验证水印、权限控制、归档和大文件性能（T029）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": false,
@@ -982,8 +1286,16 @@
               "row": 32
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T030-OVERDUE",
@@ -991,7 +1303,7 @@
           "object_id": "T030",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第11期出现】验证数据接入、指标模型和经营报表计划完成日为2026-09-14，当前状态为待确认。",
+          "detail": "【连续第12期出现】验证数据接入、指标模型和经营报表计划完成日为2026-09-14，当前状态为待确认。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级开发人员",
           "requires_approval": true,
@@ -1003,8 +1315,16 @@
               "row": 33
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 6,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T030-NORISK",
@@ -1012,7 +1332,7 @@
           "object_id": "T030",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "验证数据接入、指标模型和经营报表（T030）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】验证数据接入、指标模型和经营报表（T030）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级开发人员",
           "requires_approval": false,
@@ -1024,8 +1344,16 @@
               "row": 33
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 6,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T031-OVERDUE",
@@ -1033,7 +1361,7 @@
           "object_id": "T031",
           "severity": "重大",
           "title": "任务已延期",
-          "detail": "【连续第5期出现】验证权限、钻取、导出和查询性能计划完成日为2026-09-19，当前状态为进行中。",
+          "detail": "【连续第6期出现】验证权限、钻取、导出和查询性能计划完成日为2026-09-19，当前状态为进行中。",
           "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": true,
@@ -1045,8 +1373,16 @@
               "row": 34
             }
           ],
-          "age_runs": 5,
-          "review_state": ""
+          "age_runs": 6,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T031-NORISK",
@@ -1054,7 +1390,7 @@
           "object_id": "T031",
           "severity": "中",
           "title": "延期任务未关联风险登记",
-          "detail": "验证权限、钻取、导出和查询性能（T031）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+          "detail": "【连续第2期出现】验证权限、钻取、导出和查询性能（T031）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
           "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
           "owner": "高级测试人员、中级测试人员",
           "requires_approval": false,
@@ -1066,8 +1402,16 @@
               "row": 34
             }
           ],
-          "age_runs": 1,
-          "review_state": ""
+          "age_runs": 2,
+          "review_state": "",
+          "context": {
+            "rule_count": 21,
+            "owner_load": 8,
+            "object_hits": 1,
+            "history_runs": 1,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T032-DUE14",
@@ -1075,7 +1419,7 @@
           "object_id": "T032",
           "severity": "高",
           "title": "任务14天内到期",
-          "detail": "【连续第11期出现】汇总问题清单、适配结论和产品选型建议将在2026-09-25到期，当前状态为未开始。",
+          "detail": "【连续第12期出现】汇总问题清单、适配结论和产品选型建议将在2026-09-25到期，当前状态为未开始。",
           "recommendation": "确认交付物、验收人和按期完成证据。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -1087,8 +1431,16 @@
               "row": 35
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 5,
+            "owner_load": 12,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T033-DUE14",
@@ -1096,7 +1448,7 @@
           "object_id": "T033",
           "severity": "高",
           "title": "任务14天内到期",
-          "detail": "【连续第11期出现】编制并审批项目章程将在2026-10-02到期，当前状态为未开始。",
+          "detail": "【连续第12期出现】编制并审批项目章程将在2026-10-02到期，当前状态为未开始。",
           "recommendation": "确认交付物、验收人和按期完成证据。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1108,8 +1460,16 @@
               "row": 36
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 5,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T034-DUE14",
@@ -1117,7 +1477,7 @@
           "object_id": "T034",
           "severity": "高",
           "title": "任务14天内到期",
-          "detail": "【连续第5期出现】编制范围、里程碑和主进度计划将在2026-10-05到期，当前状态为未开始。",
+          "detail": "【连续第6期出现】编制范围、里程碑和主进度计划将在2026-10-05到期，当前状态为未开始。",
           "recommendation": "确认交付物、验收人和按期完成证据。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -1129,8 +1489,16 @@
               "row": 37
             }
           ],
-          "age_runs": 5,
-          "review_state": ""
+          "age_runs": 6,
+          "review_state": "",
+          "context": {
+            "rule_count": 5,
+            "owner_load": 12,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "SCH-T035-DUE14",
@@ -1138,7 +1506,7 @@
           "object_id": "T035",
           "severity": "高",
           "title": "任务14天内到期",
-          "detail": "【连续第4期出现】建立项目组织、RACI与沟通机制将在2026-10-08到期，当前状态为未开始。",
+          "detail": "【连续第5期出现】建立项目组织、RACI与沟通机制将在2026-10-08到期，当前状态为未开始。",
           "recommendation": "确认交付物、验收人和按期完成证据。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -1150,8 +1518,16 @@
               "row": 38
             }
           ],
-          "age_runs": 4,
-          "review_state": ""
+          "age_runs": 5,
+          "review_state": "",
+          "context": {
+            "rule_count": 5,
+            "owner_load": 12,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         }
       ]
     },
@@ -1166,7 +1542,7 @@
           "object_id": "RSK-001",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】CA、电子文档、BI产品POC与选型未按期完成",
+          "detail": "【连续第12期出现】CA、电子文档、BI产品POC与选型未按期完成",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -1178,8 +1554,16 @@
               "row": 9
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-002",
@@ -1187,7 +1571,7 @@
           "object_id": "RSK-002",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】总体技术架构基线未通过评审",
+          "detail": "【连续第12期出现】总体技术架构基线未通过评审",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -1199,8 +1583,16 @@
               "row": 10
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-003",
@@ -1208,7 +1600,7 @@
           "object_id": "RSK-003",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】外部系统接口边界与联调窗口不明确",
+          "detail": "【连续第12期出现】外部系统接口边界与联调窗口不明确",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -1220,8 +1612,16 @@
               "row": 11
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 12,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-004",
@@ -1229,7 +1629,7 @@
           "object_id": "RSK-004",
           "severity": "重大",
           "title": "重大剩余风险",
-          "detail": "【连续第11期出现】安全合规基线未形成或外部产品不满足要求",
+          "detail": "【连续第12期出现】安全合规基线未形成或外部产品不满足要求",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "技术经理",
           "requires_approval": true,
@@ -1241,8 +1641,16 @@
               "row": 12
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 1,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-005",
@@ -1250,7 +1658,7 @@
           "object_id": "RSK-005",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】30人团队未按阶段计划到位",
+          "detail": "【连续第12期出现】30人团队未按阶段计划到位",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1262,8 +1670,16 @@
               "row": 13
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-006",
@@ -1271,7 +1687,7 @@
           "object_id": "RSK-006",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】一期范围与需求基线未确认",
+          "detail": "【连续第12期出现】一期范围与需求基线未确认",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "产品经理",
           "requires_approval": false,
@@ -1283,8 +1699,16 @@
               "row": 14
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-007",
@@ -1292,7 +1716,7 @@
           "object_id": "RSK-007",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】历史合同数据质量不足或迁移范围失控",
+          "detail": "【连续第12期出现】历史合同数据质量不足或迁移范围失控",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "产品经理",
           "requires_approval": false,
@@ -1304,8 +1728,16 @@
               "row": 15
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-008",
@@ -1313,7 +1745,7 @@
           "object_id": "RSK-008",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】外部产品采购与合同条款不能支撑项目计划",
+          "detail": "【连续第12期出现】外部产品采购与合同条款不能支撑项目计划",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1325,8 +1757,16 @@
               "row": 16
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "RSK-RSK-009",
@@ -1334,7 +1774,7 @@
           "object_id": "RSK-009",
           "severity": "重大",
           "title": "高剩余风险",
-          "detail": "【连续第11期出现】项目章程和整体管理计划未正式批准",
+          "detail": "【连续第12期出现】项目章程和整体管理计划未正式批准",
           "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1346,8 +1786,16 @@
               "row": 17
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 8,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G10",
@@ -1355,7 +1803,7 @@
           "object_id": "G10",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】CA、电子文档、BI产品POC与选型未按期完成：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】CA、电子文档、BI产品POC与选型未按期完成：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -1367,8 +1815,16 @@
               "row": 4
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G09",
@@ -1376,7 +1832,7 @@
           "object_id": "G09",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】总体技术架构基线未通过评审：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】总体技术架构基线未通过评审：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -1388,8 +1844,16 @@
               "row": 5
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G19",
@@ -1397,7 +1861,7 @@
           "object_id": "G19",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】外部系统接口边界与联调窗口不明确：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】外部系统接口边界与联调窗口不明确：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -1409,8 +1873,16 @@
               "row": 6
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 12,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G16",
@@ -1418,7 +1890,7 @@
           "object_id": "G16",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】安全合规基线未形成或外部产品不满足要求：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】安全合规基线未形成或外部产品不满足要求：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "技术经理",
           "requires_approval": false,
@@ -1430,8 +1902,16 @@
               "row": 7
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 19,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G08",
@@ -1439,7 +1919,7 @@
           "object_id": "G08",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】30人团队未按阶段计划到位：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】30人团队未按阶段计划到位：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1451,8 +1931,16 @@
               "row": 8
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G03/G11",
@@ -1460,7 +1948,7 @@
           "object_id": "G03/G11",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】一期范围与需求基线未确认：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】一期范围与需求基线未确认：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "产品经理",
           "requires_approval": false,
@@ -1472,8 +1960,16 @@
               "row": 9
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G15",
@@ -1481,7 +1977,7 @@
           "object_id": "G15",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】历史合同数据质量不足或迁移范围失控：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】历史合同数据质量不足或迁移范围失控：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "产品经理",
           "requires_approval": false,
@@ -1493,8 +1989,16 @@
               "row": 10
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G14",
@@ -1502,7 +2006,7 @@
           "object_id": "G14",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】外部产品采购与合同条款不能支撑项目计划：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】外部产品采购与合同条款不能支撑项目计划：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1514,8 +2018,16 @@
               "row": 11
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G01/G19/G20",
@@ -1523,7 +2035,7 @@
           "object_id": "G01/G19/G20",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】项目章程和整体管理计划未正式批准：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】项目章程和整体管理计划未正式批准：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1535,8 +2047,16 @@
               "row": 12
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G17",
@@ -1544,7 +2064,7 @@
           "object_id": "G17",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】开发测试环境和配置管理未就绪：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】开发测试环境和配置管理未就绪：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "配置人员",
           "requires_approval": false,
@@ -1556,8 +2076,16 @@
               "row": 13
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 5,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G05",
@@ -1565,7 +2093,7 @@
           "object_id": "G05",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】预算与成本控制口径未批准：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】预算与成本控制口径未批准：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "项目集经理",
           "requires_approval": false,
@@ -1577,8 +2105,16 @@
               "row": 14
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 8,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "ISS-G07",
@@ -1586,7 +2122,7 @@
           "object_id": "G07",
           "severity": "重大",
           "title": "未关闭问题",
-          "detail": "【连续第11期出现】关键相关方对目标、范围和职责认知不一致：需在正式启动前完成证据确认",
+          "detail": "【连续第12期出现】关键相关方对目标、范围和职责认知不一致：需在正式启动前完成证据确认",
           "recommendation": "确认根因、行动、期限和关闭证据。",
           "owner": "项目经理",
           "requires_approval": false,
@@ -1598,8 +2134,16 @@
               "row": 15
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 12,
+            "owner_load": 12,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "DEC-D-001",
@@ -1607,7 +2151,7 @@
           "object_id": "D-001",
           "severity": "重大",
           "title": "决策事项7天内到期",
-          "detail": "【连续第11期出现】CA、电子文档、BI产品选型（需要日期2026-09-25）",
+          "detail": "【连续第12期出现】CA、电子文档、BI产品选型（需要日期2026-09-25）",
           "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
           "owner": "项目指导委员会",
           "requires_approval": true,
@@ -1619,8 +2163,16 @@
               "row": 5
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 1,
+            "owner_load": 2,
+            "object_hits": 0,
+            "history_runs": 2,
+            "history_first": "2026-09-25",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "DEC-D-002",
@@ -1628,7 +2180,7 @@
           "object_id": "D-002",
           "severity": "重大",
           "title": "待决策事项",
-          "detail": "【连续第11期出现】一期范围与P0需求基线（需要日期2026-10-09）",
+          "detail": "【连续第12期出现】一期范围与P0需求基线（需要日期2026-10-09）",
           "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
           "owner": "业务负责人/项目发起人",
           "requires_approval": true,
@@ -1640,8 +2192,16 @@
               "row": 6
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 3,
+            "owner_load": 1,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "DEC-D-003",
@@ -1649,7 +2209,7 @@
           "object_id": "D-003",
           "severity": "重大",
           "title": "待决策事项",
-          "detail": "【连续第11期出现】项目预算与采购路径（需要日期2026-10-08）",
+          "detail": "【连续第12期出现】项目预算与采购路径（需要日期2026-10-08）",
           "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
           "owner": "项目发起人",
           "requires_approval": true,
@@ -1661,8 +2221,16 @@
               "row": 7
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 3,
+            "owner_load": 1,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "DEC-D-004",
@@ -1670,7 +2238,7 @@
           "object_id": "D-004",
           "severity": "重大",
           "title": "待决策事项",
-          "detail": "【连续第11期出现】2026年10月20日正式启动决策（需要日期2026-10-16）",
+          "detail": "【连续第12期出现】2026年10月20日正式启动决策（需要日期2026-10-16）",
           "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
           "owner": "项目指导委员会",
           "requires_approval": true,
@@ -1682,8 +2250,16 @@
               "row": 8
             }
           ],
-          "age_runs": 11,
-          "review_state": ""
+          "age_runs": 12,
+          "review_state": "",
+          "context": {
+            "rule_count": 3,
+            "owner_load": 2,
+            "object_hits": 0,
+            "history_runs": 11,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         }
       ]
     },
@@ -1710,7 +2286,7 @@
           "object_id": "DEC-001",
           "severity": "高",
           "title": "决策事项14天内到期",
-          "detail": "【连续第6期出现】CA产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+          "detail": "【连续第7期出现】CA产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
           "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
           "owner": "项目治理委员会",
           "requires_approval": true,
@@ -1722,8 +2298,16 @@
               "row": 5
             }
           ],
-          "age_runs": 6,
-          "review_state": ""
+          "age_runs": 7,
+          "review_state": "",
+          "context": {
+            "rule_count": 3,
+            "owner_load": 3,
+            "object_hits": 0,
+            "history_runs": 6,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "COM-DECISION-DEC-002",
@@ -1731,7 +2315,7 @@
           "object_id": "DEC-002",
           "severity": "高",
           "title": "决策事项14天内到期",
-          "detail": "【连续第6期出现】电子文档产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+          "detail": "【连续第7期出现】电子文档产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
           "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
           "owner": "项目治理委员会",
           "requires_approval": true,
@@ -1743,8 +2327,16 @@
               "row": 6
             }
           ],
-          "age_runs": 6,
-          "review_state": ""
+          "age_runs": 7,
+          "review_state": "",
+          "context": {
+            "rule_count": 3,
+            "owner_load": 3,
+            "object_hits": 0,
+            "history_runs": 6,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         },
         {
           "finding_id": "COM-DECISION-DEC-003",
@@ -1752,7 +2344,7 @@
           "object_id": "DEC-003",
           "severity": "高",
           "title": "决策事项14天内到期",
-          "detail": "【连续第6期出现】BI报表产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+          "detail": "【连续第7期出现】BI报表产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
           "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
           "owner": "项目治理委员会",
           "requires_approval": true,
@@ -1764,8 +2356,16 @@
               "row": 7
             }
           ],
-          "age_runs": 6,
-          "review_state": ""
+          "age_runs": 7,
+          "review_state": "",
+          "context": {
+            "rule_count": 3,
+            "owner_load": 3,
+            "object_hits": 0,
+            "history_runs": 6,
+            "history_first": "2026-09-18",
+            "history_last": "2026-09-25"
+          }
         }
       ]
     }
@@ -1778,7 +2378,7 @@
       "object_id": "T008",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第5期出现】汇编可研报告并组织评审计划完成日为2026-09-18，当前状态为进行中。",
+      "detail": "【连续第6期出现】汇编可研报告并组织评审计划完成日为2026-09-18，当前状态为进行中。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "项目经理",
       "requires_approval": true,
@@ -1790,8 +2390,16 @@
           "row": 11
         }
       ],
-      "age_runs": 5,
-      "review_state": ""
+      "age_runs": 6,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 12,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T008-NORISK",
@@ -1799,7 +2407,7 @@
       "object_id": "T008",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "汇编可研报告并组织评审（T008）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】汇编可研报告并组织评审（T008）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -1811,8 +2419,16 @@
           "row": 11
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 12,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T011-OVERDUE",
@@ -1820,7 +2436,7 @@
       "object_id": "T011",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】盘点既有系统、接口与数据计划完成日为2026-05-05，当前状态为进行中。",
+      "detail": "【连续第12期出现】盘点既有系统、接口与数据计划完成日为2026-05-05，当前状态为进行中。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -1832,8 +2448,16 @@
           "row": 14
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T011-NORISK",
@@ -1841,7 +2465,7 @@
       "object_id": "T011",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "盘点既有系统、接口与数据（T011）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】盘点既有系统、接口与数据（T011）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -1853,8 +2477,16 @@
           "row": 14
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T012-OVERDUE",
@@ -1862,7 +2494,7 @@
       "object_id": "T012",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】访谈业务部门并形成痛点清单计划完成日为2026-06-02，当前状态为待确认。",
+      "detail": "【连续第12期出现】访谈业务部门并形成痛点清单计划完成日为2026-06-02，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "产品经理",
       "requires_approval": true,
@@ -1874,8 +2506,16 @@
           "row": 15
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T012-NORISK",
@@ -1883,7 +2523,7 @@
       "object_id": "T012",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "访谈业务部门并形成痛点清单（T012）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】访谈业务部门并形成痛点清单（T012）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "产品经理",
       "requires_approval": false,
@@ -1895,8 +2535,16 @@
           "row": 15
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T013-OVERDUE",
@@ -1904,7 +2552,7 @@
       "object_id": "T013",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】确认现状流程、问题与改进机会基线计划完成日为2026-06-30，当前状态为待确认。",
+      "detail": "【连续第12期出现】确认现状流程、问题与改进机会基线计划完成日为2026-06-30，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "项目经理",
       "requires_approval": true,
@@ -1916,8 +2564,16 @@
           "row": 16
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 12,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T013-NORISK",
@@ -1925,7 +2581,7 @@
       "object_id": "T013",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "确认现状流程、问题与改进机会基线（T013）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】确认现状流程、问题与改进机会基线（T013）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -1937,8 +2593,16 @@
           "row": 16
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 12,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T014-OVERDUE",
@@ -1946,7 +2610,7 @@
       "object_id": "T014",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】制定项目治理、会议与报告机制计划完成日为2026-07-12，当前状态为待确认。",
+      "detail": "【连续第12期出现】制定项目治理、会议与报告机制计划完成日为2026-07-12，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "项目经理",
       "requires_approval": true,
@@ -1958,8 +2622,16 @@
           "row": 17
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 12,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T014-NORISK",
@@ -1967,7 +2639,7 @@
       "object_id": "T014",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "制定项目治理、会议与报告机制（T014）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】制定项目治理、会议与报告机制（T014）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -1979,8 +2651,16 @@
           "row": 17
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 12,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T015-OVERDUE",
@@ -1988,7 +2668,7 @@
       "object_id": "T015",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】制定需求分级、跟踪与变更规范计划完成日为2026-07-24，当前状态为待确认。",
+      "detail": "【连续第12期出现】制定需求分级、跟踪与变更规范计划完成日为2026-07-24，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "产品经理",
       "requires_approval": true,
@@ -2000,8 +2680,16 @@
           "row": 18
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T015-NORISK",
@@ -2009,7 +2697,7 @@
       "object_id": "T015",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "制定需求分级、跟踪与变更规范（T015）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】制定需求分级、跟踪与变更规范（T015）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "产品经理",
       "requires_approval": false,
@@ -2021,8 +2709,16 @@
           "row": 18
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T016-OVERDUE",
@@ -2030,7 +2726,7 @@
       "object_id": "T016",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】制定设计、编码与代码评审规范计划完成日为2026-08-06，当前状态为待确认。",
+      "detail": "【连续第12期出现】制定设计、编码与代码评审规范计划完成日为2026-08-06，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -2042,8 +2738,16 @@
           "row": 19
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T016-NORISK",
@@ -2051,7 +2755,7 @@
       "object_id": "T016",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "制定设计、编码与代码评审规范（T016）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】制定设计、编码与代码评审规范（T016）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2063,8 +2767,16 @@
           "row": 19
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T017-OVERDUE",
@@ -2072,7 +2784,7 @@
       "object_id": "T017",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】制定测试、缺陷与质量门禁规范计划完成日为2026-08-18，当前状态为待确认。",
+      "detail": "【连续第12期出现】制定测试、缺陷与质量门禁规范计划完成日为2026-08-18，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": true,
@@ -2084,8 +2796,16 @@
           "row": 20
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T017-NORISK",
@@ -2093,7 +2813,7 @@
       "object_id": "T017",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "制定测试、缺陷与质量门禁规范（T017）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】制定测试、缺陷与质量门禁规范（T017）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": false,
@@ -2105,8 +2825,16 @@
           "row": 20
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T018-OVERDUE",
@@ -2114,7 +2842,7 @@
       "object_id": "T018",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】制定配置、发布与文档归档规范计划完成日为2026-08-31，当前状态为待确认。",
+      "detail": "【连续第12期出现】制定配置、发布与文档归档规范计划完成日为2026-08-31，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "配置人员",
       "requires_approval": true,
@@ -2126,8 +2854,16 @@
           "row": 21
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 5,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T018-NORISK",
@@ -2135,7 +2871,7 @@
       "object_id": "T018",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "制定配置、发布与文档归档规范（T018）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】制定配置、发布与文档归档规范（T018）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "配置人员",
       "requires_approval": false,
@@ -2147,8 +2883,16 @@
           "row": 21
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 5,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T019-OVERDUE",
@@ -2156,7 +2900,7 @@
       "object_id": "T019",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】完成系统分层、模块与服务边界设计计划完成日为2026-07-15，当前状态为待确认。",
+      "detail": "【连续第12期出现】完成系统分层、模块与服务边界设计计划完成日为2026-07-15，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -2168,8 +2912,16 @@
           "row": 22
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T019-NORISK",
@@ -2177,7 +2929,7 @@
       "object_id": "T019",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "完成系统分层、模块与服务边界设计（T019）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】完成系统分层、模块与服务边界设计（T019）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2189,8 +2941,16 @@
           "row": 22
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T020-OVERDUE",
@@ -2198,7 +2958,7 @@
       "object_id": "T020",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】完成主数据、交易数据与分析数据架构计划完成日为2026-07-30，当前状态为待确认。",
+      "detail": "【连续第12期出现】完成主数据、交易数据与分析数据架构计划完成日为2026-07-30，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -2210,8 +2970,16 @@
           "row": 23
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T020-NORISK",
@@ -2219,7 +2987,7 @@
       "object_id": "T020",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "完成主数据、交易数据与分析数据架构（T020）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】完成主数据、交易数据与分析数据架构（T020）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2231,8 +2999,16 @@
           "row": 23
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T021-OVERDUE",
@@ -2240,7 +3016,7 @@
       "object_id": "T021",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】完成内部及外部接口总体架构计划完成日为2026-08-15，当前状态为待确认。",
+      "detail": "【连续第12期出现】完成内部及外部接口总体架构计划完成日为2026-08-15，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级开发人员",
       "requires_approval": true,
@@ -2252,8 +3028,16 @@
           "row": 24
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 6,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T021-NORISK",
@@ -2261,7 +3045,7 @@
       "object_id": "T021",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "完成内部及外部接口总体架构（T021）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】完成内部及外部接口总体架构（T021）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级开发人员",
       "requires_approval": false,
@@ -2273,8 +3057,16 @@
           "row": 24
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 6,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T022-OVERDUE",
@@ -2282,7 +3074,7 @@
       "object_id": "T022",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】完成身份、权限、审计与数据安全设计计划完成日为2026-08-30，当前状态为待确认。",
+      "detail": "【连续第12期出现】完成身份、权限、审计与数据安全设计计划完成日为2026-08-30，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -2294,8 +3086,16 @@
           "row": 25
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T022-NORISK",
@@ -2303,7 +3103,7 @@
       "object_id": "T022",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "完成身份、权限、审计与数据安全设计（T022）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】完成身份、权限、审计与数据安全设计（T022）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2315,8 +3115,16 @@
           "row": 25
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T023-OVERDUE",
@@ -2324,7 +3132,7 @@
       "object_id": "T023",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】完成环境、网络、容灾和DevOps设计计划完成日为2026-09-14，当前状态为待确认。",
+      "detail": "【连续第12期出现】完成环境、网络、容灾和DevOps设计计划完成日为2026-09-14，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "配置人员",
       "requires_approval": true,
@@ -2336,8 +3144,16 @@
           "row": 26
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 5,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T023-NORISK",
@@ -2345,7 +3161,7 @@
       "object_id": "T023",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "完成环境、网络、容灾和DevOps设计（T023）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】完成环境、网络、容灾和DevOps设计（T023）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "配置人员",
       "requires_approval": false,
@@ -2357,8 +3173,16 @@
           "row": 26
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 5,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T024-DUE14",
@@ -2366,7 +3190,7 @@
       "object_id": "T024",
       "severity": "高",
       "title": "任务14天内到期",
-      "detail": "【连续第11期出现】汇编总体技术架构并完成基线评审将在2026-09-30到期，当前状态为进行中。",
+      "detail": "【连续第12期出现】汇编总体技术架构并完成基线评审将在2026-09-30到期，当前状态为进行中。",
       "recommendation": "确认交付物、验收人和按期完成证据。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2378,8 +3202,16 @@
           "row": 27
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 5,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T025-OVERDUE",
@@ -2387,7 +3219,7 @@
       "object_id": "T025",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】编制CA、电子文档、BI报表POC方案与评分标准计划完成日为2026-08-19，当前状态为待确认。",
+      "detail": "【连续第12期出现】编制CA、电子文档、BI报表POC方案与评分标准计划完成日为2026-08-19，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -2399,8 +3231,16 @@
           "row": 28
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T025-NORISK",
@@ -2408,7 +3248,7 @@
       "object_id": "T025",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "编制CA、电子文档、BI报表POC方案与评分标准（T025）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】编制CA、电子文档、BI报表POC方案与评分标准（T025）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2420,8 +3260,16 @@
           "row": 28
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 19,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T026-OVERDUE",
@@ -2429,7 +3277,7 @@
       "object_id": "T026",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】验证证书签发、身份认证和证书管理计划完成日为2026-08-24，当前状态为待确认。",
+      "detail": "【连续第12期出现】验证证书签发、身份认证和证书管理计划完成日为2026-08-24，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级开发人员",
       "requires_approval": true,
@@ -2441,8 +3289,16 @@
           "row": 29
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 6,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T026-NORISK",
@@ -2450,7 +3306,7 @@
       "object_id": "T026",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "验证证书签发、身份认证和证书管理（T026）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】验证证书签发、身份认证和证书管理（T026）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级开发人员",
       "requires_approval": false,
@@ -2462,8 +3318,16 @@
           "row": 29
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 6,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T027-OVERDUE",
@@ -2471,7 +3335,7 @@
       "object_id": "T027",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】验证电子签名、验签、时间戳和审计追溯计划完成日为2026-08-29，当前状态为待确认。",
+      "detail": "【连续第12期出现】验证电子签名、验签、时间戳和审计追溯计划完成日为2026-08-29，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": true,
@@ -2483,8 +3347,16 @@
           "row": 30
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T027-NORISK",
@@ -2492,7 +3364,7 @@
       "object_id": "T027",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "验证电子签名、验签、时间戳和审计追溯（T027）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】验证电子签名、验签、时间戳和审计追溯（T027）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": false,
@@ -2504,8 +3376,16 @@
           "row": 30
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T028-OVERDUE",
@@ -2513,7 +3393,7 @@
       "object_id": "T028",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】验证模板生成、在线预览和格式转换计划完成日为2026-09-04，当前状态为待确认。",
+      "detail": "【连续第12期出现】验证模板生成、在线预览和格式转换计划完成日为2026-09-04，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "中级开发人员",
       "requires_approval": true,
@@ -2525,8 +3405,16 @@
           "row": 31
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 2,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T028-NORISK",
@@ -2534,7 +3422,7 @@
       "object_id": "T028",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "验证模板生成、在线预览和格式转换（T028）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】验证模板生成、在线预览和格式转换（T028）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "中级开发人员",
       "requires_approval": false,
@@ -2546,8 +3434,16 @@
           "row": 31
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 2,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T029-OVERDUE",
@@ -2555,7 +3451,7 @@
       "object_id": "T029",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】验证水印、权限控制、归档和大文件性能计划完成日为2026-09-09，当前状态为待确认。",
+      "detail": "【连续第12期出现】验证水印、权限控制、归档和大文件性能计划完成日为2026-09-09，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": true,
@@ -2567,8 +3463,16 @@
           "row": 32
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T029-NORISK",
@@ -2576,7 +3480,7 @@
       "object_id": "T029",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "验证水印、权限控制、归档和大文件性能（T029）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】验证水印、权限控制、归档和大文件性能（T029）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": false,
@@ -2588,8 +3492,16 @@
           "row": 32
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T030-OVERDUE",
@@ -2597,7 +3509,7 @@
       "object_id": "T030",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第11期出现】验证数据接入、指标模型和经营报表计划完成日为2026-09-14，当前状态为待确认。",
+      "detail": "【连续第12期出现】验证数据接入、指标模型和经营报表计划完成日为2026-09-14，当前状态为待确认。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级开发人员",
       "requires_approval": true,
@@ -2609,8 +3521,16 @@
           "row": 33
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 6,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T030-NORISK",
@@ -2618,7 +3538,7 @@
       "object_id": "T030",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "验证数据接入、指标模型和经营报表（T030）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】验证数据接入、指标模型和经营报表（T030）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级开发人员",
       "requires_approval": false,
@@ -2630,8 +3550,16 @@
           "row": 33
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 6,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T031-OVERDUE",
@@ -2639,7 +3567,7 @@
       "object_id": "T031",
       "severity": "重大",
       "title": "任务已延期",
-      "detail": "【连续第5期出现】验证权限、钻取、导出和查询性能计划完成日为2026-09-19，当前状态为进行中。",
+      "detail": "【连续第6期出现】验证权限、钻取、导出和查询性能计划完成日为2026-09-19，当前状态为进行中。",
       "recommendation": "确认实际状态、纠偏计划、承诺日期和完成证据。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": true,
@@ -2651,8 +3579,16 @@
           "row": 34
         }
       ],
-      "age_runs": 5,
-      "review_state": ""
+      "age_runs": 6,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T031-NORISK",
@@ -2660,7 +3596,7 @@
       "object_id": "T031",
       "severity": "中",
       "title": "延期任务未关联风险登记",
-      "detail": "验证权限、钻取、导出和查询性能（T031）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
+      "detail": "【连续第2期出现】验证权限、钻取、导出和查询性能（T031）已延期，但风险登记册中未提及该任务编号，建议评估是否登记风险。",
       "recommendation": "结合延期原因评估是否新增风险条目并指定应对措施。",
       "owner": "高级测试人员、中级测试人员",
       "requires_approval": false,
@@ -2672,8 +3608,16 @@
           "row": 34
         }
       ],
-      "age_runs": 1,
-      "review_state": ""
+      "age_runs": 2,
+      "review_state": "",
+      "context": {
+        "rule_count": 21,
+        "owner_load": 8,
+        "object_hits": 1,
+        "history_runs": 1,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T032-DUE14",
@@ -2681,7 +3625,7 @@
       "object_id": "T032",
       "severity": "高",
       "title": "任务14天内到期",
-      "detail": "【连续第11期出现】汇总问题清单、适配结论和产品选型建议将在2026-09-25到期，当前状态为未开始。",
+      "detail": "【连续第12期出现】汇总问题清单、适配结论和产品选型建议将在2026-09-25到期，当前状态为未开始。",
       "recommendation": "确认交付物、验收人和按期完成证据。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -2693,8 +3637,16 @@
           "row": 35
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 5,
+        "owner_load": 12,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T033-DUE14",
@@ -2702,7 +3654,7 @@
       "object_id": "T033",
       "severity": "高",
       "title": "任务14天内到期",
-      "detail": "【连续第11期出现】编制并审批项目章程将在2026-10-02到期，当前状态为未开始。",
+      "detail": "【连续第12期出现】编制并审批项目章程将在2026-10-02到期，当前状态为未开始。",
       "recommendation": "确认交付物、验收人和按期完成证据。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -2714,8 +3666,16 @@
           "row": 36
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 5,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T034-DUE14",
@@ -2723,7 +3683,7 @@
       "object_id": "T034",
       "severity": "高",
       "title": "任务14天内到期",
-      "detail": "【连续第5期出现】编制范围、里程碑和主进度计划将在2026-10-05到期，当前状态为未开始。",
+      "detail": "【连续第6期出现】编制范围、里程碑和主进度计划将在2026-10-05到期，当前状态为未开始。",
       "recommendation": "确认交付物、验收人和按期完成证据。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -2735,8 +3695,16 @@
           "row": 37
         }
       ],
-      "age_runs": 5,
-      "review_state": ""
+      "age_runs": 6,
+      "review_state": "",
+      "context": {
+        "rule_count": 5,
+        "owner_load": 12,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "SCH-T035-DUE14",
@@ -2744,7 +3712,7 @@
       "object_id": "T035",
       "severity": "高",
       "title": "任务14天内到期",
-      "detail": "【连续第4期出现】建立项目组织、RACI与沟通机制将在2026-10-08到期，当前状态为未开始。",
+      "detail": "【连续第5期出现】建立项目组织、RACI与沟通机制将在2026-10-08到期，当前状态为未开始。",
       "recommendation": "确认交付物、验收人和按期完成证据。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -2756,8 +3724,16 @@
           "row": 38
         }
       ],
-      "age_runs": 4,
-      "review_state": ""
+      "age_runs": 5,
+      "review_state": "",
+      "context": {
+        "rule_count": 5,
+        "owner_load": 12,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-001",
@@ -2765,7 +3741,7 @@
       "object_id": "RSK-001",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】CA、电子文档、BI产品POC与选型未按期完成",
+      "detail": "【连续第12期出现】CA、电子文档、BI产品POC与选型未按期完成",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2777,8 +3753,16 @@
           "row": 9
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-002",
@@ -2786,7 +3770,7 @@
       "object_id": "RSK-002",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】总体技术架构基线未通过评审",
+      "detail": "【连续第12期出现】总体技术架构基线未通过评审",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2798,8 +3782,16 @@
           "row": 10
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-003",
@@ -2807,7 +3799,7 @@
       "object_id": "RSK-003",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】外部系统接口边界与联调窗口不明确",
+      "detail": "【连续第12期出现】外部系统接口边界与联调窗口不明确",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -2819,8 +3811,16 @@
           "row": 11
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 12,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-004",
@@ -2828,7 +3828,7 @@
       "object_id": "RSK-004",
       "severity": "重大",
       "title": "重大剩余风险",
-      "detail": "【连续第11期出现】安全合规基线未形成或外部产品不满足要求",
+      "detail": "【连续第12期出现】安全合规基线未形成或外部产品不满足要求",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "技术经理",
       "requires_approval": true,
@@ -2840,8 +3840,16 @@
           "row": 12
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 1,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-005",
@@ -2849,7 +3857,7 @@
       "object_id": "RSK-005",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】30人团队未按阶段计划到位",
+      "detail": "【连续第12期出现】30人团队未按阶段计划到位",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -2861,8 +3869,16 @@
           "row": 13
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-006",
@@ -2870,7 +3886,7 @@
       "object_id": "RSK-006",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】一期范围与需求基线未确认",
+      "detail": "【连续第12期出现】一期范围与需求基线未确认",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "产品经理",
       "requires_approval": false,
@@ -2882,8 +3898,16 @@
           "row": 14
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-007",
@@ -2891,7 +3915,7 @@
       "object_id": "RSK-007",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】历史合同数据质量不足或迁移范围失控",
+      "detail": "【连续第12期出现】历史合同数据质量不足或迁移范围失控",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "产品经理",
       "requires_approval": false,
@@ -2903,8 +3927,16 @@
           "row": 15
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-008",
@@ -2912,7 +3944,7 @@
       "object_id": "RSK-008",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】外部产品采购与合同条款不能支撑项目计划",
+      "detail": "【连续第12期出现】外部产品采购与合同条款不能支撑项目计划",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -2924,8 +3956,16 @@
           "row": 16
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "RSK-RSK-009",
@@ -2933,7 +3973,7 @@
       "object_id": "RSK-009",
       "severity": "重大",
       "title": "高剩余风险",
-      "detail": "【连续第11期出现】项目章程和整体管理计划未正式批准",
+      "detail": "【连续第12期出现】项目章程和整体管理计划未正式批准",
       "recommendation": "复核触发条件、应对行动、剩余风险和升级结论。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -2945,8 +3985,16 @@
           "row": 17
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 8,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G10",
@@ -2954,7 +4002,7 @@
       "object_id": "G10",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】CA、电子文档、BI产品POC与选型未按期完成：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】CA、电子文档、BI产品POC与选型未按期完成：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2966,8 +4014,16 @@
           "row": 4
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G09",
@@ -2975,7 +4031,7 @@
       "object_id": "G09",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】总体技术架构基线未通过评审：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】总体技术架构基线未通过评审：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -2987,8 +4043,16 @@
           "row": 5
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G19",
@@ -2996,7 +4060,7 @@
       "object_id": "G19",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】外部系统接口边界与联调窗口不明确：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】外部系统接口边界与联调窗口不明确：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -3008,8 +4072,16 @@
           "row": 6
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 12,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G16",
@@ -3017,7 +4089,7 @@
       "object_id": "G16",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】安全合规基线未形成或外部产品不满足要求：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】安全合规基线未形成或外部产品不满足要求：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "技术经理",
       "requires_approval": false,
@@ -3029,8 +4101,16 @@
           "row": 7
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 19,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G08",
@@ -3038,7 +4118,7 @@
       "object_id": "G08",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】30人团队未按阶段计划到位：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】30人团队未按阶段计划到位：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -3050,8 +4130,16 @@
           "row": 8
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G03/G11",
@@ -3059,7 +4147,7 @@
       "object_id": "G03/G11",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】一期范围与需求基线未确认：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】一期范围与需求基线未确认：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "产品经理",
       "requires_approval": false,
@@ -3071,8 +4159,16 @@
           "row": 9
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G15",
@@ -3080,7 +4176,7 @@
       "object_id": "G15",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】历史合同数据质量不足或迁移范围失控：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】历史合同数据质量不足或迁移范围失控：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "产品经理",
       "requires_approval": false,
@@ -3092,8 +4188,16 @@
           "row": 10
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G14",
@@ -3101,7 +4205,7 @@
       "object_id": "G14",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】外部产品采购与合同条款不能支撑项目计划：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】外部产品采购与合同条款不能支撑项目计划：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -3113,8 +4217,16 @@
           "row": 11
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G01/G19/G20",
@@ -3122,7 +4234,7 @@
       "object_id": "G01/G19/G20",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】项目章程和整体管理计划未正式批准：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】项目章程和整体管理计划未正式批准：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -3134,8 +4246,16 @@
           "row": 12
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G17",
@@ -3143,7 +4263,7 @@
       "object_id": "G17",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】开发测试环境和配置管理未就绪：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】开发测试环境和配置管理未就绪：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "配置人员",
       "requires_approval": false,
@@ -3155,8 +4275,16 @@
           "row": 13
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 5,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G05",
@@ -3164,7 +4292,7 @@
       "object_id": "G05",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】预算与成本控制口径未批准：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】预算与成本控制口径未批准：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "项目集经理",
       "requires_approval": false,
@@ -3176,8 +4304,16 @@
           "row": 14
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 8,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "ISS-G07",
@@ -3185,7 +4321,7 @@
       "object_id": "G07",
       "severity": "重大",
       "title": "未关闭问题",
-      "detail": "【连续第11期出现】关键相关方对目标、范围和职责认知不一致：需在正式启动前完成证据确认",
+      "detail": "【连续第12期出现】关键相关方对目标、范围和职责认知不一致：需在正式启动前完成证据确认",
       "recommendation": "确认根因、行动、期限和关闭证据。",
       "owner": "项目经理",
       "requires_approval": false,
@@ -3197,8 +4333,16 @@
           "row": 15
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 12,
+        "owner_load": 12,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "DEC-D-001",
@@ -3206,7 +4350,7 @@
       "object_id": "D-001",
       "severity": "重大",
       "title": "决策事项7天内到期",
-      "detail": "【连续第11期出现】CA、电子文档、BI产品选型（需要日期2026-09-25）",
+      "detail": "【连续第12期出现】CA、电子文档、BI产品选型（需要日期2026-09-25）",
       "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
       "owner": "项目指导委员会",
       "requires_approval": true,
@@ -3218,8 +4362,16 @@
           "row": 5
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 1,
+        "owner_load": 2,
+        "object_hits": 0,
+        "history_runs": 2,
+        "history_first": "2026-09-25",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "DEC-D-002",
@@ -3227,7 +4379,7 @@
       "object_id": "D-002",
       "severity": "重大",
       "title": "待决策事项",
-      "detail": "【连续第11期出现】一期范围与P0需求基线（需要日期2026-10-09）",
+      "detail": "【连续第12期出现】一期范围与P0需求基线（需要日期2026-10-09）",
       "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
       "owner": "业务负责人/项目发起人",
       "requires_approval": true,
@@ -3239,8 +4391,16 @@
           "row": 6
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 3,
+        "owner_load": 1,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "DEC-D-003",
@@ -3248,7 +4408,7 @@
       "object_id": "D-003",
       "severity": "重大",
       "title": "待决策事项",
-      "detail": "【连续第11期出现】项目预算与采购路径（需要日期2026-10-08）",
+      "detail": "【连续第12期出现】项目预算与采购路径（需要日期2026-10-08）",
       "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
       "owner": "项目发起人",
       "requires_approval": true,
@@ -3260,8 +4420,16 @@
           "row": 7
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 3,
+        "owner_load": 1,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "DEC-D-004",
@@ -3269,7 +4437,7 @@
       "object_id": "D-004",
       "severity": "重大",
       "title": "待决策事项",
-      "detail": "【连续第11期出现】2026年10月20日正式启动决策（需要日期2026-10-16）",
+      "detail": "【连续第12期出现】2026年10月20日正式启动决策（需要日期2026-10-16）",
       "recommendation": "明确决策人、最迟日期、备选方案和延迟后果。",
       "owner": "项目指导委员会",
       "requires_approval": true,
@@ -3281,8 +4449,16 @@
           "row": 8
         }
       ],
-      "age_runs": 11,
-      "review_state": ""
+      "age_runs": 12,
+      "review_state": "",
+      "context": {
+        "rule_count": 3,
+        "owner_load": 2,
+        "object_hits": 0,
+        "history_runs": 11,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "COM-DECISION-DEC-001",
@@ -3290,7 +4466,7 @@
       "object_id": "DEC-001",
       "severity": "高",
       "title": "决策事项14天内到期",
-      "detail": "【连续第6期出现】CA产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+      "detail": "【连续第7期出现】CA产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
       "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
       "owner": "项目治理委员会",
       "requires_approval": true,
@@ -3302,8 +4478,16 @@
           "row": 5
         }
       ],
-      "age_runs": 6,
-      "review_state": ""
+      "age_runs": 7,
+      "review_state": "",
+      "context": {
+        "rule_count": 3,
+        "owner_load": 3,
+        "object_hits": 0,
+        "history_runs": 6,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "COM-DECISION-DEC-002",
@@ -3311,7 +4495,7 @@
       "object_id": "DEC-002",
       "severity": "高",
       "title": "决策事项14天内到期",
-      "detail": "【连续第6期出现】电子文档产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+      "detail": "【连续第7期出现】电子文档产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
       "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
       "owner": "项目治理委员会",
       "requires_approval": true,
@@ -3323,8 +4507,16 @@
           "row": 6
         }
       ],
-      "age_runs": 6,
-      "review_state": ""
+      "age_runs": 7,
+      "review_state": "",
+      "context": {
+        "rule_count": 3,
+        "owner_load": 3,
+        "object_hits": 0,
+        "history_runs": 6,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     },
     {
       "finding_id": "COM-DECISION-DEC-003",
@@ -3332,7 +4524,7 @@
       "object_id": "DEC-003",
       "severity": "高",
       "title": "决策事项14天内到期",
-      "detail": "【连续第6期出现】BI报表产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
+      "detail": "【连续第7期出现】BI报表产品POC选型决策截止日为2026-09-30，当前状态为待决策。",
       "recommendation": "将事实、备选方案、影响、建议和所需授权统一提交决策人。",
       "owner": "项目治理委员会",
       "requires_approval": true,
@@ -3344,8 +4536,16 @@
           "row": 7
         }
       ],
-      "age_runs": 6,
-      "review_state": ""
+      "age_runs": 7,
+      "review_state": "",
+      "context": {
+        "rule_count": 3,
+        "owner_load": 3,
+        "object_hits": 0,
+        "history_runs": 6,
+        "history_first": "2026-09-18",
+        "history_last": "2026-09-25"
+      }
     }
   ]
 }
