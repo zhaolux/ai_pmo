@@ -16,8 +16,16 @@ def _date(value) -> date | None:
     return None
 
 
-def analyze_schedule_resource(plan_file: Path, as_of: date) -> AgentResult:
+def analyze_schedule_resource(plan_file: Path, risk_file: Path, as_of: date) -> AgentResult:
     workbook = load_workbook(plan_file, data_only=True, read_only=True)
+    risk_text_rows: list[str] = []
+    risk_book = None
+    if risk_file is not None and Path(risk_file).exists():
+        risk_book = load_workbook(risk_file, data_only=True, read_only=True)
+        if "风险登记册" in risk_book.sheetnames:
+            register = risk_book["风险登记册"]
+            for row in register.iter_rows(values_only=True):
+                risk_text_rows.append(" ".join(str(cell) for cell in row if cell is not None))
     findings: list[Finding] = []
     try:
         sheet = workbook["项目总控台账"]
@@ -38,6 +46,18 @@ def analyze_schedule_resource(plan_file: Path, as_of: date) -> AgentResult:
                     owner=owner, requires_approval=True,
                     evidence=(Evidence(plan_file.name, sheet.title, task_id, row_number),),
                 ))
+                if not any(task_id in text for text in risk_text_rows):
+                    findings.append(Finding(
+                        finding_id=f"SCH-{task_id}-NORISK", agent="schedule_resource",
+                        object_id=task_id, severity="中", title="延期任务未关联风险登记",
+                        detail=(
+                            f"{task_name}（{task_id}）已延期，但风险登记册中未提及该任务编号，"
+                            "建议评估是否登记风险。"
+                        ),
+                        recommendation="结合延期原因评估是否新增风险条目并指定应对措施。",
+                        owner=owner, requires_approval=False,
+                        evidence=(Evidence(plan_file.name, sheet.title, task_id, row_number),),
+                    ))
             elif finish and status != "已完成" and 0 <= (finish - as_of).days <= 14:
                 findings.append(Finding(
                     finding_id=f"SCH-{task_id}-DUE14", agent="schedule_resource",
@@ -72,5 +92,7 @@ def analyze_schedule_resource(plan_file: Path, as_of: date) -> AgentResult:
                         evidence=(Evidence(plan_file.name, resource.title, person, row_number),),
                     ))
     finally:
+        if risk_book is not None:
+            risk_book.close()
         workbook.close()
     return AgentResult("schedule_resource", f"识别{len(findings)}项进度关注事项", tuple(findings))

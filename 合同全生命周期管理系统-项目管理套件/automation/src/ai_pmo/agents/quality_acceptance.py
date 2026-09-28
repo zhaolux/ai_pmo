@@ -57,12 +57,22 @@ def analyze_quality_acceptance(quality_file: Path, deliverable_file: Path, as_of
                 continue
             defect_id = str(row[0])
             major = level in {"Blocker", "Critical", "阻断", "重大"}
+            found = _date(row[1])
+            weeks = (as_of - found).days // 7 if found and found <= as_of else 0
+            aged = weeks >= 4
+            aging = f"；发现于{found.isoformat()}，已挂账{weeks}周" if found and weeks >= 1 else ""
             findings.append(Finding(
                 finding_id=f"QUA-DEFECT-{defect_id}", agent="quality_acceptance",
-                object_id=defect_id, severity="重大" if major else "高",
-                title="未关闭严重缺陷", detail=f"{row[5] or defect_id}；当前状态为{row[13] or '空'}。",
-                recommendation="明确根因、修复版本、完成日、回归范围和验证证据。",
-                owner=str(row[8] or "未指定"), requires_approval=major,
+                object_id=defect_id,
+                severity="重大" if (aged or major) else "高",
+                title="严重缺陷长期未关闭" if aged else "未关闭严重缺陷",
+                detail=f"{row[5] or defect_id}；当前状态为{row[13] or '空'}{aging}。",
+                recommendation=(
+                    "严重缺陷挂账已超过4周，需制定关闭计划并升级跟踪。"
+                    if aged else
+                    "明确根因、修复版本、完成日、回归范围和验证证据。"
+                ),
+                owner=str(row[8] or "未指定"), requires_approval=major or aged,
                 evidence=(Evidence(quality_file.name, defects.title, defect_id, row_number),),
             ))
 

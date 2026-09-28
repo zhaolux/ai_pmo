@@ -47,7 +47,57 @@ def save_deliverable_book(path: Path) -> None:
     book.save(path)
 
 
-class QualityAcceptanceAgentTests(unittest.TestCase):
+def save_quality_book_with_defect(path: Path, found: datetime, level: str) -> None:
+    book = Workbook()
+    overview = book.active
+    overview.title = "质量总览"
+    for _ in range(9):
+        overview.append([])
+    defects = book.create_sheet("缺陷台账")
+    for _ in range(4):
+        defects.append([])
+    defects.append([
+        "BUG-100", found, "系统测试", "REQ-001", "TS-001",
+        "合同无法提交", level, "主流程阻断", "高级开发人员",
+        "代码", "修复", datetime(2026, 9, 19), "V1", "修复中",
+    ])
+    book.create_sheet("UAT验收")
+    book.save(path)
+
+
+class DefectAgingTests(unittest.TestCase):
+    def test_aging_over_4_weeks_escalates_to_major(self):
+        with tempfile.TemporaryDirectory() as folder:
+            quality = Path(folder) / "quality.xlsx"
+            deliverable = Path(folder) / "deliverable.xlsx"
+            save_quality_book_with_defect(quality, datetime(2026, 7, 1), "高")
+            save_deliverable_book(deliverable)
+
+            result = analyze_quality_acceptance(quality, deliverable, date(2026, 9, 18))
+
+            finding = next(f for f in result.findings if f.object_id == "BUG-100")
+            self.assertEqual(finding.severity, "重大")
+            self.assertEqual(finding.title, "严重缺陷长期未关闭")
+            self.assertIn("已挂账11周", finding.detail)
+            self.assertIn("2026-07-01", finding.detail)
+            self.assertTrue(finding.requires_approval)
+
+    def test_aging_under_4_weeks_keeps_severity_and_adds_weeks(self):
+        with tempfile.TemporaryDirectory() as folder:
+            quality = Path(folder) / "quality.xlsx"
+            deliverable = Path(folder) / "deliverable.xlsx"
+            save_quality_book_with_defect(quality, datetime(2026, 9, 10), "高")
+            save_deliverable_book(deliverable)
+
+            result = analyze_quality_acceptance(quality, deliverable, date(2026, 9, 18))
+
+            finding = next(f for f in result.findings if f.object_id == "BUG-100")
+            self.assertEqual(finding.severity, "高")
+            self.assertEqual(finding.title, "未关闭严重缺陷")
+            self.assertIn("已挂账1周", finding.detail)
+
+
+if __name__ == "__main__":
     def test_flags_due_gate_and_open_critical_defect(self):
         with tempfile.TemporaryDirectory() as folder:
             quality = Path(folder) / "quality.xlsx"

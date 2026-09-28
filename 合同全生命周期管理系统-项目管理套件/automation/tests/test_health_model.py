@@ -71,7 +71,11 @@ class HealthModelTests(unittest.TestCase):
             )
             resource.append(row)
             book.save(path)
-            result = analyze_schedule_resource(path, date(2026, 9, 23))
+            risk_book = Workbook()
+            risk_book.active.title = "风险登记册"
+            risk_path = Path(folder) / "risk.xlsx"
+            risk_book.save(risk_path)
+            result = analyze_schedule_resource(path, risk_path, date(2026, 9, 23))
         overload = [item for item in result.findings if item.finding_id.startswith("RES-")]
         self.assertEqual(len(overload), 1)
         self.assertEqual(overload[0].severity, "高")

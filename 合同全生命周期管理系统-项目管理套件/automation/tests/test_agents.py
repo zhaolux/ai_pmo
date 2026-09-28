@@ -122,13 +122,64 @@ class AgentTests(unittest.TestCase):
             save_plan(plan)
             save_risk(risk)
             save_change(change)
-            schedule = analyze_schedule_resource(plan, date(2026, 9, 18))
+            schedule = analyze_schedule_resource(plan, risk, date(2026, 9, 18))
             risk_result = analyze_risk_issue(risk, change, date(2026, 9, 18))
             self.assertEqual({f.object_id for f in schedule.findings}, {"T001", "T002"})
             self.assertEqual(
                 {f.object_id for f in risk_result.findings},
                 {"RSK-001", "ISS-001", "CHG-001", "DEC-001"},
             )
+
+class DelayedTaskRiskCrossCheckTests(unittest.TestCase):
+    def save_plan_overdue(self, path: Path) -> None:
+        book = Workbook()
+        sheet = book.active
+        sheet.title = "项目总控台账"
+        for _ in range(3):
+            sheet.append([None] * 30)
+        overdue = [None] * 30
+        overdue[0], overdue[4], overdue[6], overdue[7] = "T099", "逾期任务", "进行中", "项目经理"
+        overdue[8], overdue[9] = datetime(2026, 9, 1), datetime(2026, 9, 10)
+        sheet.append(overdue)
+        book.save(path)
+
+    def save_risk_with_text(self, path: Path, text: str) -> None:
+        book = Workbook()
+        sheet = book.active
+        sheet.title = "风险登记册"
+        for _ in range(8):
+            sheet.append([])
+        row = [None] * 44
+        row[0], row[1], row[22], row[28], row[33] = "RSK-100", text, "技术经理", "处理中", "中"
+        sheet.append(row)
+        book.save(path)
+
+    def test_delayed_task_covered_by_risk_register_not_flagged(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            plan, risk = root / "plan.xlsx", root / "risk.xlsx"
+            self.save_plan_overdue(plan)
+            self.save_risk_with_text(risk, "逾期风险关联T099")
+            result = analyze_schedule_resource(plan, risk, date(2026, 9, 18))
+            self.assertNotIn(
+                "SCH-T099-NORISK",
+                {f.finding_id for f in result.findings},
+            )
+
+    def test_delayed_task_without_risk_coverage_flagged(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            plan, risk = root / "plan.xlsx", root / "risk.xlsx"
+            self.save_plan_overdue(plan)
+            self.save_risk_with_text(risk, "无关风险")
+            result = analyze_schedule_resource(plan, risk, date(2026, 9, 18))
+            finding = next(f for f in result.findings if f.finding_id == "SCH-T099-NORISK")
+            self.assertEqual(finding.severity, "中")
+            self.assertEqual(finding.title, "延期任务未关联风险登记")
+            self.assertEqual(finding.owner, "项目经理")
+            self.assertFalse(finding.requires_approval)
+            self.assertIn("T099", finding.detail)
+
 
 class RiskIssueGradingTests(unittest.TestCase):
     def save_risk_rows(self, path: Path, rows: list[dict]) -> None:

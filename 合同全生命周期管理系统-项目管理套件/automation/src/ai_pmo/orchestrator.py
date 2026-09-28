@@ -115,7 +115,7 @@ def run_agents(
     deliverable = resolve_current(suite, "deliverable")
     communication = resolve_current(suite, "communication")
     results = [
-        analyze_schedule_resource(plan, as_of),
+        analyze_schedule_resource(plan, risk, as_of),
         analyze_risk_issue(risk, change, as_of),
         analyze_cost_contract(cost, as_of),
         analyze_quality_acceptance(quality, deliverable, as_of),
