@@ -55,12 +55,12 @@ class DailyRunTests(unittest.TestCase):
         steps = build_daily_steps(suite, date(2026, 9, 21), 'python3')
         self.assertEqual(
             [step.name for step in steps],
-            ['数据主源审计', '数据联动审计', '接口快照同步预览', '项目组合联动审计', 'AI PMO全量刷新预览', '成本刷新预览', '成本口径G15联动预览', 'Agent输出预览', '周报输出预览'],
+            ['数据主源审计', '数据联动审计', '接口快照同步预览', '项目组合联动审计', 'AI PMO全量刷新预览', '成本刷新预览', '成本口径G15联动预览', 'Agent输出预览', '周报输出预览', 'AI解释输出预览'],
         )
         flattened = [argument for step in steps for argument in step.command]
         self.assertNotIn('--apply', flattened)
         self.assertNotIn('--replace-generated', flattened)
-        self.assertEqual(flattened.count('--preview-targets'), 2)
+        self.assertEqual(flattened.count('--preview-targets'), 3)
         self.assertTrue(all(
             step.command[step.command.index('-m') + 1] == 'ai_pmo'
             for step in steps if '-m' in step.command
@@ -72,8 +72,11 @@ class DailyRunTests(unittest.TestCase):
         )
         agent = next(step for step in steps if step.name == 'Agent分析')
         weekly = next(step for step in steps if step.name == '周报生成')
+        explain = next(step for step in steps if step.name == 'AI解释')
         self.assertNotIn('--preview-targets', agent.command)
         self.assertNotIn('--preview-targets', weekly.command)
+        self.assertNotIn('--preview-targets', explain.command)
+        self.assertEqual(explain.command[explain.command.index('-m') + 1], 'ai_pmo')
         self.assertNotIn('--apply', [arg for step in steps for arg in step.command])
 
     def test_stops_after_first_failed_step(self):

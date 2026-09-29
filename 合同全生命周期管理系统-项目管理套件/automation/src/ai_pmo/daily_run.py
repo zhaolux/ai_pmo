@@ -45,6 +45,7 @@ def build_daily_steps(
     date_text = report_date.isoformat()
     agent_arguments = () if generate_derived else ('--preview-targets',)
     weekly_arguments = () if generate_derived else ('--preview-targets',)
+    explain_arguments = () if generate_derived else ('--preview-targets',)
     return [
         DailyStep('数据主源审计', (
             python_executable, str(automation / 'scripts' / 'audit_source_ownership.py'),
@@ -81,6 +82,10 @@ def build_daily_steps(
         DailyStep('周报生成' if generate_derived else '周报输出预览', (
             python_executable, '-m', 'ai_pmo', 'weekly-report', '--date', date_text,
             *weekly_arguments,
+        )),
+        DailyStep('AI解释' if generate_derived else 'AI解释输出预览', (
+            python_executable, '-m', 'ai_pmo', 'explain', '--date', date_text,
+            *explain_arguments,
         )),
     ]
 
