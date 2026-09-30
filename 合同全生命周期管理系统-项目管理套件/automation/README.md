@@ -163,7 +163,7 @@ python3 scripts/audit_migration_gates.py \
 ./run.sh explain --date 2026-09-18
 ```
 
-运行前需已执行同日期的`agents`命令。命令从当日报告中优先选取需审批、严重度最高的前 5 条发现，把已核实事实、证据出处和数据上下文（同规则命中数、责任人压力、历史期数）组装为提示词，调用 OpenAI 兼容接口生成"原因分析/情景建议/风险提示"三段解释，写入`outputs/agents/agent-explanations-YYYYMMDD.json`。模型服务通过环境变量配置：`AI_PMO_LLM_API_KEY`（必填，缺失时全部条目标记"未配置模型密钥跳过"，命令仍正常退出）、`AI_PMO_LLM_BASE_URL`（默认 `https://api.moonshot.cn/v1`）、`AI_PMO_LLM_MODEL`（默认 `moonshot-v1-8k`）。单条调用失败只标记该条错误，不中断其余条目；密钥只用于请求头，不写入任何输出或日志。解释仅为建议、不构成审批结论，不修改任何源台账或 Agent 报告本体。
+运行前需已执行同日期的`agents`命令。命令从当日报告中优先选取需审批、严重度最高的前 5 条发现，把已核实事实、证据出处和数据上下文（同规则命中数、责任人压力、历史期数）组装为提示词，调用 OpenAI 兼容接口生成"原因分析/情景建议/风险提示"三段解释，写入`outputs/agents/agent-explanations-YYYYMMDD.json`。模型服务通过环境变量配置：`AI_PMO_LLM_API_KEY`（必填，缺失时全部条目标记"未配置模型密钥跳过"，命令仍正常退出）、`AI_PMO_LLM_BASE_URL`（默认 `https://api.moonshot.cn/v1`）、`AI_PMO_LLM_MODEL`（默认 `moonshot-v1-8k`）。已验证可用的 Kimi 编码端点配置：`AI_PMO_LLM_BASE_URL=https://api.kimi.com/coding/v1`、`AI_PMO_LLM_MODEL=k3-256k`（该端点仅接受 temperature=1，客户端因此不发送 temperature 参数）；若复用 shell 中已有的 `KIMI_API_KEY`，可用 `export AI_PMO_LLM_API_KEY="$KIMI_API_KEY"` 引用而不重复保存密钥。单条调用失败只标记该条错误，不中断其余条目；密钥只用于请求头，不写入任何输出或日志。解释仅为建议、不构成审批结论，不修改任何源台账或 Agent 报告本体。
 
 架构、字段和权限说明见`docs/AI_PMO_AGENT_ARCHITECTURE.md`。
 同日期 Agent 报告、周报、决策简报和 AI 解释默认拒绝覆盖。确需重生成纯派生输出时，显式添加 `--replace-generated`，例如 `./run.sh agents --date 2026-09-18 --replace-generated`；该参数不适用于 `build/run`，也不代表可覆盖人工审批结论。外发前仍应核对数据截止日、证据和人工确认结论。

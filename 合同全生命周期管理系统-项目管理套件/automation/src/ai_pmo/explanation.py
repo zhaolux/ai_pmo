@@ -74,7 +74,6 @@ class OpenAICompatibleClient:
             data=json.dumps({
                 "model": self.model,
                 "messages": [{"role": "user", "content": prompt}],
-                "temperature": 0.3,
             }).encode("utf-8"),
             headers={
                 "Content-Type": "application/json",

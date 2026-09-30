@@ -148,6 +148,7 @@ class LlmConfigTests(unittest.TestCase):
         body = json.loads(request.data.decode())
         self.assertEqual(body["model"], "m")
         self.assertEqual(body["messages"][0]["content"], "提示词")
+        self.assertNotIn("temperature", body)
 
 
 class CliDispatchTests(unittest.TestCase):
