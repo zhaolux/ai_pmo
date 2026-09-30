@@ -145,6 +145,27 @@ class ApplyGenerationTests(unittest.TestCase):
             self.assertEqual(iteration.cell(row=row_t1, column=5).value, "后端")
             self.assertEqual(iteration.cell(row=row_t1, column=11).value, datetime(2026, 9, 26))
 
+    def test_apply_creates_week_dropdown_with_named_range(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "plan.xlsx"
+            save_plan_book(path)
+            apply_generation(path)
+            book = load_workbook(path)
+            control = book["项目总控台账"]
+            self.assertIn("迭代周列表", book.defined_names)
+            validations = control.data_validations.dataValidation
+            self.assertTrue(any("迭代周列表" in str(v.formula1) for v in validations))
+            self.assertTrue(any("AF4" in str(v.sqref) for v in validations))
+            iteration = book["周迭代计划"]
+            self.assertEqual(iteration.cell(row=3, column=17).value, "迭代周选项")
+            self.assertEqual(iteration.cell(row=4, column=17).value, "2026-W01")
+            self.assertEqual(iteration.cell(row=4 + 77, column=17).value, "2027-W26")
+            # 重复生成不叠加验证
+            apply_generation(path)
+            book = load_workbook(path)
+            validations = book["项目总控台账"].data_validations.dataValidation
+            self.assertEqual(sum("迭代周列表" in str(v.formula1) for v in validations), 1)
+
     def test_unassigned_task_row_is_cleared_on_regeneration(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "plan.xlsx"

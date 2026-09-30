@@ -24,6 +24,12 @@ DETAIL_START = 31
 DETAIL_END = 610
 WEEK_COLUMN = 32  # 项目总控台账 AF 列
 DATE_FORMAT = "yyyy\\-mm\\-dd"
+WEEK_OPTIONS_COLUMN = 17  # 周迭代计划 Q 列，迭代周下拉选项
+WEEK_OPTIONS_HEADER = "迭代周选项"
+WEEK_OPTION_FIRST = (2026, 1)
+WEEK_OPTION_LAST = (2027, 26)
+WEEK_DROPDOWN_RANGE = "AF4:AF138"
+WEEK_DROPDOWN_NAME = "迭代周列表"
 
 # 明细列 → 项目总控台账列字母（按表头语义：负责人=主责人H，计划开始/完成=I/J）
 DETAIL_SOURCES = {"C": "E", "D": "F", "F": "H", "G": "I", "H": "J", "I": "M", "J": "G"}
@@ -113,6 +119,48 @@ def _copy_style(template_cell, target_cell) -> None:
     target_cell._style = copy(template_cell._style)
 
 
+def _all_week_options() -> list[str]:
+    weeks: list[str] = []
+    year, number = WEEK_OPTION_FIRST
+    end_year, end_number = WEEK_OPTION_LAST
+    while (year, number) <= (end_year, end_number):
+        weeks.append(f"{year}-W{number:02d}")
+        number += 1
+        if number > 52:
+            year, number = year + 1, 1
+    return weeks
+
+
+def ensure_week_dropdown(workbook) -> None:
+    """维护迭代周下拉：周迭代计划 Q 列选项 + 命名范围 + 总控 AF 列数据验证。"""
+    from openpyxl.worksheet.datavalidation import DataValidation
+    from openpyxl.workbook.defined_name import DefinedName
+
+    iteration = workbook[ITERATION_SHEET]
+    control = workbook[CONTROL_SHEET]
+    options = _all_week_options()
+    iteration.cell(row=3, column=WEEK_OPTIONS_COLUMN, value=WEEK_OPTIONS_HEADER)
+    for index, week in enumerate(options):
+        iteration.cell(row=WEEK_OPTIONS_START + index, column=WEEK_OPTIONS_COLUMN, value=week)
+    last_row = WEEK_OPTIONS_START + len(options) - 1
+    workbook.defined_names[WEEK_DROPDOWN_NAME] = DefinedName(
+        WEEK_DROPDOWN_NAME,
+        attr_text=f"{ITERATION_SHEET}!${get_column_letter(WEEK_OPTIONS_COLUMN)}${WEEK_OPTIONS_START}:${get_column_letter(WEEK_OPTIONS_COLUMN)}${last_row}",
+    )
+    control.data_validations.dataValidation = [
+        validation for validation in control.data_validations.dataValidation
+        if WEEK_DROPDOWN_NAME not in str(validation.formula1 or "")
+    ]
+    validation = DataValidation(type="list", formula1=f"={WEEK_DROPDOWN_NAME}", allow_blank=True)
+    validation.error = "请选择列表中的 ISO 周（如 2026-W40），或留空"
+    validation.errorTitle = "迭代周格式"
+    control.add_data_validation(validation)
+    validation.add(WEEK_DROPDOWN_RANGE)
+
+
+WEEK_OPTIONS_START = 4
+
+
 def apply_generation(plan_path: Path) -> GenerationReport:
     report = plan_generation(plan_path)
     if report.errors:
@@ -197,6 +245,8 @@ def apply_generation(plan_path: Path) -> GenerationReport:
         for row_number in range(DETAIL_START + len(sorted_tasks), DETAIL_END + 1):
             for column in range(1, 16):
                 iteration.cell(row=row_number, column=column).value = None
+
+        ensure_week_dropdown(workbook)
 
         workbook.save(plan_path)
         report.applied = True
