@@ -288,7 +288,11 @@ class SyncSafetyTests(unittest.TestCase):
                 sync, "extract_two_week_watchlist", return_value=[]
             ), patch.object(sync, "extract_milestone_overview", return_value=[]
             ), patch.object(sync, "extract_management_focus", return_value=[]
-            ), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
+            ), patch.object(sync, "extract_iteration_metrics", return_value={
+                "week": "", "completion_rate": "", "load_rate": "",
+            }), patch.object(sync, "extract_forecast_variance", return_value={
+                "evaluated": 0, "over": 0, "avg": "",
+            }), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
                 sync, "find_next_log_row", return_value=(5, [])
             ), patch.object(sync, "ensure_watchlist_manual_alignment"
             ), patch.object(sync, "find_stale_watchlist_rows", return_value=[6]
@@ -319,7 +323,11 @@ class SyncSafetyTests(unittest.TestCase):
                 sync, "extract_two_week_watchlist", return_value=[{"task_id": "T002"}]
             ), patch.object(sync, "extract_milestone_overview", return_value=[]
             ), patch.object(sync, "extract_management_focus", return_value=[]
-            ), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
+            ), patch.object(sync, "extract_iteration_metrics", return_value={
+                "week": "", "completion_rate": "", "load_rate": "",
+            }), patch.object(sync, "extract_forecast_variance", return_value={
+                "evaluated": 0, "over": 0, "avg": "",
+            }), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
                 sync, "find_next_log_row", return_value=(5, [])
             ), patch.object(sync, "ensure_watchlist_manual_alignment", side_effect=RuntimeError("人工列错配")), patch.object(
                 sync, "backup_workbook"
@@ -344,6 +352,148 @@ class SyncSafetyTests(unittest.TestCase):
             sheet.cell(row_number, 2, value)
         book.save(path)
         return path
+
+    def _make_plan_with_iteration_summary(self, suite: Path) -> Path:
+        path = suite / "02_计划与进度管理" / "计划与进度管理-V1.xlsx"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        book = Workbook()
+        iteration = book.active
+        iteration.title = "周迭代计划"
+        iteration.append(["周迭代计划与完成跟踪"])
+        iteration.append([])
+        iteration.append([])
+        iteration.append(["迭代周", "开始日期", "结束日期", "周目标", "原周计划摘要", "计划完成阶段数",
+                          "实际完成阶段数", "承诺完成率", "延期数", "暂停数", "周状态", "复盘结论"])
+        iteration.append(["2026-W40", date(2026, 9, 28), date(2026, 10, 4), None, None,
+                          4, 1, 0.25, 3, 0, "延期", None, 120, 1.333333])
+        iteration.append(["2026-W41", date(2026, 10, 5), date(2026, 10, 11), None, None,
+                          2, 0, 0.0, 0, 0, "进行中", None, 80, 1.0])
+        book.save(path)
+        return path
+
+    def test_extract_iteration_metrics_picks_week_containing_as_of(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            plan = self._make_plan_with_iteration_summary(suite)
+            register(suite, {"plan": plan})
+            result = sync.extract_iteration_metrics(suite, date(2026, 10, 2))
+            self.assertEqual(result["week"], "2026-W40")
+            self.assertEqual(result["completion_rate"], 0.25)
+            self.assertAlmostEqual(result["load_rate"], 1.3333, places=4)
+
+    def test_extract_iteration_metrics_falls_back_to_latest_started_week(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            plan = self._make_plan_with_iteration_summary(suite)
+            register(suite, {"plan": plan})
+            result = sync.extract_iteration_metrics(suite, date(2026, 10, 20))
+            self.assertEqual(result["week"], "2026-W41")
+
+    def test_extract_iteration_metrics_blank_when_no_weeks(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            path = suite / "02_计划与进度管理" / "计划与进度管理-V1.xlsx"
+            path.parent.mkdir(parents=True)
+            book = Workbook()
+            book.active.title = "周迭代计划"
+            book.save(path)
+            register(suite, {"plan": path})
+            result = sync.extract_iteration_metrics(suite, date(2026, 10, 2))
+            self.assertEqual(result, {"week": "", "completion_rate": "", "load_rate": ""})
+
+    def test_extract_forecast_variance_counts_deviations(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            path = suite / "02_计划与进度管理" / "计划与进度管理-V1.xlsx"
+            path.parent.mkdir(parents=True)
+            book = Workbook()
+            control = book.active
+            control.title = "项目总控台账"
+            rows = [("T001", 5), ("T002", -3), ("T003", ""), ("T004", None)]
+            for index, (task_id, deviation) in enumerate(rows, start=4):
+                control.cell(index, 1, task_id)
+                control.cell(index, 34, deviation)  # AH 列=基线偏差天数
+            book.save(path)
+            register(suite, {"plan": path})
+            result = sync.extract_forecast_variance(suite)
+            self.assertEqual(result["evaluated"], 2)
+            self.assertEqual(result["over"], 1)
+            self.assertEqual(result["avg"], 1.0)
+
+    def test_extract_forecast_variance_blank_avg_when_none_evaluated(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            path = suite / "02_计划与进度管理" / "计划与进度管理-V1.xlsx"
+            path.parent.mkdir(parents=True)
+            book = Workbook()
+            control = book.active
+            control.title = "项目总控台账"
+            control.cell(4, 1, "T001")
+            book.save(path)
+            register(suite, {"plan": path})
+            result = sync.extract_forecast_variance(suite)
+            self.assertEqual(result, {"evaluated": 0, "over": 0, "avg": ""})
+
+    def test_full_sync_writes_iteration_and_forecast_interface_cells(self):
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            names = {
+                "02_计划与进度管理": "计划与进度管理-V1.xlsx",
+                "01_项目启动与治理": "项目启动与治理-V1.xlsx",
+                "06_风险问题与变更": "风险管理-V1.xlsx",
+                "11_AI_PMO中心": "AI PMO中心-V1.xlsx",
+            }
+            for directory, name in names.items():
+                path = suite / directory / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"fixture")
+            target = suite / "11_AI_PMO中心" / names["11_AI_PMO中心"]
+            register(suite, {
+                "plan": suite / "02_计划与进度管理" / names["02_计划与进度管理"],
+                "gate": suite / "01_项目启动与治理" / names["01_项目启动与治理"],
+                "risk": suite / "06_风险问题与变更" / names["06_风险问题与变更"],
+                "ai_pmo": target,
+            })
+            metrics = sync.ProjectMetrics(**{field.name: 0 for field in fields(sync.ProjectMetrics)})
+            with patch.object(sync, "extract_project_metrics", return_value=metrics), patch.object(
+                sync, "extract_two_week_watchlist", return_value=[]
+            ), patch.object(sync, "extract_milestone_overview", return_value=[]
+            ), patch.object(sync, "extract_management_focus", return_value=[]
+            ), patch.object(sync, "extract_iteration_metrics", return_value={
+                "week": "2026-W40", "completion_rate": 0.25, "load_rate": 1.3333,
+            }), patch.object(sync, "extract_forecast_variance", return_value={
+                "evaluated": 3, "over": 1, "avg": 2.5,
+            }), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
+                sync, "find_next_log_row", return_value=(5, [])
+            ), patch.object(sync, "ensure_watchlist_manual_alignment"
+            ), patch.object(sync, "find_stale_watchlist_rows", return_value=[]
+            ), patch.object(sync, "backup_workbook", return_value=Path(folder) / "backup.xlsx"), patch.object(
+                sync.shutil, "which", return_value="officecli"
+            ), patch.object(sync.subprocess, "run", side_effect=lambda args, **kwargs: commands.extend(
+                json.loads(Path(args[args.index("--input") + 1]).read_text(encoding="utf-8"))
+            )):
+                commands = []
+                sync.sync_ai_pmo(suite, date(2026, 10, 2), expected_target=target)
+
+            by_path = {command["path"]: command for command in commands}
+            # 数据接口新指标行
+            self.assertEqual(by_path["/_数据接口/B44"]["props"]["value"], 0.25)
+            self.assertEqual(by_path["/_数据接口/B45"]["props"]["value"], 1.3333)
+            self.assertEqual(by_path["/_数据接口/B46"]["props"]["value"], 1)
+            self.assertEqual(by_path["/_数据接口/B47"]["props"]["value"], 2.5)
+            self.assertEqual(by_path["/_数据接口/B48"]["props"]["value"], "2026-W40")
+            self.assertEqual(by_path["/_数据接口/A44"]["props"]["value"], "迭代承诺完成率")
+            # 驾驶舱与周报公式落位
+            self.assertIn("B44", by_path["/项目驾驶舱/J9"]["props"]["formula"])
+            self.assertIn("B45", by_path["/项目驾驶舱/K9"]["props"]["formula"])
+            self.assertEqual(by_path["/项目驾驶舱/K9"]["props"]["numberformat"], "0%")
+            self.assertIn("B46", by_path["/项目驾驶舱/L9"]["props"]["formula"])
+            self.assertIn("B47", by_path["/项目驾驶舱/M9"]["props"]["formula"])
+            self.assertIn("B48", by_path["/项目驾驶舱/N9"]["props"]["formula"])
+            self.assertIn("B44", by_path["/PMO周报/B35"]["props"]["formula"])
+            self.assertIn("B45", by_path["/PMO周报/B36"]["props"]["formula"])
+            self.assertIn("B46", by_path["/PMO周报/B37"]["props"]["formula"])
+            sync.validate_refresh_commands(commands, log_row=5)
 
     def test_extract_migration_metrics_reads_registered_interface(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -456,7 +606,11 @@ class SyncSafetyTests(unittest.TestCase):
                 sync, "extract_two_week_watchlist", return_value=[]
             ), patch.object(sync, "extract_milestone_overview", return_value=milestones
             ), patch.object(sync, "extract_management_focus", return_value=[{"item": "POC选型", "next": "9月25日前完成", "owner": "技术经理", "level": "重大"}]
-            ), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
+            ), patch.object(sync, "extract_iteration_metrics", return_value={
+                "week": "", "completion_rate": "", "load_rate": "",
+            }), patch.object(sync, "extract_forecast_variance", return_value={
+                "evaluated": 0, "over": 0, "avg": "",
+            }), patch.object(sync, "collect_data_quality_issues", return_value=[]), patch.object(
                 sync, "find_next_log_row", return_value=(5, [])
             ), patch.object(sync, "ensure_watchlist_manual_alignment"
             ), patch.object(sync, "find_stale_watchlist_rows", return_value=[]), patch.object(

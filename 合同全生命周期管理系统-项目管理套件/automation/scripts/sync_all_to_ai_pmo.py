@@ -236,7 +236,8 @@ def validate_refresh_commands(commands: list[dict], log_row: int) -> None:
         "F12", "F13", "F15", "F16",
         "I18", "J18", "K18", "L18", "I19", "J19", "K19", "L19",
     } | {f"{column}{row}" for column in "IJKLM" for row in range(12, 17)} \
-      | {f"{column}{row}" for column in "ABCDE" for row in range(20, 25)}
+      | {f"{column}{row}" for column in "ABCDE" for row in range(20, 25)} \
+      | {f"{column}9" for column in "JKLMN"}
     diagnosis = {"A2", "B4", "C11", "C12", "C13", "C14", "C16"} | {
         f"{column}7" for column in "ABCDEFGH"
     }
@@ -244,7 +245,7 @@ def validate_refresh_commands(commands: list[dict], log_row: int) -> None:
         "使用说明": {"B9"},
         "项目驾驶舱": dashboard,
         "AI项目诊断": diagnosis,
-        "PMO周报": {"B3", "B29", "B30", "B31", "B32", "B33", "B34"},
+        "PMO周报": {"B3", "B29", "B30", "B31", "B32", "B33", "B34", "B35", "B36", "B37"},
     }
     for command in commands:
         path = command.get("path", "")
@@ -256,8 +257,8 @@ def validate_refresh_commands(commands: list[dict], log_row: int) -> None:
         column, row = match.group(1), int(match.group(2))
         allowed = cell in fixed.get(sheet, set())
         if sheet == "_数据接口":
-            allowed = (column == "A" and 22 <= row <= 42) or (
-                column == "B" and (row == 5 or 7 <= row <= 15 or 22 <= row <= 42)
+            allowed = (column == "A" and 22 <= row <= 48) or (
+                column == "B" and (row == 5 or 7 <= row <= 15 or 22 <= row <= 48)
             )
         elif sheet == "两周督办":
             allowed = column in set("ABCDEFGHIJK") and row >= 5
@@ -473,6 +474,67 @@ def extract_migration_metrics(suite: Path) -> dict[str, object] | None:
         workbook.close()
 
 
+def extract_iteration_metrics(suite: Path, as_of: date) -> dict[str, object]:
+    """当前迭代周及承诺完成率/负载率：取包含 as_of 的迭代周，无则取已开始的最晚一周。"""
+    plan_path = resolve_current(suite, "plan")
+    workbook = load_workbook(plan_path, data_only=True, read_only=True)
+    try:
+        sheet = workbook["周迭代计划"]
+        current: dict[str, object] | None = None
+        fallback: dict[str, object] | None = None
+        for row in sheet.iter_rows(min_row=5, max_row=28, values_only=True):
+            week = row[0]
+            if not week:
+                continue
+            start, end = _as_date(row[1]), _as_date(row[2])
+            rate = row[7] if len(row) > 7 else None
+            load = row[13] if len(row) > 13 else None
+            entry: dict[str, object] = {
+                "week": str(week),
+                "completion_rate": round(float(rate), 4) if isinstance(rate, (int, float)) else "",
+                "load_rate": round(float(load), 4) if isinstance(load, (int, float)) else "",
+                "_start": start,
+            }
+            if start and end and start <= as_of <= end:
+                current = entry
+                break
+            if start and start <= as_of and (
+                fallback is None or start > fallback["_start"]  # type: ignore[operator]
+            ):
+                fallback = entry
+        chosen = current or fallback
+        if chosen is None:
+            return {"week": "", "completion_rate": "", "load_rate": ""}
+        return {
+            "week": chosen["week"],
+            "completion_rate": chosen["completion_rate"],
+            "load_rate": chosen["load_rate"],
+        }
+    finally:
+        workbook.close()
+
+
+def extract_forecast_variance(suite: Path) -> dict[str, object]:
+    """总控预测口径：已评估（AG 有预测完成日期）任务数、预测超基线任务数、平均偏差天数。"""
+    plan_path = resolve_current(suite, "plan")
+    workbook = load_workbook(plan_path, data_only=True, read_only=True)
+    try:
+        sheet = workbook["项目总控台账"]
+        deviations = [
+            float(row[33])
+            for row in sheet.iter_rows(min_row=4, max_row=138, values_only=True)
+            if row[0] and len(row) > 33 and isinstance(row[33], (int, float))
+        ]
+        evaluated = len(deviations)
+        return {
+            "evaluated": evaluated,
+            "over": sum(dev > 0 for dev in deviations),
+            "avg": round(sum(deviations) / evaluated, 1) if evaluated else "",
+        }
+    finally:
+        workbook.close()
+
+
 def ensure_watchlist_manual_alignment(path: Path, watchlist: list[dict[str, object]]) -> None:
     """Reject a refresh that would attach manually entered L:M values to another task."""
     workbook = load_workbook(path, data_only=False, read_only=True)
@@ -519,6 +581,8 @@ def sync_ai_pmo(
     stale_watchlist_rows = find_stale_watchlist_rows(ai_pmo, new_count=len(watchlist))
     quality_issues = collect_data_quality_issues(suite, as_of)
     migration_metrics = extract_migration_metrics(suite)
+    iteration_metrics = extract_iteration_metrics(suite, as_of)
+    forecast_variance = extract_forecast_variance(suite)
     log_row, existing_ids = find_next_log_row(ai_pmo)
     log_record = build_run_log_record(next_run_id(existing_ids, as_of), as_of, metrics, quality_issues)
     sources = {
@@ -540,6 +604,15 @@ def sync_ai_pmo(
     commands.extend([
         {"command": "set", "path": "/项目驾驶舱/M6", "props": {"formula": "'_数据接口'!B37&\"/\"&'_数据接口'!B36"}},
         {"command": "set", "path": "/项目驾驶舱/N6", "props": {"formula": "'_数据接口'!B38"}},
+        # 混合管理三指标：迭代承诺完成率/负载率/预测偏差（_数据接口 44-48 行）
+        {"command": "set", "path": "/项目驾驶舱/J9", "props": {"formula": "'_数据接口'!B44", "numberformat": "0%"}},
+        {"command": "set", "path": "/项目驾驶舱/K9", "props": {"formula": "'_数据接口'!B45", "numberformat": "0%"}},
+        {"command": "set", "path": "/项目驾驶舱/L9", "props": {"formula": "'_数据接口'!B46"}},
+        {"command": "set", "path": "/项目驾驶舱/M9", "props": {"formula": "'_数据接口'!B47"}},
+        {"command": "set", "path": "/项目驾驶舱/N9", "props": {"formula": "'_数据接口'!B48"}},
+        {"command": "set", "path": "/PMO周报/B35", "props": {"formula": "'_数据接口'!B44", "numberformat": "0%"}},
+        {"command": "set", "path": "/PMO周报/B36", "props": {"formula": "'_数据接口'!B45", "numberformat": "0%"}},
+        {"command": "set", "path": "/PMO周报/B37", "props": {"formula": "'_数据接口'!B46"}},
     ])
     values = {
         5: as_of.isoformat(), 7: sources["plan"], 8: sources["gate"], 9: sources["risk"],
@@ -554,6 +627,9 @@ def sync_ai_pmo(
         34: metrics.high_residual_risks, 35: metrics.unclosed_gates,
         36: metrics.total_milestones, 37: metrics.completed_milestones,
         38: "红" if (metrics.major_residual_risks or metrics.required_gates_not_passed or metrics.overdue_tasks) else ("黄" if (metrics.high_residual_risks or metrics.pending_decisions) else "绿"),
+        44: iteration_metrics["completion_rate"], 45: iteration_metrics["load_rate"],
+        46: forecast_variance["over"], 47: forecast_variance["avg"],
+        48: iteration_metrics["week"],
     }
     if migration_metrics is not None:
         values.update({
@@ -569,6 +645,8 @@ def sync_ai_pmo(
         37: "已完成里程碑", 38: "项目健康度",
         39: "迁移来源线索数", 40: "已盘点来源系统数",
         41: "G15目标日期", 42: "迁移门禁数",
+        44: "迭代承诺完成率", 45: "迭代负载率",
+        46: "预测超基线任务数", 47: "平均偏差天数", 48: "当前迭代周",
     }
     if migration_metrics is not None:
         commands.extend([
