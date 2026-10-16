@@ -184,6 +184,29 @@ class ApplyGenerationTests(unittest.TestCase):
             self.assertEqual(task_ids, ["T001", "T003", None])
             self.assertIsNone(iteration.cell(row=DETAIL_START + 1, column=5).value)
 
+    def test_apply_writes_capacity_and_load_rate_columns(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "plan.xlsx"
+            save_plan_book(path)
+            report = apply_generation(path)
+            self.assertEqual(report.errors, [])
+            book = load_workbook(path)
+            iteration = book["周迭代计划"]
+            # 表头
+            self.assertEqual(iteration.cell(row=4, column=13).value, "容量人时")
+            self.assertEqual(iteration.cell(row=4, column=14).value, "负载率")
+            # 容量：按资源计划周行（周开始=该周周一）汇总周计划工时；负载率=计划阶段数×40/容量
+            capacity = iteration.cell(row=SUMMARY_START, column=13).value
+            self.assertIn("SUMIFS", capacity)
+            self.assertIn("资源计划", capacity)
+            self.assertIn(f"$B{SUMMARY_START}", capacity)
+            load_rate = iteration.cell(row=SUMMARY_START, column=14).value
+            self.assertIn(f"F{SUMMARY_START}*40", load_rate)
+            self.assertIn(f"M{SUMMARY_START}", load_rate)
+            # 未用汇总行的容量/负载率一并清空，不残留旧公式
+            self.assertIsNone(iteration.cell(row=SUMMARY_START + 2, column=13).value)
+            self.assertIsNone(iteration.cell(row=SUMMARY_START + 2, column=14).value)
+
     def test_apply_refuses_on_capacity_error(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "plan.xlsx"

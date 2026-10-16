@@ -36,6 +36,13 @@ DETAIL_SOURCES = {"C": "E", "D": "F", "F": "H", "G": "I", "H": "J", "I": "M", "J
 DETAIL_MANUAL_COLUMNS = (5, 11, 14)  # E 专业阶段、K 实际完成日期、N 复盘说明
 SUMMARY_MANUAL_COLUMNS = (4, 12)  # D 周目标、L 复盘结论
 
+# 容量口径：资源计划"资源周计划"区（第 39 行起）每人有任务周 40 小时；
+# 容量人时=该周周一 SUMIFS(周计划工时)，负载率=计划完成阶段数×40/容量人时
+RESOURCE_SHEET = "资源计划"
+RESOURCE_WEEK_START = 39
+RESOURCE_WEEK_END = 2168
+SUMMARY_CAPACITY_HEADER = {13: "容量人时", 14: "负载率"}
+
 
 @dataclass
 class GenerationReport:
@@ -111,6 +118,11 @@ def _summary_formulas(row: int) -> dict[int, str]:
         9: f"=COUNTIFS($A${DETAIL_START}:$A${DETAIL_END},A{row},$L${DETAIL_START}:$L${DETAIL_END},\"是\")",
         10: f"=COUNTIFS($A${DETAIL_START}:$A${DETAIL_END},A{row},$I${DETAIL_START}:$I${DETAIL_END},\"暂停\")",
         11: f"=IF(J{row}>0,\"暂停\",IF(I{row}>0,\"延期\",IF(H{row}=1,\"已完成\",\"进行中\")))",
+        13: (
+            f'=IF($A{row}="","",SUMIFS({RESOURCE_SHEET}!$F${RESOURCE_WEEK_START}:$F${RESOURCE_WEEK_END},'
+            f'{RESOURCE_SHEET}!$B${RESOURCE_WEEK_START}:$B${RESOURCE_WEEK_END},$B{row}))'
+        ),
+        14: f'=IF(OR($A{row}="",M{row}=0),"",F{row}*40/M{row})',
     }
 
 
@@ -196,6 +208,10 @@ def apply_generation(plan_path: Path) -> GenerationReport:
 
         # 汇总区：每周一行，写入周一/周日日期与统计公式
         summary_template = iteration.cell(row=SUMMARY_START, column=1)
+        header_template = iteration.cell(row=4, column=12)  # L4 复盘结论表头样式
+        for column, header in SUMMARY_CAPACITY_HEADER.items():
+            header_cell = iteration.cell(row=4, column=column, value=header)
+            _copy_style(header_template, header_cell)
         for index, week in enumerate(report.weeks):
             row_number = SUMMARY_START + index
             monday, sunday = _week_dates(week)
@@ -213,8 +229,9 @@ def apply_generation(plan_path: Path) -> GenerationReport:
                 iteration.cell(row=row_number, column=5).value = saved[5]
             for column, formula in _summary_formulas(row_number).items():
                 iteration.cell(row=row_number, column=column, value=formula)
+            iteration.cell(row=row_number, column=14).number_format = "0%"
         for row_number in range(SUMMARY_START + len(report.weeks), SUMMARY_END + 1):
-            for column in range(1, 13):
+            for column in range(1, 15):  # 清到 N 列（容量/负载率），保留 O 列 _key
                 iteration.cell(row=row_number, column=column).value = None
 
         # 明细区：任务ID为键，其余列 INDEX/MATCH 查总控台账
