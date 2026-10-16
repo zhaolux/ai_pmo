@@ -84,3 +84,25 @@ class PlanWorkbookStructureTests(unittest.TestCase):
         self.assertIn("项目总控台账!AG4", vw.cell(4, 33).value)
         self.assertIn("项目总控台账!AH4", vw.cell(4, 34).value)
         self.assertEqual(vw.auto_filter.ref, f"A3:{get_column_letter(34)}{DATA_END}")
+
+    def test_ac_column_uses_data_interface_date(self):
+        """AC 列延期状态必须引用 _数据接口 数据日期，不允许硬编码 DATE。"""
+        for r in range(DATA_START, DATA_END + 1):
+            v = self.ws.cell(r, 29).value
+            self.assertIsInstance(v, str, f"AC{r} 应为公式字符串")
+            self.assertNotIn("DATE(20", v, f"AC{r} 仍硬编码日期: {v[:80]}")
+            self.assertIn("_数据接口", v, f"AC{r} 未引用数据接口: {v[:80]}")
+            for token in ('"已延期"', '"临近到期"', '"正常"', '"日期缺失"'):
+                self.assertIn(token, v, f"AC{r} 公式缺少分支 {token}")
+
+    def test_ac_results_cached_and_sane(self):
+        """LO 重算后的 AC 缓存值口径合法。"""
+        wbv = load_workbook(self.path, data_only=True)
+        wsv = wbv["项目总控台账"]
+        probe = wsv.cell(4, 29).value
+        if probe is None:
+            self.skipTest("AC 列无公式缓存，请先运行 LO 重算")
+        allowed = {"正常", "已延期", "临近到期", "暂停", "日期缺失", ""}
+        for r in range(DATA_START, DATA_END + 1):
+            v = wsv.cell(r, 29).value
+            self.assertIn(v, allowed, f"AC{r} 缓存值异常: {v!r}")
