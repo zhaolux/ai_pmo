@@ -184,6 +184,20 @@ class ApplyGenerationTests(unittest.TestCase):
             self.assertEqual(task_ids, ["T001", "T003", None])
             self.assertIsNone(iteration.cell(row=DETAIL_START + 1, column=5).value)
 
+    def test_detail_status_formula_converts_empty_to_blank(self):
+        """阶段状态（I 列）源为总控人工录入列，空单元格被 INDEX 读成 0，必须转空白。"""
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "plan.xlsx"
+            save_plan_book(path)
+            apply_generation(path)
+            book = load_workbook(path)
+            iteration = book["周迭代计划"]
+            status_formula = iteration.cell(row=DETAIL_START, column=9).value
+            self.assertIn("INDEX", status_formula)
+            self.assertIn("=0", status_formula)
+            self.assertLess(status_formula.index("IF("), status_formula.index("INDEX"),
+                            "空值判断应包裹 INDEX，而不是反过来")
+
     def test_apply_writes_capacity_and_load_rate_columns(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "plan.xlsx"

@@ -110,6 +110,15 @@ def _index_formula(source_column: str, row: int) -> str:
     )
 
 
+def _status_index_formula(source_column: str, row: int) -> str:
+    """状态源列（总控人工录入列）可能是真空单元格，INDEX 读成 0，须转空白。"""
+    lookup = (
+        f'INDEX(项目总控台账!{source_column}:{source_column},'
+        f'MATCH($B{row},项目总控台账!$A:$A,0))'
+    )
+    return f'=IFERROR(IF({lookup}=0,"",{lookup}),"")'
+
+
 def _summary_formulas(row: int) -> dict[int, str]:
     return {
         6: f"=COUNTIF($A${DETAIL_START}:$A${DETAIL_END},A{row})",
@@ -245,7 +254,11 @@ def apply_generation(plan_path: Path) -> GenerationReport:
             iteration.cell(row=row_number, column=2, value=task_id)
             for column_letter, source in DETAIL_SOURCES.items():
                 column = ord(column_letter) - 64
-                iteration.cell(row=row_number, column=column, value=_index_formula(source, row_number))
+                formula = (
+                    _status_index_formula(source, row_number)
+                    if source == "M" else _index_formula(source, row_number)
+                )
+                iteration.cell(row=row_number, column=column, value=formula)
             saved = detail_manual.get(task_id, {})
             for column in DETAIL_MANUAL_COLUMNS:
                 iteration.cell(row=row_number, column=column).value = saved.get(column)
