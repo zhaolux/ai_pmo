@@ -106,3 +106,38 @@ class PlanWorkbookStructureTests(unittest.TestCase):
         for r in range(DATA_START, DATA_END + 1):
             v = wsv.cell(r, 29).value
             self.assertIn(v, allowed, f"AC{r} 缓存值异常: {v!r}")
+
+    def test_profession_columns_grouped_and_collapsed_in_control(self):
+        """方案 C：总控台账 L-AA（四专业 16 列）分组折叠默认隐藏。
+
+        直接读列定义 XML 校验——openpyxl 对跨列 col 区间（如 min=18 max=19）
+        只按首列展开，逐字母查 column_dimensions 会漏判区间内的后续列。
+        """
+        from zipfile import ZipFile
+        import re
+        with ZipFile(self.path) as archive:
+            workbook_xml = archive.read("xl/workbook.xml").decode("utf-8")
+            rels_xml = archive.read("xl/_rels/workbook.xml.rels").decode("utf-8")
+            sheet_rid = re.search(
+                r'<sheet name="项目总控台账"[^>]*r:id="(rId\d+)"', workbook_xml
+            ).group(1)
+            sheet_target = re.search(
+                rf'Id="{sheet_rid}"[^>]*Target="([^"]+)"', rels_xml
+            ).group(1)
+            xml = archive.read(f"xl/{sheet_target}").decode("utf-8")
+        grouped = set()
+        for match in re.finditer(r"<col [^/>]*/>", xml):
+            tag = match.group(0)
+            min_col = int(re.search(r'min="(\d+)"', tag).group(1))
+            max_col = int(re.search(r'max="(\d+)"', tag).group(1))
+            if 'hidden="true"' in tag and 'outlineLevel="1"' in tag:
+                grouped.update(range(min_col, max_col + 1))
+        missing = [get_column_letter(i) for i in range(12, 28) if i not in grouped]
+        self.assertEqual(missing, [], f"未折叠的四专业列: {missing}")
+
+    def test_profession_columns_stay_visible_in_filter_view(self):
+        """筛选视图保留四专业列可见（快速定位时可按专业状态筛选）。"""
+        vw = self.wb["总控筛选视图"]
+        for index in range(12, 28):
+            dim = vw.column_dimensions[get_column_letter(index)]
+            self.assertFalse(dim.hidden, f"筛选视图 {get_column_letter(index)} 列被误隐藏")
