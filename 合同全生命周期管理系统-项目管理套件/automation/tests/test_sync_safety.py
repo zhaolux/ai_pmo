@@ -305,11 +305,13 @@ class SyncSafetyTests(unittest.TestCase):
                 result_target, _, _ = sync.sync_ai_pmo(suite, date(2026, 9, 20), expected_target=target)
 
             self.assertEqual(result_target, target)
-            run.assert_called_once()
+            # 两次 officecli 调用：AI PMO 中心批量刷新 + 计划簿数据日期回写
+            self.assertEqual(run.call_count, 2)
             self.assertEqual(
                 {command["path"] for command in commands if command["path"].startswith("/两周督办/")},
                 {f"/两周督办/{column}6" for column in "ABCDEFGHIJK"},
             )
+            self.assertIn("/_数据接口/B7", {command["path"] for command in commands})
 
     def test_manual_watchlist_conflict_stops_before_backup(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -494,6 +496,43 @@ class SyncSafetyTests(unittest.TestCase):
             self.assertIn("B45", by_path["/PMO周报/B36"]["props"]["formula"])
             self.assertIn("B46", by_path["/PMO周报/B37"]["props"]["formula"])
             sync.validate_refresh_commands(commands, log_row=5)
+
+    def test_refresh_plan_data_date_writes_only_interface_cell(self):
+        """数据日期回写只许触及 02 工作簿 _数据接口 B7（AC 延期判定的口径源）。"""
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            plan = suite / "02_计划与进度管理" / "计划与进度管理-V1.xlsx"
+            plan.parent.mkdir(parents=True)
+            plan.write_bytes(b"fixture")
+            register(suite, {"plan": plan})
+            captured: list[list] = []
+            payload: list[dict] = []
+
+            def fake_run(args, **kwargs):
+                captured.append(args)
+                payload.extend(json.loads(Path(args[args.index("--input") + 1]).read_text(encoding="utf-8")))
+
+            with patch.object(sync.shutil, "which", return_value="officecli"), patch.object(
+                sync.subprocess, "run", side_effect=fake_run
+            ):
+                sync.refresh_plan_data_date(suite, date(2026, 10, 19))
+
+            self.assertEqual(len(captured), 1)
+            args = captured[0]
+            self.assertEqual(args[1], "batch")
+            self.assertEqual(args[2], str(plan))
+            self.assertEqual(payload, [{
+                "command": "set",
+                "path": "/_数据接口/B7",
+                "props": {"value": "2026-10-19", "type": "date", "numberformat": "yyyy-mm-dd"},
+            }])
+
+    def test_refresh_plan_data_date_resolves_registered_plan(self):
+        """回写目标是登记的计划工作簿，未登记即报错，不按文件名猜。"""
+        with tempfile.TemporaryDirectory() as folder:
+            suite = Path(folder)
+            with self.assertRaises(FileNotFoundError):
+                sync.refresh_plan_data_date(suite, date(2026, 10, 19))
 
     def test_extract_migration_metrics_reads_registered_interface(self):
         with tempfile.TemporaryDirectory() as folder:

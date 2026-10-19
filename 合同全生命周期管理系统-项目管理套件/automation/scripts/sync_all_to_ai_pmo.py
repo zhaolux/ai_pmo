@@ -567,6 +567,30 @@ def find_stale_watchlist_rows(path: Path, *, new_count: int) -> list[int]:
         workbook.close()
 
 
+def refresh_plan_data_date(suite: Path, as_of: date) -> None:
+    """回写 02 计划工作簿 _数据接口 B7 数据日期（总控 AC 延期判定的口径源）。
+
+    每日巡检此前只刷新 11_AI_PMO中心，02 的数据日期停在初始生成日，导致 AC
+    "已延期/临近到期"按过期日期判定。写前按登记解析目标，绝不按文件名猜。
+    """
+    plan_path = resolve_current(suite, "plan")
+    officecli = shutil.which("officecli")
+    if not officecli:
+        raise RuntimeError("未找到 officecli")
+    command = {
+        "command": "set",
+        "path": "/_数据接口/B7",
+        "props": {"value": as_of.isoformat(), "type": "date", "numberformat": "yyyy-mm-dd"},
+    }
+    with tempfile.NamedTemporaryFile("w", suffix=".json", encoding="utf-8") as stream:
+        json.dump([command], stream, ensure_ascii=False)
+        stream.flush()
+        subprocess.run(
+            [officecli, "batch", str(plan_path), "--input", stream.name, "--stop-on-error"],
+            check=True,
+        )
+
+
 def sync_ai_pmo(
     suite: Path, as_of: date, *, expected_target: Path | None = None,
 ) -> tuple[Path, ProjectMetrics, Path]:
@@ -772,6 +796,7 @@ def sync_ai_pmo(
         json.dump(commands, stream, ensure_ascii=False)
         stream.flush()
         subprocess.run([officecli, "batch", str(ai_pmo), "--input", stream.name, "--stop-on-error"], check=True)
+    refresh_plan_data_date(suite, as_of)
     return ai_pmo, metrics, backup
 
 

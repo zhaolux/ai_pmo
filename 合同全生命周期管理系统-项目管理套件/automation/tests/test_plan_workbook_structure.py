@@ -115,18 +115,23 @@ class PlanWorkbookStructureTests(unittest.TestCase):
         """
         from zipfile import ZipFile
         import re
+        import xml.etree.ElementTree as ET
         with ZipFile(self.path) as archive:
-            workbook_xml = archive.read("xl/workbook.xml").decode("utf-8")
-            rels_xml = archive.read("xl/_rels/workbook.xml.rels").decode("utf-8")
-            sheet_rid = re.search(
-                r'<sheet name="项目总控台账"[^>]*r:id="(rId\d+)"', workbook_xml
-            ).group(1)
-            sheet_target = re.search(
-                rf'Id="{sheet_rid}"[^>]*Target="([^"]+)"', rels_xml
-            ).group(1)
+            workbook_root = ET.fromstring(archive.read("xl/workbook.xml"))
+            rels_root = ET.fromstring(archive.read("xl/_rels/workbook.xml.rels"))
+        ns_main = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+        ns_rel = {"r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships"}
+        ns_pkg = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
+        sheet_rid = workbook_root.find(
+            'm:sheets/m:sheet[@name="项目总控台账"]', ns_main
+        ).attrib[f"{{{ns_rel['r']}}}id"]
+        sheet_target = rels_root.find(
+            f'p:Relationship[@Id="{sheet_rid}"]', ns_pkg
+        ).attrib["Target"]
+        with ZipFile(self.path) as archive:
             xml = archive.read(f"xl/{sheet_target}").decode("utf-8")
         grouped = set()
-        for match in re.finditer(r"<col [^/>]*/>", xml):
+        for match in re.finditer(r"<(?:\w+:)?col [^/>]*/>", xml):
             tag = match.group(0)
             min_col = int(re.search(r'min="(\d+)"', tag).group(1))
             max_col = int(re.search(r'max="(\d+)"', tag).group(1))
